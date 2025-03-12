@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>AR.js - GLB Models</title>
+  <style>
+      html {
+      font-family: sans-serif;
+      -ms-text-size-adjust: 100%;
+      -webkit-text-size-adjust: 100%;
+      color: #1a1a1a;
+      background-color: #cacaca;
+    }
+    body {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.42857143;
+      color: #333;
+      margin: 30px;
+      /*
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      background-color: #cacaca;
+      */
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        background-color: #2a211c;
+        color: #bdae9d;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #bdae9d;  padding-left: 4px; }
+    div.sourceCode
+      { color: #bdae9d; background-color: #2a211c; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ffff00; } /* Alert */
+    code span.an { color: #0066ff; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { } /* Attribute */
+    code span.bn { color: #44aa43; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #43a8ed; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #049b0a; } /* Char */
+    code span.cn { } /* Constant */
+    code span.co { color: #0066ff; font-weight: bold; font-style: italic; } /* Comment */
+    code span.do { color: #0066ff; font-style: italic; } /* Documentation */
+    code span.dt { text-decoration: underline; } /* DataType */
+    code span.dv { color: #44aa43; } /* DecVal */
+    code span.er { color: #ffff00; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #44aa43; } /* Float */
+    code span.fu { color: #ff9358; font-weight: bold; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #0066ff; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #43a8ed; font-weight: bold; } /* Keyword */
+    code span.op { } /* Operator */
+    code span.pp { font-weight: bold; } /* Preprocessor */
+    code span.sc { color: #049b0a; } /* SpecialChar */
+    code span.ss { color: #049b0a; } /* SpecialString */
+    code span.st { color: #049b0a; } /* String */
+    code span.va { } /* Variable */
+    code span.vs { color: #049b0a; } /* VerbatimString */
+    code span.wa { color: #ffff00; font-weight: bold; } /* Warning */
+
+  </style>
+</head>
+<body>
+<h1>AR.js - Demo Page</h1>
+<h2>Table of Contents </h2>
+<nav id="TOC" role="doc-toc">
+<ul class="default">
+<li><a href="#ar.js" id="toc-ar.js">AR.js</a>
+<ul>
+<li><a href="#elf-wizzard" id="toc-elf-wizzard">Elf Wizzard</a></li>
+<li><a href="#running-boy" id="toc-running-boy">Running Boy</a></li>
+<li><a href="#running-girl" id="toc-running-girl">Running Girl</a></li>
+<li><a href="#wizzard-stick" id="toc-wizzard-stick">Wizzard
+Stick</a></li>
+</ul></li>
+<li><a href="#embedding-of-3d-models-with-ar.js"
+id="toc-embedding-of-3d-models-with-ar.js">Embedding of 3D Models with
+AR.js</a>
+<ul>
+<li><a href="#used-marker" id="toc-used-marker">Used Marker</a></li>
+<li><a href="#entity-tag-for-3d-model"
+id="toc-entity-tag-for-3d-model">Entity Tag for 3D model</a></li>
+<li><a href="#pathname-to-3d-model"
+id="toc-pathname-to-3d-model">Pathname to 3D Model</a></li>
+<li><a href="#position-of-the-3d-model"
+id="toc-position-of-the-3d-model">Position of the 3D Model</a></li>
+<li><a href="#rotation-of-the-3d-model"
+id="toc-rotation-of-the-3d-model">Rotation of the 3D Model</a></li>
+<li><a href="#size-of-the-3d-model" id="toc-size-of-the-3d-model">Size
+of the 3D Model</a></li>
+</ul></li>
+<li><a href="#folders" id="toc-folders">Folders</a></li>
+<li><a href="#usage-on-a-web-server"
+id="toc-usage-on-a-web-server">Usage on a Web Server</a></li>
+<li><a href="#modification-of-3d-models"
+id="toc-modification-of-3d-models">Generation and Modification of 3D Models</a></li>
+</ul>
+</nav>
+<h2 id="ar.js">AR.js</h2>
+<p>The following 3D models were published by Sketchfab as Creative
+Commons resources:</p>
+<h3 id="elf-wizzard">Elf Wizzard</h3>
+<ul>
+<li>3D-Model - <a href="model3d/elf_wizard_small.glb">GLB
+elf_wizard_small.glb</a></li>
+<li>AR.js - <a href="elf_wizard_small.html">elf_wizard_small.html -
+Hiro-Marker</a></li>
+<li>URL Source:
+<a href="https://sketchfab.com/3d-models/elf-wizard-ca5564a738174feca82c9d89610c017d">https://sketchfab.com/3d-models/elf-wizard-ca5564a738174feca82c9d89610c017d</a> </li>
+<li>Licence Info - “Elf Wizard” by Muru is licensed under Creative
+Commons Attribution (<a href="http://creativecommons.org/licenses/by/4.0/">http://creativecommons.org/licenses/by/4.0/</a>).</li>
+</ul>
+<h3 id="running-boy">Running Boy</h3>
+<ul>
+<li>3D-Model - <a href="model3d/running_boy.glb">GLB
+running_boy.glb</a></li>
+<li>AR.js - <a href="running_boy.html">running_boy.html -
+Hiro-Marker</a></li>
+<li>URL Source:
+<a href="https://sketchfab.com/3d-models/running-boy-cc35616b7d064559828cd99d840738f5">https://sketchfab.com/3d-models/running-boy-cc35616b7d064559828cd99d840738f5</a></li>
+<li>Licence Info: “Running boy” (https://skfb.ly/p9ZNB) by
+alexeyshadrin80 is licensed under Creative Commons Attribution
+(<a href="http://creativecommons.org/licenses/by/4.0/">http://creativecommons.org/licenses/by/4.0/</a>).</li>
+</ul>
+<h3 id="running-girl">Running Girl</h3>
+<ul>
+<li>3D-Model - <a href="model3d/mei.glb">GLB mei.glb</a></li>
+<li>AR.js - <a href="mei.html">mei.html - Hiro-Marker</a></li>
+<li>URL Source:
+<a href="https://sketchfab.com/3d-models/mei-5478ddd14bf044e59e02bda57ec46edb">https://sketchfab.com/3d-models/mei-5478ddd14bf044e59e02bda57ec46edb</a> </li>
+<li>Licence Info: “Mei” by cgart.com is licensed under Creative Commons
+Attribution (<a href="http://creativecommons.org/licenses/by/4.0/">http://creativecommons.org/licenses/by/4.0/</a>).</li>
+</ul>
+<h3 id="wizzard-stick">Wizzard Stick</h3>
+<ul>
+<li>3D-Model - <a href="model3d/wizard_staff.glb">GLB
+wizard_staff.glb</a></li>
+<li>AR.js - <a href="wizard_staff.html">wizard_staff.html -
+Hiro-Marker</a></li>
+<li>URL Source:
+<a href="https://sketchfab.com/3d-models/wizard-staff-873f596fb3cc44998cb75a3dce60181f">https://sketchfab.com/3d-models/wizard-staff-873f596fb3cc44998cb75a3dce60181f</a> </li>
+<li>License Info - Wizzard stick with the name “Wizard Staff” by tpbleu
+is licensed under Creative Commons Attribution
+(<a href="http://creativecommons.org/licenses/by/4.0/">http://creativecommons.org/licenses/by/4.0/</a>).</li>
+</ul>
+<h2 id="embedding-of-3d-models-with-ar.js">Embedding of 3D Models with
+AR.js</h2>
+<h3 id="used-marker">Used Marker</h3>
+<p>The used marker for the 3D models is the <a
+href="https://niebert.github.io/JSON3D4Aframe/pdf/marker_hiro_kanji_printout.pdf">Hiro
+marker</a>. The definition of the marker in the HTML code is done with
+the <code>a-marker</code> tag an the preset definition for the <a
+href="https://niebert.github.io/JSON3D4Aframe/pdf/marker_hiro_kanji_printout.pdf">Hiro
+marker</a>:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-marker</span><span class="ot"> preset</span><span class="op">=</span><span class="st">&quot;hiro&quot;</span><span class="dt">&gt;</span></span></code></pre></div>
+<h3 id="entity-tag-for-3d-model">Entity Tag for 3D model</h3>
+<p>The following <code>entity</code> tag embeds the 3D model</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ot">      position</span><span class="op">=</span><span class="st">&quot;0 0 0&quot;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ot">      rotation</span><span class="op">=</span><span class="st">&quot;0 90 0&quot;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ot">      scale</span><span class="op">=</span><span class="st">&quot;2.0 2.0 2.0&quot;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ot">      animation-mixer</span><span class="op">=</span><span class="st">&quot;loop: repeat&quot;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ot">      gltf-model</span><span class="op">=</span><span class="st">&quot;./model3d/elf_wizard_small.glb&quot;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ot">      </span><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code></pre></div>
+<h3 id="pathname-to-3d-model">Pathname to 3D Model</h3>
+<p>The 3D model is a GLB file <code>elf_wizard_small.glb</code> located
+in the subdirectory <code>model3d/</code>. The attribute
+<code>gltf-model</code> is used to specify the pathname.</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span><span class="ot">  </span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ot">    </span><span class="er">...</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ot">    gltf-model</span><span class="op">=</span><span class="st">&quot;./model3d/elf_wizard_small.glb&quot;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ot">   </span><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code></pre></div>
+<h3 id="position-of-the-3d-model">Position of the 3D Model</h3>
+<p>Position of the 3D model on the marker is defined by (x,y,z)
+coordinates. * x-axis is left(-) right(+), * y-axis is up(+) down(-), *
+z-axis is front(-) backwards(+) with reference to the origin (0,0,0).
+With the following position the 3D model is placed at the origin over
+the marker.</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ot">    </span><span class="er">...</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ot">    position</span><span class="op">=</span><span class="st">&quot;0 0 0&quot;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ot">    </span><span class="er">...</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ot">   </span><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code></pre></div>
+<h3 id="rotation-of-the-3d-model">Rotation of the 3D Model</h3>
+<p>Rotation of the 3D model around the x-axis, y-axis and z-axis is
+defined by the following tag attribute. y-axis rotation with 90 degress
+is defined by the following angles:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ot">    </span><span class="er">...</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ot">    rotation</span><span class="op">=</span><span class="st">&quot;0 90 0&quot;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ot">    </span><span class="er">...</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ot">   </span><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code></pre></div>
+<h3 id="size-of-the-3d-model">Size of the 3D Model</h3>
+<p>Scaling of the 3D model can be performed for the x-axis, y-axis and
+z-axis seperately. So you need to specify 3 values that in general equal
+to have the aspect ratio preserved in the scaled model. Especially the
+3D model <code>running_boy.glb</code> was very small on the marker and
+was visible just as a dot. So scaling was necessary with a scale factor
+of 120 for the x-axis, y-axis and z-axis with:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ot">    </span><span class="er">...</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ot">    scale</span><span class="op">=</span><span class="st">&quot;120.0 120.0 120.0&quot;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ot">    </span><span class="er">...</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ot">   </span><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code></pre></div>
+<p>In general unscaled models will have the settings for the scale
+factor <code>1.0</code></p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ot">    </span><span class="er">...</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ot">    scale</span><span class="op">=</span><span class="st">&quot;1.0 1.0 1.0&quot;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ot">    </span><span class="er">...</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ot">   </span><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code></pre></div>
+<p>In following setting with scale the width by the factor 3.0, the
+height of the model by the factor <code>2.0</code> and the depth of the
+vector remains unchanged with the scale factor <code>1.0</code></p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode html"><code class="sourceCode html"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">a-entity</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ot">    </span><span class="er">...</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ot">    scale</span><span class="op">=</span><span class="st">&quot;3.0 2.0 1.0&quot;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="ot">    </span><span class="er">...</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ot">   </span><span class="dt">&gt;&lt;/</span><span class="kw">a-entity</span><span class="dt">&gt;</span></span></code></pre></div>
+<h2 id="folders">Folders</h2>
+<ul>
+<li><code>index.html</code> is the main starting page of the repository
+that contains links to all HTML files available in this repository.</li>
+<li>The directory <code>model3d/</code> contains all 3D models of the
+repository, that are listed above.</li>
+<li>all 3D models have a correponding HTML file with the same base name.
+E.g. the 3D model <code>elf_wizard_small.glb</code> in the folder
+<code>model3d/</code> has the corresponding HTML file
+<code>elf_wizard_small.html</code> that is used to display the 3D model
+in the browser.<br />
+</li>
+<li>The directory <code>js/</code> contains all Javascript sources
+required for the showing animated GLB files in a browser with <a
+href="https://ar-js-org.github.io/AR.js-Docs/">AR.js</a>.</li>
+</ul>
+<h2 id="usage-on-a-web-server">Usage on a Web Server</h2>
+<p>Copy the models with the folders <code>js/</code> and
+<code>model3d/</code> in folder of you web server
+(e.g. https://www.example.com). If the content is available in the
+subdirectory <code>mymodels/</code> of the server root directory, then
+you <code>index.html</code> will be available under the URL
+https://www.example.com/mymodels/index.html .</p>
+
+<h2 id="modification-of-3d-models">Generation and Modification of 3D Models</h2>
+<p>To modify existing models in the folder <code>model3d/</code> it is recommended
+to use the Open Source software <a href="https://www.blender.org/download/" target="_blank">Blender</a>.</p>
+<ul>
+  <li>
+    If you are a novice start with a <a href="https://www.youtube.com/watch?v=anG15t4od80" target="_blank">Blender Cup tutorial</a>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/watch?v=9xAumJRKV6A" target="_blank">
+Tutorial: Blender MODELLING For Absolute Beginners - Simple Human </a>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/watch?v=TumrA0XsX0A" target="_blank">How to make a Character in Blender - My Full Process in 10 Minutes</a>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/watch?v=m-Obo_nC3SM" target="_blank">Rigging - Bones of a Character - Animation</a>
+  </li>
+</ul>
+</body>
+</html>

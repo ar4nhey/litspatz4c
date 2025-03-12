@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AR.js - hiro - wizard_staff.glb</title>
+  <script src="js/aframe.min.js"></script>
+  <script src="js/aframe-ar.js"> </script>
+  <script src="js/aframe-extras.js"></script>
+ 
+</head>
+<body style="margin : 0px; overflow: hidden;">
+  <a-scene embedded arjs>
+  <a-marker preset="hiro">
+      <a-entity
+      position="0 0 0"
+      rotation="0 90 0"
+      scale="1.0 1.0 1.0"
+      animation-mixer="loop: repeat"
+      gltf-model="./model3d/wizard_staff.glb"
+      ></a-entity>
+  </a-marker>
+  <a-light type="ambient" color="#FFF" light=""></a-light>
+  <a-light type="point" color="#fff" position="0 3 0" light=""></a-light>
+  <a-light type="point" color="#fff" position="3 3 0" light=""></a-light>
+  <a-light type="point" color="#fff" position="-3 3 0" light=""></a-light>
+  <a-light type="point" color="#fff" position="3 3 -3" light=""></a-light>
+  <a-light type="point" color="#fff" position="-3 3 -3" light=""></a-light>
+  <a-light type="point" color="#fff" position="1.5 3 0" light=""></a-light>
+
+  <a-entity camera></a-entity>
+  </a-scene>
+
+</body>
+</html>
