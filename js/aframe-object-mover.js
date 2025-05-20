@@ -31,6 +31,7 @@ class AframeMover {
 		} else {
 			console.error("ERROR: Aframe object with the ID ["+this.id+"] does not exists");
 		}		
+		this.loopBool = false;
         this.startPos = { x: 0, y: 0, z: 0 };
         this.endPos = { x: 0, y: 0, z: 0 };
         this.startRot = { x: 0, y: 0, z: 0 };
@@ -38,12 +39,15 @@ class AframeMover {
         this.duration = 5000; // Default duration in milliseconds 5 sec
         this.animationFrameId = null;
     }
+	setLoop(pBoolean) {
+        this.loopBool = pBoolean;
+    }
 
     setStartPosition(x, y, z) {
         this.startPos = { x, y, z };
         this.entity.setAttribute('position', this.startPos);
     }
-
+	
     setEndPosition(x, y, z) {
         this.endPos = { x, y, z };
     }
@@ -62,6 +66,7 @@ class AframeMover {
     }
 
     startMovement() {
+		const self = this;
         const startTime = performance.now();
         const animate = (currentTime) => {
             const elapsedTime = currentTime - startTime;
@@ -80,7 +85,15 @@ class AframeMover {
 
             if (progress < 1) {
                 this.animationFrameId = requestAnimationFrame(animate);
-            }
+            } else {
+				console.log("Check Loop Animation loopBool="+this.loopBool);
+				if (this.loopBool == true) {
+					console.log("Loop Animation loopBool="+this.loopBool);
+					self.startMovement();
+        		} else {
+					console.log("Stop Animation loopBool="+this.loopBool);
+				}		
+			}	
         };
 
         this.animationFrameId = requestAnimationFrame(animate);
