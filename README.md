@@ -52,24 +52,24 @@ The used marker is the Hiro-Marker that can be downloaded as [PDF]
 * **License Info:**  Wizzard stick with the name "Wizard Staff" by tpbleu is licensed under Creative Commons Attribution (<http://creativecommons.org/licenses/by/4.0/>).
 
 ### Moving Box
-* * **Marker:** Hiro marker
-* * **Start Position:** ()
-* * **End Position:** ()
-* * **Loop:** true
-* * **[AR.js](https://ar-js-org.github.io/AR.js-Docs/)** -  - HTML file: [moving_box.html - Hiro-Marker](wizard_staff.html)
+* **Marker:** Hiro marker
+* **Start Position:** ()
+* **End Position:** ()
+* **Loop:** true
+* **[AR.js](https://ar-js-org.github.io/AR.js-Docs/)** -  - HTML file: [moving_box.html - Hiro-Marker](wizard_staff.html)
 
 ### Roting Box
-* * **Marker:** Hiro marker
-* * **Rotation Angles:** () x-axis, y-axis, z-axis in degrees
-* * **Loop:** true
+* **Marker:** Hiro marker
+* **Rotation Angles:** () x-axis, y-axis, z-axis in degrees
+* **Loop:** true
 * **[AR.js](https://ar-js-org.github.io/AR.js-Docs/)** -  - HTML file: [rotating_box.html - Hiro-Marker](wizard_staff.html)
 
 ### Moving and Roting Box
-* * **Marker:** Hiro marker
-* * **Start Position:** ()
-* * **End Position:** ()
-* * **Rotation Angles:** () x-axis, y-axis, z-axis in degrees
-* * **Loop:** true
+* **Marker:** Hiro marker
+* **Start Position:** ()
+* **End Position:** ()
+* **Rotation Angles:** () x-axis, y-axis, z-axis in degrees
+* **Loop:** true
 * **[AR.js](https://ar-js-org.github.io/AR.js-Docs/)** -  - HTML file: [rotating_box.html - Hiro-Marker](wizard_staff.html)
 
 ## Embedding of 3D Models with AR.js
