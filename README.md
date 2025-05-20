@@ -1,7 +1,8 @@
 ## LitSpatz4C
 This repository contains examples files for the project `LitSpatz4C`.
 <h3><a href="https://ar4nhey.github.io/litspatz4c" target="_blank">LitSpatz4C - Demo</h3>
-The project uses Aframe
+The project uses [Aframe](https://aframe.io) and [AR.js](https://ar-js-org.github.io/AR.js-Docs/).
+  
 ## AR.js
 
 The following 3D models were published by Sketchfab as Creative Commons resources:
@@ -10,7 +11,7 @@ The following 3D models were published by Sketchfab as Creative Commons resource
 
 * **3D-Model** - [GLB elf\_wizard\_small.glb](model3d/elf_wizard_small.glb)
 
-* **[AR.js](https://ar-js-org.github.io/AR.js-Docs/)** - [elf\_wizard\_small.html - Hiro-Marker](elf_wizard_small.html)
+* **[AR.js](https://ar-js-org.github.io/AR.js-Docs/)** - HTML file: [elf\_wizard\_small.html - Hiro-Marker](elf_wizard_small.html)
 
 * **URL Source:**
   <https://sketchfab.com/3d-models/elf-wizard-ca5564a738174feca82c9d89610c017d>
@@ -21,7 +22,7 @@ The following 3D models were published by Sketchfab as Creative Commons resource
 
 * **3D-Model** - [GLB running\_boy.glb](model3d/running_boy.glb)
 
-* **[AR.js](https://ar-js-org.github.io/AR.js-Docs/)** - [running\_boy.html - Hiro-Marker](running_boy.html)
+* **[AR.js](https://ar-js-org.github.io/AR.js-Docs/)** -  - HTML file: [running\_boy.html - Hiro-Marker](running_boy.html)
 
 * **URL Source:** <https://sketchfab.com/3d-models/running-boy-cc35616b7d064559828cd99d840738f5>
 
@@ -31,7 +32,7 @@ The following 3D models were published by Sketchfab as Creative Commons resource
 
 * **3D-Model** - [GLB mei.glb](model3d/mei.glb)
 
-* **[AR.js](https://ar-js-org.github.io/AR.js-Docs/)** - [mei.html - Hiro-Marker](mei.html)
+* **[AR.js](https://ar-js-org.github.io/AR.js-Docs/)** - HTML file: [mei.html - Hiro-Marker](mei.html)
 
 * **URL Source:** <https://sketchfab.com/3d-models/mei-5478ddd14bf044e59e02bda57ec46edb>
 
@@ -41,7 +42,7 @@ The following 3D models were published by Sketchfab as Creative Commons resource
 
 * **3D-Model** - [GLB wizard\_staff.glb](model3d/wizard_staff.glb)
 
-* **AR.js** - [wizard\_staff.html - Hiro-Marker](wizard_staff.html)
+* **[AR.js](https://ar-js-org.github.io/AR.js-Docs/)** -  - HTML file: [wizard\_staff.html - Hiro-Marker](wizard_staff.html)
 
 * **URL Source:** <https://sketchfab.com/3d-models/wizard-staff-873f596fb3cc44998cb75a3dce60181f>
 
