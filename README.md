@@ -1,50 +1,51 @@
-## readme litspatz4c
-Dies ist die Datei zum LitSpatz4C
-
+## LitSpatz4C
+This repository contains examples files for the project `LitSpatz4C`.
+<h3><a href="https://ar4nhey.github.io/litspatz4c" target="_blank">LitSpatz4C - Demo</h3>
+The project uses Aframe
 ## AR.js
 
 The following 3D models were published by Sketchfab as Creative Commons resources:
 
 ### Elf Wizzard
 
-* 3D-Model - [GLB elf\_wizard\_small.glb](model3d/elf_wizard_small.glb)
+* **3D-Model** - [GLB elf\_wizard\_small.glb](model3d/elf_wizard_small.glb)
 
-* AR.js - [elf\_wizard\_small.html - Hiro-Marker](elf_wizard_small.html)
+* **[AR.js](https://ar-js-org.github.io/AR.js-Docs/)** - [elf\_wizard\_small.html - Hiro-Marker](elf_wizard_small.html)
 
-* URL Source:
+* **URL Source:**
   <https://sketchfab.com/3d-models/elf-wizard-ca5564a738174feca82c9d89610c017d>
 
-* Licence Info - "Elf Wizard" by Muru is licensed under Creative Commons Attribution (<http://creativecommons.org/licenses/by/4.0/>).
+* **Licence Info** - "Elf Wizard" by Muru is licensed under Creative Commons Attribution (<http://creativecommons.org/licenses/by/4.0/>).
 
 ### Running Boy
 
-* 3D-Model - [GLB running\_boy.glb](model3d/running_boy.glb)
+* **3D-Model** - [GLB running\_boy.glb](model3d/running_boy.glb)
 
-* AR.js - [running\_boy.html - Hiro-Marker](running_boy.html)
+* **[AR.js](https://ar-js-org.github.io/AR.js-Docs/)** - [running\_boy.html - Hiro-Marker](running_boy.html)
 
-* URL Source: <https://sketchfab.com/3d-models/running-boy-cc35616b7d064559828cd99d840738f5>
+* **URL Source:** <https://sketchfab.com/3d-models/running-boy-cc35616b7d064559828cd99d840738f5>
 
-* Licence Info: "Running boy" (<https://skfb.ly/p9ZNB>) by alexeyshadrin80 is licensed under Creative Commons Attribution (<http://creativecommons.org/licenses/by/4.0/>).
+* **Licence Info:** "Running boy" (<https://skfb.ly/p9ZNB>) by alexeyshadrin80 is licensed under Creative Commons Attribution (<http://creativecommons.org/licenses/by/4.0/>).
 
 ### Running Girl
 
-* 3D-Model - [GLB mei.glb](model3d/mei.glb)
+* **3D-Model** - [GLB mei.glb](model3d/mei.glb)
 
-* AR.js - [mei.html - Hiro-Marker](mei.html)
+* **[AR.js](https://ar-js-org.github.io/AR.js-Docs/)** - [mei.html - Hiro-Marker](mei.html)
 
-* URL Source: <https://sketchfab.com/3d-models/mei-5478ddd14bf044e59e02bda57ec46edb>
+* **URL Source:** <https://sketchfab.com/3d-models/mei-5478ddd14bf044e59e02bda57ec46edb>
 
-* Licence Info: "Mei" by cgart.com is licensed under Creative Commons Attribution (<http://creativecommons.org/licenses/by/4.0/>).
+* **Licence Info:** "Mei" by cgart.com is licensed under Creative Commons Attribution (<http://creativecommons.org/licenses/by/4.0/>).
 
 ### Wizzard Stick
 
-* 3D-Model - [GLB wizard\_staff.glb](model3d/wizard_staff.glb)
+* **3D-Model** - [GLB wizard\_staff.glb](model3d/wizard_staff.glb)
 
-* AR.js - [wizard\_staff.html - Hiro-Marker](wizard_staff.html)
+* **AR.js** - [wizard\_staff.html - Hiro-Marker](wizard_staff.html)
 
-* URL Source: <https://sketchfab.com/3d-models/wizard-staff-873f596fb3cc44998cb75a3dce60181f>
+* **URL Source:** <https://sketchfab.com/3d-models/wizard-staff-873f596fb3cc44998cb75a3dce60181f>
 
-* License Info - Wizzard stick with the name "Wizard Staff" by tpbleu is licensed under Creative Commons Attribution (<http://creativecommons.org/licenses/by/4.0/>).
+* **License Info:**  Wizzard stick with the name "Wizard Staff" by tpbleu is licensed under Creative Commons Attribution (<http://creativecommons.org/licenses/by/4.0/>).
 
 ## Embedding of 3D Models with AR.js
 
