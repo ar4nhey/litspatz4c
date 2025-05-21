@@ -15,7 +15,7 @@
 			<a-assets>
 			</a-assets>
 	
-			<a-box id="movingBox" position="0 1.6 -5" color="red"></a-box>
+			<a-box id="movingBox" position="0 -1.6 5" color="red"></a-box>
 
 			<a-sky src="../img360/Bamberg1_Bibliothek.JPG"></a-sky>
 	   
@@ -29,8 +29,8 @@
         const boxMover = new AframeMover('movingBox');
 
         // Set start and end positions
-        boxMover.setStartPosition(0, 1.6, -5);
-        boxMover.setEndPosition(2, 1.6, -20);
+        boxMover.setStartPosition(-4, -1.6, 5);
+        boxMover.setEndPosition(-2, -1.6, 20);
 		boxMover.setLoop(true);
         // Set start and end rotations
         boxMover.setStartRotation(0, 0, 0);
