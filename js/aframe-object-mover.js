@@ -66,7 +66,7 @@ class AframeMover {
     }
 
     startMovement() {
-		const self = this;
+	const self = this;
         const startTime = performance.now();
         const animate = (currentTime) => {
             const elapsedTime = currentTime - startTime;
@@ -86,14 +86,14 @@ class AframeMover {
             if (progress < 1) {
                 this.animationFrameId = requestAnimationFrame(animate);
             } else {
-				console.log("Check Loop Animation loopBool="+this.loopBool);
-				if (this.loopBool == true) {
-					console.log("Loop Animation loopBool="+this.loopBool);
-					self.startMovement();
-        		} else {
-					console.log("Stop Animation loopBool="+this.loopBool);
-				}		
-			}	
+		console.log("Check Loop Animation loopBool="+this.loopBool);
+		if (this.loopBool == true) {
+			console.log("Loop Animation loopBool="+this.loopBool);
+			self.startMovement();
+        	} else {
+			console.log("Stop Animation loopBool="+this.loopBool);
+		}		
+	    }	
         };
 
         this.animationFrameId = requestAnimationFrame(animate);
