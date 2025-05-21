@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<HTML>
+	<HEAD>
+		<meta charset='utf-8'>
+		<meta repository='https://www.gitlab.com/niehausbert/aframe360' created='11.10.2019'>
+		<TITLE>Box Move Rotate - 360 Aframe Panorama</TITLE>
+		<meta name="description" content="360&deg; Image - A-Frame">
+		<script src='../js/aframe-v0.9.2.js'></script>
+	    <script src="../js/aframe-object-mover.js"></script>
+
+	</HEAD>
+	<BODY>
+		<a-scene>
+			<a-assets>
+			</a-assets>
+	
+			<a-box id="movingBox" position="0 1.6 -5" color="red"></a-box>
+
+			<a-sky src="../img360/Bamberg3_Bruecke_Torhaus.JPG"></a-sky>
+	   
+	        <a-camera position="0 1.6 0"></a-camera>
+  
+	  <!-- <a-sound src="src: url(audio/ocean_waves.mp3)" autoplay="true" position="0 2 5"></a-sound> -->
+     </a-scene>
+     <script>
+        // Include the ObjectMover class
+        // Create an instance of ObjectMover for the box
+        const boxMover = new AframeMover('movingBox');
+
+        // Set start and end positions
+        boxMover.setStartPosition(0, 1.6, -5);
+        boxMover.setEndPosition(2, 1.6, -20);
+		boxMover.setLoop(true);
+        // Set start and end rotations
+        boxMover.setStartRotation(0, 0, 0);
+        boxMover.setEndRotation(0, 360, 0);
+
+        // Set duration
+        boxMover.setDuration(5000); // 2 seconds
+
+        // Start the movement
+        boxMover.startMovement();
+    </script>
+  </BODY>
+</HTML>
+      
