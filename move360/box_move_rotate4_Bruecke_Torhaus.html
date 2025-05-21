@@ -29,12 +29,13 @@
         const boxMover = new AframeMover('movingBox');
 
         // Set start and end positions
-        boxMover.setStartPosition(0, 1.6, -5);
-        boxMover.setEndPosition(2, 1.6, -20);
-		boxMover.setLoop(true);
+        boxMover.setStartPosition(-4, -1.6, 5);
+        boxMover.setEndPosition(-2, -1.6, 20);
+	boxMover.setLoop(true);
         // Set start and end rotations
         boxMover.setStartRotation(0, 0, 0);
-        boxMover.setEndRotation(0, 360, 0);
+        boxMover.setEndRotation(0, 30, 0);
+
 
         // Set duration
         boxMover.setDuration(5000); // 2 seconds
