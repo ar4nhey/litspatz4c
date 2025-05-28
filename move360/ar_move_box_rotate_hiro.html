@@ -25,6 +25,27 @@
 
   <a-entity camera></a-entity>
   </a-scene>
+<script>
+        // Include the ObjectMover class
+        // Create an instance of ObjectMover for the box
+        const boxMover = new AframeMover('movingBox');
 
+        // Set start and end positions (x,y,z) 
+        // x: -left/+right
+        // y: -down/+up
+        // z: -rear/+front
+        boxMover.setStartPosition(-10, 0, 0);
+        boxMover.setEndPosition(+10, 0, 0);
+		    boxMover.setLoop(true);
+        // Set start and end rotations - no rotation
+        boxMover.setStartRotation(0, 0, 0);
+        boxMover.setEndRotation(0, 0, 0);
+
+        // Set duration
+        boxMover.setDuration(4000); // 4 seconds
+
+        // Start the movement
+        boxMover.startMovement();
+</scipt>
 </body>
 </html>
