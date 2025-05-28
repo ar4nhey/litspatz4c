@@ -64,6 +64,7 @@ Double size of the marker increases the size of object by the factor 2. To perfo
 For moving objects in the 3D space in [Aframe](https://aframe.io) or [AR.js](https://ar-js-org.github.io/AR.js-Docs/) this library contains a library `aframe-object-mover.js` stored in the Javascript folder `js/`. An instance of the object mover is responsible for moving an object from location `(x1,y1,z1)` as start position to a location `(x2,y2,z2)` as the end position. As a route a straight line is used and mathematical implemented as a [convex combination](https://en.wikiversity.org/wiki/Convex_combination).
 
 ### Moving Box
+* **Browser Preview** - [Moving Box](https://ar4nhey.github.io/litspatz4c/move360/ar_move_box_hiro.html)
 * **Marker:** Hiro marker
 * **Start Position:** ()
 * **End Position:** ()
@@ -71,18 +72,20 @@ For moving objects in the 3D space in [Aframe](https://aframe.io) or [AR.js](htt
 * **[AR.js](https://ar-js-org.github.io/AR.js-Docs/)** -  - HTML file: [moving_box.html - Hiro-Marker](wizard_staff.html)
 
 ### Roting Box
+* **Browser Preview** - [Moving Box](https://ar4nhey.github.io/litspatz4c/move360/ar_rotate_thiro.html)
 * **Marker:** Hiro marker
 * **Rotation Angles:** () x-axis, y-axis, z-axis in degrees
 * **Loop:** true
-* **[AR.js](https://ar-js-org.github.io/AR.js-Docs/)** -  - HTML file: [rotating_box.html - Hiro-Marker](wizard_staff.html)
+* **[AR.js](https://ar-js-org.github.io/AR.js-Docs/)** -  - HTML file: [move360/ar_rotate_box_hiro.html - Hiro-Marker](move360/ar_rotate_box_hiro.html)
 
 ### Moving and Roting Box
+* **Browser Preview** - [Moving and Rotating Box](https://ar4nhey.github.io/litspatz4c/move360/ar_move_rotate_box_hiro.html)
 * **Marker:** Hiro marker
 * **Start Position:** ()
 * **End Position:** ()
 * **Rotation Angles:** () x-axis, y-axis, z-axis in degrees
 * **Loop:** true
-* **[AR.js](https://ar-js-org.github.io/AR.js-Docs/)** -  - HTML file: [rotating_box.html - Hiro-Marker](wizard_staff.html)
+* **[AR.js](https://ar-js-org.github.io/AR.js-Docs/)** -  - HTML file: [move360/ar_move_rotate_box_hiro.html - Hiro-Marker](move360/ar_move_rotate_box_hiro.html)
 
 ## Embedding of 3D Models with AR.js
 
