@@ -11,11 +11,12 @@
 </head>
 <body style="margin : 0px; overflow: hidden;">
   <a-scene embedded arjs>
+    <!--  running girl "mei.glb" is to big - scale down to 2% of size i.e. scale 0.02 -->
   <a-marker preset="hiro">
       <a-entity
-      position="0 -5 0"
+      position="0 0 0"
       rotation="0 90 0"
-      scale="0.1 0.1 0.1"
+      scale="0.02 0.02 0.02"
       animation-mixer="loop: repeat"
       gltf-model="./model3d/mei.glb"
       ></a-entity>
