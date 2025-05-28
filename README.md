@@ -13,6 +13,7 @@ The used marker is the Hiro-Marker that can be downloaded as [PDF]
 
 ### Elf Wizzard
 
+* **Browser Preview** - [elf_wizzard_small](https://ar4hey.github.io/litspatz4c/elf_wizard_small.html)
 * **3D-Model** - [GLB elf\_wizard\_small.glb](model3d/elf_wizard_small.glb)
 
 * **[AR.js](https://ar-js-org.github.io/AR.js-Docs/)** - HTML file: [elf\_wizard\_small.html - Hiro-Marker](elf_wizard_small.html)
