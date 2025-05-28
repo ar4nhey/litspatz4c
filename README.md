@@ -130,7 +130,7 @@ Position of the 3D model on the marker is defined by (x,y,z) coordinates.
 
 * y-axis is up(+) down(-),
 
-* z-axis is front(-) backwards(+)
+* z-axis is foreground (+) background(-)
   with reference to the origin (0,0,0). With the following position the 3D model is placed at the origin over the marker.
 
 ```html
