@@ -13,7 +13,7 @@ The used marker is the Hiro-Marker that can be downloaded as [PDF]
 
 ### Elf Wizzard
 
-* **Browser Preview** - [elf_wizard_small](https://ar4hey.github.io/litspatz4c/elf_wizard_small.html)
+* **Browser Preview** - [HTML file - elf\_wizard\_small.html](https://ar4nhey.github.io/litspatz4c/elf_wizard_small.html)
 * **3D-Model** - [GLB elf\_wizard\_small.glb](model3d/elf_wizard_small.glb)
 
 * **[AR.js](https://ar-js-org.github.io/AR.js-Docs/)** - HTML file: [elf\_wizard\_small.html - Hiro-Marker](elf_wizard_small.html)
@@ -25,6 +25,7 @@ The used marker is the Hiro-Marker that can be downloaded as [PDF]
 
 ### Running Boy
 
+* **Browser Preview** - [HTML file - running\_boy.html](https://ar4nhey.github.io/litspatz4c/running_boy.html)
 * **3D-Model** - [GLB running\_boy.glb](model3d/running_boy.glb)
 
 * **[AR.js](https://ar-js-org.github.io/AR.js-Docs/)** -  - HTML file: [running\_boy.html - Hiro-Marker](running_boy.html)
@@ -35,6 +36,7 @@ The used marker is the Hiro-Marker that can be downloaded as [PDF]
 
 ### Running Girl
 
+* **Browser Preview** - [HTML file - mei.html](https://ar4nhey.github.io/litspatz4c/mei.html)
 * **3D-Model** - [GLB mei.glb](model3d/mei.glb)
 
 * **[AR.js](https://ar-js-org.github.io/AR.js-Docs/)** - HTML file: [mei.html - Hiro-Marker](mei.html)
@@ -45,6 +47,7 @@ The used marker is the Hiro-Marker that can be downloaded as [PDF]
 
 ### Wizzard Stick
 
+* **Browser Preview** - [HTML file - wizard\_staff.html](https://ar4nhey.github.io/litspatz4c/wizard_staff.html)
 * **3D-Model** - [GLB wizard\_staff.glb](model3d/wizard_staff.glb)
 
 * **[AR.js](https://ar-js-org.github.io/AR.js-Docs/)** -  - HTML file: [wizard\_staff.html - Hiro-Marker](wizard_staff.html)
