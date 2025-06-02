@@ -121,7 +121,7 @@ class ARMover {
     constructor(pID,pMode) {
         this.id = pID;
         this.mode4vr = pMode || "aframe";
-        alert("ARMover('"+pID+"','"+pMode+"')");
+        //alert("ARMover('"+pID+"','"+pMode+"')");
         this.loopBool = false;
 
         this.order4convex = 1;
@@ -213,7 +213,7 @@ class ARMover {
     }
 
     startMovement() {
-      alert("startMovement() mode4vr="+this.mode4vr);
+      //alert("startMovement() mode4vr="+this.mode4vr);
       if (this.mode4vr == "aframe") {
         this.startMovement4Aframe(this)
       } else {
