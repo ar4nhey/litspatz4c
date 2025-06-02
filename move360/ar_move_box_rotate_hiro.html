@@ -7,13 +7,57 @@
   <script src="../js/aframe.min.js"></script>
   <script src="../js/aframe-ar.js"> </script>
   <script src="../js/aframe-extras.js"></script>
-  <script src="../js/aframe-object-mover.js"></script>
+  <script src="../js/ar-object-mover.js"></script>
+  <script>
+          // Include the ObjectMover class
+          // Create an instance of ObjectMover for the box
+          //alert("Create boxMover instance");
+          //const boxMover = new AframeMover('movingBox','ar');
+          //const boxMover = new AframeMover('movingBox');
+          const boxMover = new ARMover('movingbox','ar');
+
+          // Set start and end positions (x,y,z)
+          // x: -left/+right
+          // y: -down/+up
+          // z: -rear/+front
+          boxMover.setStartPosition(-8, -3, -4);
+          boxMover.setMiddlePosition(0, -3, -5);
+  		    boxMover.setEndPosition(+8, -3, -7);
+  		    boxMover.setLoop(true);
+          // Set start and end rotations - no rotation
+          boxMover.setStartRotation(0, 0, 0);
+          boxMover.setEndRotation(0, 2, 0);
+
+          // Set duration
+          boxMover.setDuration(8000); // 4 seconds
+
+          // Start the movement
+          boxMover.startMovement();
+
+          var vMoverID = 'spinner';
+
+
+          AFRAME.registerComponent(vMoverID, {
+
+          	init: function()
+          	{
+          		this.el.object3D.scale.set(0.75, 0.75, 0.75);
+          	},
+
+          	tick: function (time, timeDelta)
+          	{
+          		this.el.object3D.rotation.y -= 0.01
+          	}
+
+          });
+  </script>
 
 </head>
 <body style="margin : 0px; overflow: hidden;">
   <a-scene embedded arjs>
   <a-marker preset="hiro">
-        <a-box id="movingBox" position="0 0 0" color="red" material="opacity:0.7"></a-box>
+    <a-box id="movingBox" movingbox position="0 0 0" color="red" material="opacity:0.7"></a-box>
+    <a-box id="spinnerBox" spinner position="0 0 0" color="blue" material="opacity:0.7"></a-box>
   </a-marker>
   <a-light type="ambient" color="#FFF" light=""></a-light>
   <a-light type="point" color="#fff" position="0 3 0" light=""></a-light>
@@ -25,27 +69,5 @@
 
   <a-entity camera></a-entity>
   </a-scene>
-<script>
-        // Include the ObjectMover class
-        // Create an instance of ObjectMover for the box
-        const boxMover = new AframeMover('movingBox','ar');
-
-        // Set start and end positions (x,y,z) 
-        // x: -left/+right
-        // y: -down/+up
-        // z: -rear/+front
-        boxMover.setStartPosition(-1, 0, 0);
-        boxMover.setEndPosition(+1, 0, 0);
-		    boxMover.setLoop(true);
-        // Set start and end rotations - no rotation
-        boxMover.setStartRotation(0, 0, 0);
-        boxMover.setEndRotation(0, 0, 0);
-
-        // Set duration
-        boxMover.setDuration(4000); // 4 seconds
-
-        // Start the movement
-        boxMover.startMovement();
-</scipt>
 </body>
 </html>
