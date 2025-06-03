@@ -58,8 +58,9 @@ The used marker is the Hiro-Marker that can be downloaded as [PDF](https://niebe
 
 ### Wizzard Hat
 
-* **Browser Preview** - [HTML file - wizard\_hat\_ar\_hiro.html](https://ar4nhey.github.io/litspatz4c/wizard_hat_ar_hiro.html)
-* **3D-Model** - [GLB wizard\_hat\_json3d4aframe.json](model3d/wizard_hat_json3d4aframe.json)
+* **Browser Preview AR.js** - [HTML file - wizard\_hat\_ar\_hiro.html](https://ar4nhey.github.io/litspatz4c/wizard_hat_ar_hiro.html)
+* **Browser Preview Aframe** - [HTML file - wizard\_hat\_ar\_hiro.html](https://ar4nhey.github.io/litspatz4c/wizard_hat_aframe.html)
+* **3D-Model** - [JSON wizard\_hat\_json3d4aframe.json](model3d/wizard_hat_json3d4aframe.json) - can be modified in [JSON3D4Aframe](https://niebert.github.io/JSON3D4Aframe)
 * **[AR.js](https://ar-js-org.github.io/AR.js-Docs/)** -  HTML file: [wizard\_hat\_ar\_hiro.html - Hiro-Marker](wizard_hat_ar_hiro.html)
 * **[Aframe Version](https://aframe.io)** -  - HTML file: [wizard\_hat\_aframe.html - Hiro-Marker](wizard_hat_aframe.html)
 * **License Info:** Creative Commons Attribution (<http://creativecommons.org/licenses/by/4.0/>) by [niebert](https://www.github.com/niebert).
