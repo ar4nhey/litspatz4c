@@ -58,11 +58,11 @@ The used marker is the Hiro-Marker that can be downloaded as [PDF](https://niebe
 
 ### Wizzard Hat
 
-* **Browser Preview** - [HTML file - wizard\_hat\_.html](https://ar4nhey.github.io/litspatz4c/wizard_staff.html)
+* **Browser Preview** - [HTML file - wizard\_hat\_ar\_hiro.html](https://ar4nhey.github.io/litspatz4c/wizard_hat_ar_hiro.html)
 * **3D-Model** - [GLB wizard\_hat\_json3d4aframe.json](model3d/wizard_hat_json3d4aframe.json)
-
-* **[AR.js](https://ar-js-org.github.io/AR.js-Docs/)** -  - HTML file: [wizard\_hat\_aframe_.html - Hiro-Marker](wizard_hat_aframe.html)
-
+* **[AR.js](https://ar-js-org.github.io/AR.js-Docs/)** -  HTML file: [wizard\_hat\_ar\_hiro.html - Hiro-Marker](wizard_hat_ar_hiro.html)
+* **[Aframe Version](https://aframe.io)** -  - HTML file: [wizard\_hat\_aframe.html - Hiro-Marker](wizard_hat_aframe.html)
+* **License Info:** Creative Commons Attribution (<http://creativecommons.org/licenses/by/4.0/>) by [niebert](https://www.github.com/niebert).
 
 ## Moving Objects in AR.js and Aframe
 Geometrical object have a reference position `(x,y,z)` in the coordinate system of the 3D space. Markers in [AR.js](https://ar-js-org.github.io/AR.js-Docs/) define the origine `(0,0,0)` of the coordinate system in the center of the marker and the size of the marker defines the unit length of the coordinate system.
