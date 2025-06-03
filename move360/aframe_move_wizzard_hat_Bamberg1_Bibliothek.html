@@ -14,8 +14,9 @@
         const boxMover = new ARMover('movingbox');
 
         // Set start and end positions
-         boxMover.setStartPosition(-14, -3, -10);
-        boxMover.setEndPosition(-30.0,-3,-19.0);
+        boxMover.setStartPosition(0, -3, -4);
+        boxMover.setMiddlePosition(3,-3,-9);
+	boxMover.setEndPosition(-3,-3,-19);
 	boxMover.setLoop(true);
         // Set start and end rotations
         boxMover.setStartRotation(0, 0, 0);
@@ -34,8 +35,17 @@
 			</a-assets>
 	
 			<a-entity movingbox position="0 0 0">
-        
-      </a-entity>
+        <!-- Comment for CONE: Hat Cone -->
+       <a-cone id="78912379812" position="0.00 1.00 -0.50" material="color: #26a269;opacity:0.5" rotation="0 0 0"  radius-bottom="0.40" height="1.00" ></a-cone>
+
+       <!-- Comment for CYLINDER: Hat - base -->
+       <a-cylinder id="1747831504151" position="0.00 0.50 0.00" material="color: #26a269;opacity:0.5" rotation="0 0 0"  radius="0.60" height="0.10" ></a-cylinder>
+
+       <!-- Comment for SPHERE: Head -->
+       <a-sphere id="1748960421097" position="0.00 0.10 0.00" material="color: #5e5c64;opacity:0.5" rotation="0 0 0"  radius="0.40" ></a-sphere>
+
+
+                        </a-entity>
 
 			<a-sky src="../img360/Bamberg2_Kran.JPG"></a-sky>
 	   
