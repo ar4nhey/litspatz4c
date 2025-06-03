@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>A-Frame - Wizzard Hat </title>
+    <meta name="description" content="A-Frame Wizzard Hat">
+    <meta name="createdwith" content="https://niebert.githhub.io/JSON3D4Aframe">
+    <script src="js/aframe-v0.9.2.js"></script>
+    <!-- <script src="./js/aframe-v1.0.4.js"></script> -->
+  </head>
+  <body>
+    <a-scene>
+       <!-- Comment for CONE: Hat Cone -->
+       <a-cone id="78912379812" position="0.00 1.00 -0.50" material="color: #26a269;opacity:0.5" rotation="0 0 0"  radius-bottom="0.40" height="1.00" ></a-cone>
+
+       <!-- Comment for CYLINDER: Hat - base -->
+       <a-cylinder id="1747831504151" position="0.00 0.50 0.00" material="color: #26a269;opacity:0.5" rotation="0 0 0"  radius="0.60" height="0.10" ></a-cylinder>
+
+       <!-- Comment for SPHERE: Head -->
+       <a-sphere id="1748960421097" position="0.00 0.10 0.00" material="color: #5e5c64;opacity:0.5" rotation="0 0 0"  radius="0.40" ></a-sphere>
+
+       <!-- Comment for SKY: equirectangular image as sky-->
+       <a-sky src="../img360/Bamberg3_Bruecke_blaues_Haus.JPG" rotation="0 -130 0"></a-sky>
+    
+
+<a-entity id="myCameraPosition" position="0 2 4">
+    <a-entity id="myCamera" camera look-controls look-controls wasd-controls keyboard-controls>
+    </a-entity>
+</a-entity>
+
+    </a-scene>
+  </body>
+</html>
