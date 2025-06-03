@@ -1,0 +1,60 @@
+{
+    "data": [
+        {
+            "id": "78912379812",
+            "tagname": "a-cone",
+            "comment": "Hat Cone",
+            "position": "0 1 -0.5",
+            "color": "#26a269",
+            "opacity": 0.5,
+            "sizexyz": "0.4 0.0 1.0",
+            "rotation": "0 0 0",
+            "scale": 1,
+            "repeat": "0 0 0",
+            "repeatsteps": "1.0 1.0 1.0",
+            "animation": "1.0 1.0 1.0"
+        },
+        {
+            "id": "1747831504151",
+            "tagname": "a-cylinder",
+            "comment": "Hat - base",
+            "position": "0.0 0.5 0.0",
+            "color": "#26a269",
+            "opacity": 0.5,
+            "sizexyz": "0.6 0.1 0.1",
+            "rotation": "0 0 0",
+            "scale": 1,
+            "repeat": "0 0 0",
+            "repeatsteps": "1.0 1.0 1.0",
+            "animation": "1.0 1.0 1.0"
+        },
+        {
+            "id": "1748960421097",
+            "tagname": "a-sphere",
+            "comment": "Head",
+            "position": "0.0 0.1 0.0",
+            "color": "#5e5c64",
+            "opacity": 0.5,
+            "sizexyz": "0.4 0.25 0.25",
+            "rotation": "0 0 0",
+            "scale": 1,
+            "repeat": "0 0 0",
+            "repeatsteps": "1.0 1.0 1.0",
+            "animation": "1.0 1.0 1.0"
+        }
+    ],
+    "config": {
+        "title": "Wizzard Hat",
+        "json_file": "wizzard_hat.json",
+        "globalscale": "1.0",
+        "globalmove": "0.0 0.0 0.0",
+        "globalrotate": "0.0 0.0 0.0",
+        "marker": "hiro",
+        "titlemodel": "Wizzard Hat",
+        "dataid": "json3d4aframe",
+        "use_aframe_sky": "Y",
+        "aframe_sky_file": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Amphiteater_im_Mauerpark%2C_Berlin%2C_360x180%2C_1705280617%2C_ako.jpg",
+        "use_aframe_plane": "N",
+        "aframe_plane_color": "#7BC8A4"
+    }
+}
