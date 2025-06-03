@@ -122,7 +122,7 @@ The above code generates a box mover called `movingbox` with the given propertie
 </body>
 </html>
 ```
-We assigned to object with the ID `redBox` the attribute `movingbox`. This makes the object move on the given track. The blue box with the ID `blueBox` is static in the Aframe scene, because the object mover `movingbox` was not assigned to that entity. The [live example]
+We assigned to object with the ID `redBox` the attribute `movingbox`. This makes the object move on the given track. The blue box with the ID `blueBox` is static in the Aframe scene, because the object mover `movingbox` was not assigned to that entity. The [live example](https://ar4nhey.github.io/litspatz4c/move360/ar_move_box_vertical_hiro.html)
 
 ### Aframe Object Mover
 For moving objects in the 3D space in [Aframe](https://aframe.io) or [AR.js](https://ar-js-org.github.io/AR.js-Docs/) this library contains a library `aframe-object-mover.js` stored in the Javascript folder `js/`. An instance of the object mover is responsible for moving an object from location `(x1,y1,z1)` as start position to a location `(x2,y2,z2)` as the end position. As a route a straight line is used and mathematical implemented as a [convex combination](https://en.wikiversity.org/wiki/Convex_combination#Bernstein_polynomial_-_order_2)).
