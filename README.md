@@ -58,10 +58,74 @@ The used marker is the Hiro-Marker that can be downloaded as [PDF]
 
 ## Moving Objects in AR.js and Aframe
 Geometrical object have a reference position `(x,y,z)` in the coordinate system of the 3D space. Markers in [AR.js](https://ar-js-org.github.io/AR.js-Docs/) define the origine `(0,0,0)` of the coordinate system in the center of the marker and the size of the marker defines the unit length of the coordinate system.
-Double size of the marker increases the size of object by the factor 2. To perform object movements the library [aframe-object-mover.js](js/aframe-object-mover.js) is used. 
+Double size of the marker increases the size of object by the factor 2. To perform object movements the library [ar-object-mover.js](js/ar-object-mover.js) is used. 
+* **[Moving red box](https://ar4nhey.github.io/move360/ar_move_vertical_hiro.html)** on [Hiro Marker] - [Source File](move360/ar_move_vertical_hiro.html)
+
+### Header of HTML File AR Object Mover
+The library [ar-object-mover.js](js/ar-object-mover.js) uses [convex combination of order 2](https://en.wikiversity.org/wiki/Convex_combination#Bernstein_polynomial_-_order_2) to create a bended track between a starting point `A` and an end point `B`. A middle point `H1` is used to bend the track. In the following example
+* `A=(-4, -5, 1)` is used as starting point,
+* `B=(+4, -5, 1)` is used as end point and
+* `H1=(0, -3, -3)` is used as middle point to bend the track,
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AR.js - move - box - hiro</title>
+  <script src="../js/aframe.min.js"></script>
+  <script src="../js/aframe-ar.js"> </script>
+  <script src="../js/aframe-extras.js"></script>
+  <script src="../js/ar-object-mover.js"></script>
+  <script>
+          // Include the ObjectMover class
+          // Create an instance of ObjectMover for the box
+          const boxMover = new ARMover('movingbox','ar');
+          // Standard flat position of hiro marker    
+          // Set start and end positions (x,y,z)
+          // x: -left/+right
+          // y: -down/+up
+          // z: -rear/+front
+
+          // Vertical position of hiro marker    
+          // x: -left/+right
+          // y: -rear/+front
+          // z: -down/+up
+          
+          boxMover.setStartPosition(-4, -5, 1);
+          boxMover.setMiddlePosition(0, -3, -3);
+  		    boxMover.setEndPosition(+4, -5, 1);
+  		    boxMover.setLoop(true);
+          // Set start and end rotations - no rotation
+          boxMover.setStartRotation(0, 0, 0);
+          boxMover.setEndRotation(0, 4, 0);
+
+          // Set duration
+          boxMover.setDuration(8000); // duration of path 8 seconds
+
+          // Start the movement
+          boxMover.startMovement();
+</script>
+```
+### Assign a Movement to a Aframe/AR entity
+The above code generates a box mover called `movingbox` with the given properties of starting point, end point and middle point for [bending the curve as convex combination of order 2](https://en.wikiversity.org/wiki/Convex_combination#Bernstein_polynomial_-_order_2). Convex combination of order 1 is a straight line as track. Second order allow bended tracks. Now we assign the track to a specific entity (red box).
+```html
+<body style="margin : 0px; overflow: hidden;">
+  <a-scene embedded arjs>
+  <a-marker preset="hiro">
+    <a-box id="redBox" movingbox  size="3 0.5 1"  color="red" material="opacity:0.7"></a-box>
+    <a-box id="blueBox"  position="0 0 0"  size="1 1 1"  color="blue" material="opacity:0.7"></a-box>
+  </a-marker>
+  <a-entity camera></a-entity>
+  </a-scene>
+</body>
+</html>
+```
+We assigned to object with the ID `redBox` the attribute `movingbox`. This makes the object move on the given track. The blue box with the ID `blueBox` is static in the Aframe scene, because the object mover `movingbox` was not assigned to that entity. The [live example]
 
 ### Aframe Object Mover
-For moving objects in the 3D space in [Aframe](https://aframe.io) or [AR.js](https://ar-js-org.github.io/AR.js-Docs/) this library contains a library `aframe-object-mover.js` stored in the Javascript folder `js/`. An instance of the object mover is responsible for moving an object from location `(x1,y1,z1)` as start position to a location `(x2,y2,z2)` as the end position. As a route a straight line is used and mathematical implemented as a [convex combination](https://en.wikiversity.org/wiki/Convex_combination).
+For moving objects in the 3D space in [Aframe](https://aframe.io) or [AR.js](https://ar-js-org.github.io/AR.js-Docs/) this library contains a library `aframe-object-mover.js` stored in the Javascript folder `js/`. An instance of the object mover is responsible for moving an object from location `(x1,y1,z1)` as start position to a location `(x2,y2,z2)` as the end position. As a route a straight line is used and mathematical implemented as a [convex combination](https://en.wikiversity.org/wiki/Convex_combination#Bernstein_polynomial_-_order_2)).
 
 ### Moving Box
 * **Browser Preview** - [Moving Box](https://ar4nhey.github.io/litspatz4c/move360/ar_move_box_hiro.html)
