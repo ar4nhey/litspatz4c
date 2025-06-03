@@ -9,7 +9,7 @@ For positioning single object [JSON3d4Aframe](https://niebert.github.io/JSON3D4A
 ## AR.js
 
 The following 3D models were published by Sketchfab as Creative Commons resources.
-The used marker is the Hiro-Marker that can be downloaded as [PDF]
+The used marker is the Hiro-Marker that can be downloaded as [PDF](https://niebert.github.io/JSON3D4Aframe/pdf/marker_hiro_kanji_printout.pdf) from the GitHub-repository [JSON3D4Aframe](https://niebert.github.io/JSON3D4Aframe).
 
 ### Elf Wizzard
 
