@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<HTML>
+	<HEAD>
+		<meta charset='utf-8'>
+		<meta repository='https://www.gitlab.com/niehausbert/aframe360' created='11.10.2019'>
+		<TITLE>Red Box on river flowing - 360 Aframe Panorama</TITLE>
+		<meta name="description" content="360&deg; Image - A-Frame">
+		<script src='../js/aframe-v0.9.2.js'></script>
+		<script src="../js/aframe-extras.js"></script>
+	  <script src="../js/ar-object-mover.js"></script>
+	  <script>
+						// Include the ObjectMover class
+						// Create an instance of ObjectMover for the box
+						//alert("Create boxMover instance");
+						//const boxMover = new AframeMover('movingBox','ar');
+						//const boxMover = new AframeMover('movingBox');
+						const boxMover = new ARMover('movingbox','ar');
+
+						// Set start and end positions (x,y,z)
+						// x: -left/+right
+						// y: -down/+up
+						// z: -rear/+front
+						boxMover.setStartPosition(-18, -3, -18);
+	          boxMover.setMiddlePosition(0, -3, -5);
+	  		    boxMover.setEndPosition(+38, -3, -4);
+	  		    boxMover.setLoop(true);
+						// Set start and end rotations - no rotation
+						boxMover.setStartRotation(0, 0, 0);
+						boxMover.setEndRotation(0, 2, 0);
+
+						// Set duration
+						boxMover.setDuration(16000); // 4 seconds
+
+						// Start the movement
+						boxMover.startMovement();
+
+						var vMoverID = 'spinner';
+
+
+						AFRAME.registerComponent(vMoverID, {
+
+							init: function()
+							{
+								this.el.object3D.scale.set(0.75, 0.75, 0.75);
+							},
+
+							tick: function (time, timeDelta)
+							{
+								this.el.object3D.rotation.y -= 0.01
+							}
+
+						});
+		</script>
+
+	</HEAD>
+	<BODY>
+		<a-scene>
+			<a-assets>
+			</a-assets>
+			<a-box id="movingBox" movingbox position="0 0 0"  size="2 0.5 1"  color="red" material="opacity:0.7"></a-box>
+			<a-box id="spinnerBox" spinner position="0 0 0" color="blue" material="opacity:0.7"></a-box>
+       <a-sky src="Bamberg2_Kran.JPG" rotation='0 -130 0'></a-sky>
+      <!-- <a-sound src="src: url(audio/ocean_waves.mp3)" autoplay="true" position="0 2 5"></a-sound> -->
+     </a-scene>
+  </BODY>
+</HTML>
+
