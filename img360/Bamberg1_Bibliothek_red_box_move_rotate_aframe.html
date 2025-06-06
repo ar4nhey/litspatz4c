@@ -10,48 +10,45 @@
 		<script src="../js/aframe-extras.js"></script>
 	  <script src="../js/ar-object-mover.js"></script>
 	  <script>
-						// Include the ObjectMover class
-						// Create an instance of ObjectMover for the box
-						//alert("Create boxMover instance");
-						//const boxMover = new AframeMover('movingBox','ar');
-						//const boxMover = new AframeMover('movingBox');
-						const boxMover = new ARMover('movingbox','ar');
+		// Include the ObjectMover class
+		// Create an instance of ObjectMover for the box
+		//alert("Create boxMover instance");
+		const boxMover = new ARMover('movingbox','ar');
 
-						// Set start and end positions (x,y,z)
-						// x: -left/+right
-						// y: -down/+up
-						// z: -rear/+front
-						boxMover.setStartPosition(-18, -3, -18);
-	                                        boxMover.setMiddlePosition(0, -3, -5);
-	  		                        boxMover.setEndPosition(+38, -3, 0);
-	  		                        boxMover.setLoop(true);
-						// Set start and end rotations - no rotation
-						boxMover.setStartRotation(0, 0, 0);
-						boxMover.setEndRotation(0, 2, 0);
+		// Set start and end positions (x,y,z)
+		// x: -left/+right
+		// y: -down/+up
+		// z: -rear/+front
+		
+		boxMover.setStartPosition(-18, -3, -18);
+	        boxMover.setMiddlePosition(0, -3, -5);
+	  	boxMover.setEndPosition(+38, -3, 0);
+	  	boxMover.setLoop(true);
+		// Set start and end rotations - no rotation
+		boxMover.setStartRotation(0, 0, 0);
+		boxMover.setEndRotation(0, 2, 0);
 
-						// Set duration
-						boxMover.setDuration(30000); // 30 seconds
+		// Set duration
+		boxMover.setDuration(30000); // 30 seconds
 
-						// Start the movement
-						boxMover.startMovement();
+		// Start the movement
+		boxMover.startMovement();
 
-						var vMoverID = 'spinner';
+		var vMoverID = 'spinner';
 
 
-						AFRAME.registerComponent(vMoverID, {
+		AFRAME.registerComponent(vMoverID, {
 
-							init: function()
-							{
-								this.el.object3D.scale.set(0.75, 0.75, 0.75);
-							},
+			init: function() {
+				this.el.object3D.scale.set(0.75, 0.75, 0.75);
+			},
 
-							tick: function (time, timeDelta)
-							{
-								this.el.object3D.rotation.y -= 0.01
-							}
+			tick: function (time, timeDelta) {
+				this.el.object3D.rotation.y -= 0.01
+			}
 
-						});
-		</script>
+		});
+	</script>
 
 	</HEAD>
 	<BODY>
