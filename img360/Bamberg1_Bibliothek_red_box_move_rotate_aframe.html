@@ -33,21 +33,6 @@
 
 		// Start the movement
 		boxMover.startMovement();
-
-		var vMoverID = 'spinner';
-
-
-		AFRAME.registerComponent(vMoverID, {
-
-			init: function() {
-				this.el.object3D.scale.set(0.75, 0.75, 0.75);
-			},
-
-			tick: function (time, timeDelta) {
-				this.el.object3D.rotation.y -= 0.01
-			}
-
-		});
 	</script>
 
 	</HEAD>
