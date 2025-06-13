@@ -11,6 +11,18 @@ For positioning single object [JSON3d4Aframe](https://niebert.github.io/JSON3D4A
 The following 3D models were published by Sketchfab as Creative Commons resources.
 The used marker is the Hiro-Marker that can be downloaded as [PDF](https://niebert.github.io/JSON3D4Aframe/pdf/marker_hiro_kanji_printout.pdf) from the GitHub-repository [JSON3D4Aframe](https://niebert.github.io/JSON3D4Aframe).
 
+### Treasure Chest
+
+* **Browser Preview** - [HTML file - treasure_chest.html](https://ar4nhey.github.io/litspatz4c/treasure-chest-cutted.html)
+* **3D-Model** - [GLB treasure_chest.glb](model3d/treasure_chest.glb)
+
+* **[AR.js](https://ar-js-org.github.io/AR.js-Docs/)** - HTML file: [treasure-chest-cutted.html - Hiro-Marker](treasure-chest-cutted.html)
+
+* **URL Source:**
+  <https://sketchfab.com/3d-models/old-treasure-chest-82a0eebb3ab54b75b5cdd1f98544d102>
+
+* **Licence Info** - "Treasure Chest" by Pedro Viestel is licensed under Creative Commons Attribution (<http://creativecommons.org/licenses/by/4.0/>).
+
 ### Elf Wizzard
 
 * **Browser Preview** - [HTML file - elf\_wizard\_small.html](https://ar4nhey.github.io/litspatz4c/elf_wizard_small.html)
