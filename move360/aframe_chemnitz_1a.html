@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<HTML>
+	<HEAD>
+		<meta charset='utf-8'>
+		<meta repository='https://www.gitlab.com/niehausbert/aframe360' created='11.10.2019'>
+		<TITLE>Box Move Rotate - 360 Aframe Panorama</TITLE>
+		<meta name="description" content="360&deg; Image - A-Frame">
+		<script src='../js/aframe-v0.9.2.js'></script>
+	    <script src="../js/aframe-object-mover.js"></script>
+ 
+	</HEAD>
+	<BODY>
+		<a-scene>
+			<a-assets>
+			</a-assets>
+	
+			<a-entity movingbox position="0 0 0">
+      <!-- Comment for BOX: red box for treasure -->
+       <a-box id="78912379800" position="0.00 0.00 -3.50" size="2 0.5 1" material="color: red;opacity:0.5" rotation="0 0 0"  radius-bottom="0.40" height="1.00" ></a-box>
+      
+      <!-- Comment for CONE: Hat Cone -->
+       <a-cone id="78912379812" position="0.00 1.00 0.00" material="color: #26a269;opacity:0.5" rotation="0 0 0"  radius-bottom="0.40" height="1.00" ></a-cone>
+
+       <!-- Comment for CYLINDER: Hat - base -->
+       <a-cylinder id="1747831504151" position="0.00 0.50 0.00" material="color: #26a269;opacity:0.5" rotation="0 0 0"  radius="0.60" height="0.10" ></a-cylinder>
+
+       <!-- Comment for SPHERE: Head -->
+       <a-sphere id="1748960421097" position="0.00 0.10 0.00" material="color: #5e5c64;opacity:0.5" rotation="0 0 0"  radius="0.40" ></a-sphere>
+
+
+                        </a-entity>
+
+			<a-sky src="../img360/Bamberg1_Bibliothek.JPG"></a-sky>
+	   
+	        <a-camera position="0 1.6 0"></a-camera>
+  
+	  <!-- <a-sound src="src: url(audio/ocean_waves.mp3)" autoplay="true" position="0 2 5"></a-sound> -->
+     </a-scene>
+ <script>
+        // Include the ObjectMover class
+        // Create an instance of ObjectMover for the box
+        const boxMover = new AframeMover('movingbox');
+
+        // Set start and end positions
+        boxMover.setStartPosition(0, -3, -4);
+        boxMover.setMiddlePosition(3,-3,-9);
+	boxMover.setEndPosition(-3,-3,-19);
+	boxMover.setLoop(true);
+        // Set start and end rotations
+        boxMover.setStartRotation(0, 0, 0);
+        boxMover.setEndRotation(0, 30, 0);
+
+        // Set duration
+        boxMover.setDuration(5000); // 5 seconds
+
+        // Start the movement
+        boxMover.startMovement();
+    </script>   
+  </BODY>
+</HTML>
