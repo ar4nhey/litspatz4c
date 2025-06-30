@@ -1,1 +1,103 @@
-Platzhalter fuer QR-Code zu Animation 1 zur C-App
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Litzspatz</title>
+  <link rel="stylesheet" href="../../css/start4page.css">
+  <script language="Javascript">
+	  var vTitle = "LitSpatz - Bamberg 1";
+	  var vBasename = "animation1";
+	  var vDir = "../";
+	  var vMarker = "hiro";
+  </script>
+  <script src="../../js/start4page.js"></script>
+</head>
+<body>
+<h1 id="title4page">Title</h1>
+<h3><a href="https://www.uni-bamberg.de/bildungsforschung/litspatz/" target="_blank">LitzSpatz - Dr. Nora Heyne </a></h3>
+<div class="row">
+  <div class="column">
+    <h2>360-Gradbild</h2>
+    <p>
+    	<a href="#"  onclick="show360Degree(vBasename,vDir,vMarker);return false;">
+			<img src="../../img/icons-svg/refresh-black.svg" width="100%">
+		</a>
+	</p>
+  </div>
+  <div class="column">
+    <h2>AR mit Marker</h2>
+		<p>
+	    <a href="#"  onclick="showARMarker(vBasename,vDir,vMarker)">
+			<img id="marker1" src="../../img/marker/hiro.png" width="100%">
+			<img id="marker2" src="../../img/marker/kanji.png" width="100%" style="display:none">
+		</a>
+		</p>
+  </div>
+  <div class="column">
+    <h2>AR mit GPS</h2>
+    <p>
+    	<a href="#"  onclick="showARGPS(vBasename,vDir);return false;">
+			<img src="../../img/icons-svg/fa-globe-black.svg" width="100%">
+		</a>
+	</p>
+  </div>
+</div>
+<div class="row">
+  <div class="column" style="background-color:#bcd6cd;">
+	<button class="help-button" id="help1" onclick="show360DegreeHelper()">360-Gradbild</button> 
+	<br/>
+	Illustration einer Litzspatz und Erklärung, dass es sich um eine 360-Grad-Bild darstellt
+ </div>
+  <div class="column" style="background-color:#bcd6cd;">
+	<button class="help-button" id="help2" onclick="showARMarkerHelper(vMarker)">AR-Marker</button> 
+	<br/>
+    Erklärung: Mit AR können Sie Markern auf Ihrem Bild folgen und eine realistische Darstellung von Litzspatz erstellen		
+ </div>
+  <div class="column" style="background-color:#bcd6cd;">
+    <button class="help-button" id="help3" onclick="showARGPSHelper()">AR-GPS</button> 
+	<br/>
+	Erklärung: Mit AR können Sie die Position der Litzspatz in der Realität über GPS-Koordinaten visualisieren und eine georeferenzierte Darstellung erstellen
+ </div>
+</div>
+<script>
+	// Get the H2 header element
+const header = document.getElementById('title4page');
+
+// Get the image elements
+const marker1 = document.getElementById('marker1');
+const marker2 = document.getElementById('marker2');
+
+// Function to toggle visibility of images
+function checkMarkerImage () {
+  vMarker = vMarker || "kanji";
+  //alert("vMarker='"+vMarker+"'");
+  if (vMarker == "kanji") {
+	  toggleMarkers();
+  }
+}
+
+function toggleMarkers() {
+ 	  
+  // Toggle visibility of marker1
+  marker1.style.display = marker1.style.display === 'none' ? 'block' : 'none';
+  
+  // Toggle visibility of marker2
+  marker2.style.display = marker2.style.display === 'none' ? 'block' : 'none';
+}
+
+// Function to replace H2 header text
+function replaceHeaderText() {
+  // Replace H2 header text with new text
+  header.textContent = vTitle;
+}
+
+// Set timeout to call functions after 2 seconds
+setTimeout(() => {
+  replaceHeaderText();
+  checkMarkerImage();
+}, 500);
+
+</script>	
+</body>
+</html>
