@@ -1,0 +1,71 @@
+body {
+  background-color: #bcd6cd;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  background-color: #bcd6cd;
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  background-color: #bcd6cd;
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 100vh;
+}
+
+#button-table {
+  width: calc(30% - 20px);
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+}
+
+.button {
+  width: calc((100% - 30%) / 3 - 10px);
+  height: 40px;
+  border-radius: 5px;
+  background-color: #fff;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.help-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(30% - 20px);
+  height: 100vh;
+  background-color: #f7f7f7;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.help-button {
+  width: 50%;
+  height: 40px;
+  border-radius: 5px;
+  background-color: #fff;
+  cursor: pointer;
+  margin: 5px;
+}
