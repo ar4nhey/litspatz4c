@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML2Aframe</title>
+  <script src="js/string.js"></script>
+
+  <script>
+	  var vDataJSON = {
+		  "html4aframe":"HTML for Aframe",
+		  "html4ar":"HTML for AR Marker",
+		  "html4argeo":"HTML for AR Geolocation",
+		};
+	  var vBasename = "animation1";
+	  var vDir = "../";
+	  var vMarker = "kanji";
+
+    var outTypes = ["AFRAME","AR","ARGEO"];
+
+function handleTypeChange(pType) {
+		    //alert(pType)
+}
+
+function el(pID) {
+	var vNode = document.getElementById(pID);
+	if (vNode) {
+		console.log("DOM ID ["+pID+"] exists!")
+	} else {
+		console.log("DOM ID ["+pID+"] does not exist!")
+	}
+	return vNode;
+}
+
+function calcDIR(pFilename) {
+  var vFileSplit = [];
+  var vDir = "";
+  var vSep = "";
+  if (pFilename) {
+    vFileSplit = pFilename.split("/");
+    for (var i = 1; i < vFileSplit.length; i++) {
+      //console.log("Filesplit: "+vFileSplit[i]);
+      vDir += vSep +"..";
+      vSep = "/";
+    }
+  }
+  //alert("vDir="+vDir);
+  el("DIR").value = vDir;
+}
+
+function setFilenames4HTML(pFilename) {
+    for (var i = 0; i < outTypes.length; i++) {
+      if (outTypes[i] == "AR") {
+        el("FILE4"+outTypes[i]).innerHTML = pFilename + "_" + outTypes[i].toLowerCase() + "_" + el("MARKER").value + ".html"
+      } else {
+        el("FILE4"+outTypes[i]).innerHTML = pFilename + "_" + outTypes[i].toLowerCase() + ".html";
+      }
+    }
+}
+
+
+function replaceLabels() {
+  let stringID = ["aframe", "ar", "argeo"];
+  let strings = ["aframe", "ar", "argeo"];
+  let searchStrings = ["HTMLFILENAME", "TITLE", "MARKER", "SCALE", "DIR", "LOOPBOOL", "LAT", "LONG", "GLB", "MARKER", "STARTPOS", "STARTPOS4K", "MIDDLE1POS", "MIDDLE1POS4K", "MIDDLE2POS", "MIDDLE2POS4K", "ENDPOS", "ENDPOS4K", "STARTROT", "STARTROT4K", "ENDROT", "ENDROT4K","DURATION","MOVEID"];
+  let replaceForm = document.getElementById('replaceForm');
+
+  for (let i = 0; i < strings.length; i++) {
+	strings[i] = vDataJSON["html4"+stringID[i]];
+    for (let j = 0; j < searchStrings.length; j++) {
+      let searchValue = "___" + searchStrings[j] + "___";
+      let replaceValue = el(searchStrings[j]).value;
+      strings[i] = replaceString(strings[i], searchValue, replaceValue);
+    }
+    var domID = "tHTML4"+stringID[i].toUpperCase();
+    el(domID).value = strings[i];
+  }
+
+  //console.log(strings);
+}
+
+function splitLatLong(pNode) {
+  if (pNode) {
+    var val = pNode.value;
+    val = val.replace(/[^,0-9\.\+\-]/g,"");
+    //alert("ID["+pNode.id+"] value='"+pNode.value+"' converted='"+val+"'");
+    val = replaceString(val,",","  ,  ");
+    pNode.value = val;
+
+    if (val.indexOf(",") > 0) {
+      geoarr = val.split(",");
+      el("LONG").value = geoarr[0];
+      el("LAT").value  = geoarr[1];
+    }
+  } else {
+    console.error("Split Latitude Longitude");
+  }
+}
+
+function checkDecimal(pNode) {
+  if (pNode && pNode.value) {
+    pNode.value = pNode.value.replace(/[^\+\-\.0-9]+/g,"");
+    switch (pNode.id) {
+      case "LONG":
+        el("GEOLOC").value = pNode.value + "  ,  " + el("LAT").value;
+      break;
+      case "LAT":
+        el("GEOLOC").value = el("LONG").value + "  ,  " + pNode.value;
+      break;
+      default:
+
+    }
+  }
+}
+
+function checkDecimal(pNode) {
+  if (pNode && pNode.value) {
+    pNode.value = pNode.value.replace(/[^\+\-\.0-9]+/g,"");
+    switch (pNode.id) {
+      case "LONG":
+        el("GEOLOC").value = pNode.value + "  ,  " + el("LAT").value;
+      break;
+      case "LAT":
+        el("GEOLOC").value = el("LONG").value + "  ,  " + pNode.value;
+      break;
+      default:
+
+    }
+  }
+}
+
+</script>
+
+ <script src="db/html4aframe_db.js"></script>
+ <script src="db/html4ar_db.js"></script>
+ <script src="db/html4argeo_db.js"></script>
+
+ <style>
+   body {
+     background-color: #c0c0c0;
+   }
+	 textarea {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+
+	width: 90%;
+}
+ </style>
+
+<body>
+
+<h2>JSON2AR File Creator</h2>
+
+
+<form id="replaceForm">
+  <table>
+    <tr>
+      <td>Title</td>
+      <td><input type="text" id="TITLE" value="Nora running in Berlin"> title of the AR animation </td>
+    </tr>
+    <tr>
+      <td>HTML Filename:</td>
+      <td><input type="text" id="HTMLFILENAME" value="move360/myfile" onchange="calcDIR(this.value);setFilenames4HTML(this.value)"> filename without HTML extension </td>
+    </tr>
+    <!-- Add more input fields for the other strings here -->
+    <tr>
+      <td>Type of AR/VR:</td>
+      <td>
+        <select id="TYPEARVR" onchange="handleTypeChange(this.value)">
+          <option value="aframe">Aframe</option>
+          <option value="ar">AR Marker</option>
+          <option value="argeo">AR Geolocation</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>Marker:</td>
+      <td>
+        <select id="MARKER" onchange="setFilenames4HTML(el('HTMLFILENAME').value)">
+          <option value="hiro">hiro</option>
+          <option value="kanji" selected>kanji</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>GLB Filename:</td>
+      <td><input type="text" id="GLB" value="model3d/myfile.glb"></td>
+    </tr>
+    <tr>
+      <td>Scale GLB Object:</td>
+      <td><input type="text" id="SCALE" value="1.0"></td>
+    </tr>
+
+    <!-- Add more input fields for the other strings here -->
+    <tr>
+      <td>Geolocation</td>
+      <td>
+        <input type="text" id="GEOLOC" size="45" value="12.92983530222529,50.83043675689984" onchange="splitLatLong(this)">
+        <a href="https://niebert.github.io/openlayer_selectlocation/index.html" target="_blank"> Select Geolocation </a>
+        <br>
+        Longitude <input type="text" id="LONG" value="" onchange="checkDecimal(this)"> Latitude <input type="text" id="LAT" value="" onchange="checkDecimal(this)">
+
+
+      </td>
+    </tr>
+    <tr>
+      <td>Animation Loop:</td>
+      <td>
+        <select id="LOOPBOOL">
+          <option value="true" selected>yes</option>
+          <option value="false">no</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>Track MOVEID</td>
+      <td><input type="text" id="MOVEID" value="running"> ID for the movement - e.g. "floating" "flying" "running" "jumping"</td>
+    </tr>
+    <tr>
+      <td>Track DURATION</td>
+      <td><input type="text" id="DURATION" value="8000"> in milliseconds 8000 = 8 seconds</td>
+    </tr>model3d/myfile.glb
+    <tr>
+      <td>Track Position START</td>
+      <td>
+        <input type="text" id="STARTPOS" value="0 0 0" onchange="checkPosition(this)">
+        <input type="text" id="STARTPOS4K" value="0 , 0 , 0" style="display:none">
+      </td>
+    </tr>
+    <tr>
+      <td>Track Position MIDDLE1</td>
+      <td>
+        <input type="text" id="MIDDLE1POS" value="4 0 -5" onchange="checkPosition(this)">
+        <input type="text" id="MIDDLE14K" value="4 , 0 , -5" style="display:none">
+      </td>
+    </tr>
+    <tr>
+      <td>Track Position MIDDLE2</td>
+      <td><input type="text" id="MIDDLE2POS" value="6 0 -7" onchange="checkPosition(this)">
+      <input type="text" id="MIDDLE24K" value="6 STARTPOS, 0 , -7" style="display:none">
+    </td>
+    </tr>
+    <tr>
+      <td>Track Position END</td>
+      <td><input type="text" id="ENDPOS" value="-2 0 -3" onchange="checkPosition(this)">
+      <input type="text" id="ENDPOS4K" value="-2,0,-3" style="display:none">
+    </td>
+    </tr>
+    <tr>
+      <td>Rotation START x-Axis, y-Axis, z-Axis</td>
+      <td><input type="text" id="STARTROT" value="0 0 0" onchange="checkPosition(this)">
+      <input type="text" id="STARTROT4K" value="0 , 0 , 0" style="display:none">
+    </td>
+    </tr>
+    <tr>
+      <td>Rotation END x-Axis, y-Axis, z-Axis</td>
+      <td><input type="text" id="ENDROT" value="0 0 0" onchange="checkPosition(this)">
+      <input type="text" id="ENDROT4K" value="0 , 0 , 0" style="display:none">
+    </td>
+    </tr>
+  </table>
+  <button onclick="replaceLabels();return false;" style="background-color: #ffbbbb">
+    <h3>
+      &nbsp;
+      Create AR Files
+      &nbsp;
+    </h3>
+  </button>
+
+    <!-- <input type="button" value="Replace" onclick="replaceLabels()"> -->
+  DIR <input type="text" id="DIR" value="../">
+</form>
+
+<h3>
+	Aframe
+</h3>
+<tt>
+  <h4 id="FILE4AFRAME">
+	myfile_aframe.html
+  </h4>
+</tt>
+<textarea id="tHTML4AFRAME" rows="7"></textarea>
+<h3>
+	AR
+</h3>
+<tt>
+  <h4 id="FILE4AR">
+    myfile_ar_hiro.html
+  </h4>
+</tt>
+<textarea id="tHTML4AR" rows="7"></textarea>
+<h3>
+	AR Geolocation
+</h3>
+<tt>
+  <h4 id="FILE4ARGEO">
+	   myfile_argeo.html
+  </h4>
+</tt>
+<textarea id="tHTML4ARGEO" rows="7"></textarea>
+<script>
+
+
+setFilenames4HTML(el("HTMLFILENAME").value);
+</script>
+
+</body>
+</html>
