@@ -112,19 +112,14 @@ function checkDecimal(pNode) {
   }
 }
 
-function checkDecimal(pNode) {
+function checkPosition(pNode) {
   if (pNode && pNode.value) {
-    pNode.value = pNode.value.replace(/[^\+\-\.0-9]+/g,"");
-    switch (pNode.id) {
-      case "LONG":
-        el("GEOLOC").value = pNode.value + "  ,  " + el("LAT").value;
-      break;
-      case "LAT":
-        el("GEOLOC").value = el("LONG").value + "  ,  " + pNode.value;
-      break;
-      default:
-
-    }
+    //pNode.value = pNode.value.replace(/[^\+\-\.0-9]+/g,"");
+    pNode.value = pNode.value.replace(/^[a-zA-Z]+/g,"");
+    pNode.value = pNode.value.replace(/^[ ]+/g,"");
+    pNode.value = pNode.value.replace(/[ ]+$/g," ");
+    el(pNode.id+"4K").value = pNode.value.replace(/[ ]+/g,",");
+    alert(pNode.id+"4K='"+el(pNode.id+"4K").value+"'");
   }
 }
 
@@ -137,6 +132,7 @@ function checkDecimal(pNode) {
  <style>
    body {
      background-color: #c0c0c0;
+     font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
    }
 	 textarea {
 	-webkit-box-sizing: border-box;
@@ -160,7 +156,7 @@ function checkDecimal(pNode) {
     </tr>
     <tr>
       <td>HTML Filename:</td>
-      <td><input type="text" id="HTMLFILENAME" value="move360/myfile" onchange="calcDIR(this.value);setFilenames4HTML(this.value)"> filename without HTML extension </td>
+      <td><input type="text" id="HTMLFILENAME" value="move360/myfile" onchange="calcDIR(this.value);setFilenames4HTML(this.value)"> filename without HTML extension. Use the correct path for <a href="https://github.com/ar4nhey/litspatz4c" target="_blank">LitSpatz-Respository</a> </td>
     </tr>
     <!-- Add more input fields for the other strings here -->
     <tr>
@@ -202,9 +198,9 @@ function checkDecimal(pNode) {
         <input type="text" id="GEOLOC" size="45" value="12.92983530222529 , 50.83043675689984" onchange="splitLatLong(this)">
         <a href="https://niebert.github.io/openlayer_selectlocation/index.html" target="_blank"> Select Geolocation </a>
         <br>
-        Longitude 
-        <input type="text" id="LONG" value="12.92983530222529" onchange="checkDecimal(this)"> 
-        Latitude 
+        Longitude
+        <input type="text" id="LONG" value="12.92983530222529" onchange="checkDecimal(this)">
+        Latitude
         <input type="text" id="LAT" value="50.83043675689984" onchange="checkDecimal(this)">
       </td>
     </tr>
@@ -224,7 +220,7 @@ function checkDecimal(pNode) {
     <tr>
       <td>Track DURATION</td>
       <td><input type="text" id="DURATION" value="8000"> in milliseconds 8000 = 8 seconds</td>
-    </tr>model3d/myfile.glb
+    </tr>
     <tr>
       <td>Track Position START</td>
       <td>
@@ -236,13 +232,13 @@ function checkDecimal(pNode) {
       <td>Track Position MIDDLE1</td>
       <td>
         <input type="text" id="MIDDLE1POS" value="4 0 -5" onchange="checkPosition(this)">
-        <input type="text" id="MIDDLE14K" value="4 , 0 , -5" style="display:none">
+        <input type="text" id="MIDDLE1POS4K" value="4 , 0 , -5" style="display:none">
       </td>
     </tr>
     <tr>
       <td>Track Position MIDDLE2</td>
       <td><input type="text" id="MIDDLE2POS" value="6 0 -7" onchange="checkPosition(this)">
-      <input type="text" id="MIDDLE24K" value="6 STARTPOS, 0 , -7" style="display:none">
+      <input type="text" id="MIDDLE2POS4K" value="6, 0 , -7" style="display:none">
     </td>
     </tr>
     <tr>
@@ -273,7 +269,8 @@ function checkDecimal(pNode) {
   </button>
 
     <!-- <input type="button" value="Replace" onclick="replaceLabels()"> -->
-  DIR <input type="text" id="DIR" value="../">
+  <!-- DIR -->
+  <input type="text" id="DIR" value="../" style="display:none">
 </form>
 
 <h3>
@@ -308,6 +305,8 @@ function checkDecimal(pNode) {
 
 setFilenames4HTML(el("HTMLFILENAME").value);
 </script>
-
+<center>
+  Repository: <a href="https://github.com/ar4nhey/litspatz4c" target="_blank">LitSpatz</a>
+</center>
 </body>
 </html>
