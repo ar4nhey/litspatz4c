@@ -199,12 +199,13 @@ function checkDecimal(pNode) {
     <tr>
       <td>Geolocation</td>
       <td>
-        <input type="text" id="GEOLOC" size="45" value="12.92983530222529,50.83043675689984" onchange="splitLatLong(this)">
+        <input type="text" id="GEOLOC" size="45" value="12.92983530222529 , 50.83043675689984" onchange="splitLatLong(this)">
         <a href="https://niebert.github.io/openlayer_selectlocation/index.html" target="_blank"> Select Geolocation </a>
         <br>
-        Longitude <input type="text" id="LONG" value="" onchange="checkDecimal(this)"> Latitude <input type="text" id="LAT" value="" onchange="checkDecimal(this)">
-
-
+        Longitude 
+        <input type="text" id="LONG" value="12.92983530222529" onchange="checkDecimal(this)"> 
+        Latitude 
+        <input type="text" id="LAT" value="50.83043675689984" onchange="checkDecimal(this)">
       </td>
     </tr>
     <tr>
