@@ -65,7 +65,7 @@ vDataJSON.html4argeo = `
                     look-at="[gps-camera]"
                     animation-mixer="loop: repeat"
                     gltf-model="#animated-asset"
-                    scale="__SCALE__ __SCALE__ __SCALE__"
+                    scale="___SCALE___ ___SCALE___ ___SCALE___"
                     gps-entity-place="latitude: ___LAT___; longitude: ___LONG___;"
                 ></a-entity>
             </a-entity>

@@ -48,7 +48,7 @@ vDataJSON.html4ar = `
       <a-entity
         position="___STARTPOS___"
         rotation="___STARTROT___"
-        scale="__SCALE__ __SCALE__ __SCALE__"
+        scale="___SCALE___ ___SCALE___ ___SCALE___"
         animation-mixer="loop: repeat"
         gltf-model="___DIR___/___GLB___" >
       </a-entity>
