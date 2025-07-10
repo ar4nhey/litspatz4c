@@ -15,6 +15,9 @@
 	  var vDir = "../";
 	  var vMarker = "kanji";
 
+    var comment4pos = "x-axis (-)left (+)right -- y-axis (-)down (+)up -- z-axis (-)front (+)rear";
+    var comment4rot = "1. rotation around x-axis -- 2. rotation around  y-axis -- 3. rotation around z-axis";
+
     var outTypes = ["AFRAME","AR","ARGEO"];
 
 function handleTypeChange(pType) {
@@ -96,6 +99,10 @@ function splitLatLong(pNode) {
   }
 }
 
+function updateGeolocation() {
+  el("out4GEOLOCATION").innerHTML = "( LONGITUDE: "+el("LONG").value+" , LATITUDE:"+el("LAT").value+" )"
+}
+
 function checkDecimal(pNode) {
   if (pNode && pNode.value) {
     pNode.value = pNode.value.replace(/[^\+\-\.0-9]+/g,"");
@@ -145,22 +152,24 @@ function checkPosition(pNode) {
 
 <body>
 
-<h2>JSON2AR File Creator</h2>
 
-
-<form id="replaceForm">
+  <center>
+    <hr>
+      <h1>JSON2AR File Creator</h1>
+      <h2 id="HEADER4TITLE">Create Arame, AR and VR in HTML </h1>
+    <hr>
   <table>
     <tr>
-      <td>Title</td>
+      <td><b>Title</b></td>
       <td><input type="text" id="TITLE" value="Nora running in Berlin"> title of the AR animation </td>
     </tr>
     <tr>
-      <td>HTML Filename:</td>
+      <td><b>HTML Filename:</b></td>
       <td><input type="text" id="HTMLFILENAME" value="move360/myfile" onchange="calcDIR(this.value);setFilenames4HTML(this.value)"> filename without HTML extension. Use the correct path for <a href="https://github.com/ar4nhey/litspatz4c" target="_blank">LitSpatz-Respository</a> </td>
     </tr>
     <!-- Add more input fields for the other strings here -->
     <tr>
-      <td>Type of AR/VR:</td>
+      <td><b>Type of AR/VR:</b></td>
       <td>
         <select id="TYPEARVR" onchange="handleTypeChange(this.value)">
           <option value="aframe">Aframe</option>
@@ -170,7 +179,7 @@ function checkPosition(pNode) {
       </td>
     </tr>
     <tr>
-      <td>Marker:</td>
+      <td><b>Marker:</b></td>
       <td>
         <select id="MARKER" onchange="setFilenames4HTML(el('HTMLFILENAME').value)">
           <option value="hiro">hiro</option>
@@ -179,21 +188,21 @@ function checkPosition(pNode) {
       </td>
     </tr>
     <tr>
-      <td>Sky Image Filename:</td>
+      <td><b>Sky Image Filename:</b></td>
       <td>
         <input type="text" id="SKY" value="img360/sky4scene.jpg"> use an <a href="https://en.wikiversity.org/wiki/equirectangular" target="_blank">equirectangular image</a> as sky image for the scene.
       </td>
     </tr>
     <tr>
-      <td>GLB Filename:</td>
+      <td><b>GLB Filename:</b></td>
       <td><input type="text" id="GLB" value="model3d/myfile.glb"></td>
     </tr>
     <tr>
-      <td>Scale GLB Object:</td>
+      <td><b>Scale GLB Object:</b></td>
       <td><input type="text" id="SCALE" value="1.0"></td>
     </tr>
     <tr>
-      <td>Geolocation</td>
+      <td><b>Geolocation</b></td>
       <td>
         <input type="text" id="GEOLOC" size="45" value="12.92983530222529 , 50.83043675689984" onchange="splitLatLong(this)">
         <a href="https://niebert.github.io/openlayer_selectlocation/index.html" target="_blank"> Select Geolocation </a>
@@ -205,7 +214,7 @@ function checkPosition(pNode) {
       </td>
     </tr>
     <tr>
-      <td>Animation Loop:</td>
+      <td><b>Animation Loop:</b></td>
       <td>
         <select id="LOOPBOOL">
           <option value="true" selected>yes</option>
@@ -214,50 +223,65 @@ function checkPosition(pNode) {
       </td>
     </tr>
     <tr>
-      <td>Track MOVEID</td>
+      <td><b>Track MOVEID</b></td>
       <td><input type="text" id="MOVEID" value="running"> ID for the movement - e.g. "floating" "flying" "running" "jumping"</td>
     </tr>
     <tr>
-      <td>Track DURATION</td>
+      <td><b>Track DURATION</b></td>
       <td><input type="text" id="DURATION" value="8000"> in milliseconds 8000 = 8 seconds</td>
     </tr>
     <tr>
-      <td>Track Position START</td>
+      <td colspan="2">
+        <img src="img/convcomb_STARTPOS_ENDPOS_ord3.png" alt="Convex combination Order 3">
+      </td>
+    </tr>
+    <tr>
+      <td><b>Track Position STARTPOS</b></td>
       <td>
         <input type="text" id="STARTPOS" value="0 0 0" onchange="checkPosition(this)">
         <input type="text" id="STARTPOS4K" value="0 , 0 , 0" style="display:none">
+        <span name="poscomment"></span>
       </td>
     </tr>
     <tr>
-      <td>Track Position MIDDLE1</td>
+      <td><b>Track Position MIDDLE1POS</td>
       <td>
         <input type="text" id="MIDDLE1POS" value="4 0 -5" onchange="checkPosition(this)">
         <input type="text" id="MIDDLE1POS4K" value="4 , 0 , -5" style="display:none">
+        <span name="poscomment"></span>
       </td>
     </tr>
     <tr>
-      <td>Track Position MIDDLE2</td>
-      <td><input type="text" id="MIDDLE2POS" value="6 0 -7" onchange="checkPosition(this)">
-      <input type="text" id="MIDDLE2POS4K" value="6, 0 , -7" style="display:none">
-    </td>
+      <td><b>Track Position MIDDLE2POS</b></td>
+      <td>
+        <input type="text" id="MIDDLE2POS" value="6 0 -7" onchange="checkPosition(this)">
+        <input type="text" id="MIDDLE2POS4K" value="6, 0 , -7" style="display:none">
+        <span name="poscomment"></span>
+      </td>
     </tr>
     <tr>
-      <td>Track Position END</td>
-      <td><input type="text" id="ENDPOS" value="-2 0 -3" onchange="checkPosition(this)">
-      <input type="text" id="ENDPOS4K" value="-2,0,-3" style="display:none">
-    </td>
+      <td><b>Track Position ENDPOS</b></td>
+      <td>
+        <input type="text" id="ENDPOS" value="-2 0 -3" onchange="checkPosition(this)">
+        <input type="text" id="ENDPOS4K" value="-2,0,-3" style="display:none">
+        <span name="poscomment"></span>
+      </td>
     </tr>
     <tr>
-      <td>Rotation START x-Axis, y-Axis, z-Axis</td>
-      <td><input type="text" id="STARTROT" value="0 0 0" onchange="checkPosition(this)">
-      <input type="text" id="STARTROT4K" value="0 , 0 , 0" style="display:none">
-    </td>
+      <td><b>Rotation START x-Axis, y-Axis, z-Axis</b></td>
+      <td>
+        <input type="text" id="STARTROT" value="0 0 0" onchange="checkPosition(this)">
+        <input type="text" id="STARTROT4K" value="0 , 0 , 0" style="display:none">
+        <span name="rotcomment"></span>
+      </td>
     </tr>
     <tr>
-      <td>Rotation END x-Axis, y-Axis, z-Axis</td>
-      <td><input type="text" id="ENDROT" value="0 0 0" onchange="checkPosition(this)">
-      <input type="text" id="ENDROT4K" value="0 , 0 , 0" style="display:none">
-    </td>
+      <td><b>Rotation END x-Axis, y-Axis, z-Axis</b></td>
+      <td>
+        <input type="text" id="ENDROT" value="0 0 0" onchange="checkPosition(this)">
+        <input type="text" id="ENDROT4K" value="0 , 0 , 0" style="display:none">
+        <span name="rotcomment"></span>
+      </td>
     </tr>
   </table>
   <button onclick="replaceLabels();return false;" style="background-color: #ffbbbb">
@@ -268,42 +292,58 @@ function checkPosition(pNode) {
     </h3>
   </button>
 
-    <!-- <input type="button" value="Replace" onclick="replaceLabels()"> -->
   <!-- DIR -->
-  <input type="text" id="DIR" value="../" style="display:none">
-</form>
+  <input type="text" id="DIR" value=".." style="display:none">
 
-<h3>
-	Aframe
-</h3>
-<tt>
-  <h4 id="FILE4AFRAME">
-	myfile_aframe.html
+<hr>
+  <h2>HTML Output Aframe, AR.js and AR.js Geolocation</h2>
+
+  <!-- OUTPUT Textareas -->
+  <h3>
+  	HTML for Aframe
+  </h3>
+  <tt>
+    <h4 id="FILE4AFRAME">
+  	myfile_aframe.html
+    </h4>
+  </tt>
+  <textarea id="tHTML4AFRAME" rows="7"></textarea>
+  <h3>
+  	HTML for AR.js
+  </h3>
+  <tt>
+    <h4 id="FILE4AR">
+      myfile_ar_hiro.html
+    </h4>
+  </tt>
+  <textarea id="tHTML4AR" rows="7"></textarea>
+  <h3>
+  	HTML for AR.js Geolocation
+  </h3>
+  <tt>
+    <h4 id="FILE4ARGEO">
+  	   myfile_argeo.html
+    </h4>
+  </tt>
+  <h4 id="out4GEOLOCATION">
+     (Longitude,Latitude)
   </h4>
-</tt>
-<textarea id="tHTML4AFRAME" rows="7"></textarea>
-<h3>
-	AR
-</h3>
-<tt>
-  <h4 id="FILE4AR">
-    myfile_ar_hiro.html
-  </h4>
-</tt>
-<textarea id="tHTML4AR" rows="7"></textarea>
-<h3>
-	AR Geolocation
-</h3>
-<tt>
-  <h4 id="FILE4ARGEO">
-	   myfile_argeo.html
-  </h4>
-</tt>
-<textarea id="tHTML4ARGEO" rows="7"></textarea>
+
+  <textarea id="tHTML4ARGEO" rows="7"></textarea>
+</center>
+
 <script>
+  setFilenames4HTML(el("HTMLFILENAME").value);
 
-
-setFilenames4HTML(el("HTMLFILENAME").value);
+  var elems = document.getElementsByName("poscomment");
+  for (var i = 0; i < elems.length; i++) {
+    elems[i].innerHTML = comment4pos;
+  }
+  var elems = document.getElementsByName("rotcomment");
+  for (var i = 0; i < elems.length; i++) {
+    elems[i].innerHTML = comment4rot;
+  }
+  updateGeolocation();
 </script>
 <center>
   Repository: <a href="https://github.com/ar4nhey/litspatz4c" target="_blank">LitSpatz</a>
