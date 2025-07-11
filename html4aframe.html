@@ -22,6 +22,7 @@
 
 function handleTypeChange(pType) {
 		    //alert(pType)
+    console.log("handleTypeChange("+pType.value+")");
 }
 
 function el(pID) {
@@ -32,6 +33,16 @@ function el(pID) {
 		console.log("DOM ID ["+pID+"] does not exist!")
 	}
 	return vNode;
+}
+
+function createHTML4Ref2Mover(pRef4Mover) {
+  pRef4Mover = pRef4Mover || el("REF2MOVER").value || "";
+  var vMoverID = "this." + el("MOVEID").value + "Mover";
+  if (pRef4Mover) {
+    el("HTML4REF2MOVER").value = vMoverID + "(" + el("REF2MOVER").value + ")";
+  } else {
+    el("HTML4REF2MOVER").value = "// synchronize process with other mover: " + vMoverID + "(myparentMover)";
+  }
 }
 
 function calcDIR(pFilename) {
@@ -64,7 +75,7 @@ function setFilenames4HTML(pFilename) {
 function replaceLabels() {
   let stringID = ["aframe", "ar", "argeo"];
   let strings = ["aframe", "ar", "argeo"];
-  let searchStrings = ["HTMLFILENAME", "TITLE", "MARKER", "SCALE", "DIR", "LOOPBOOL", "LAT", "LONG", "GLB", "MARKER", "STARTPOS", "STARTPOS4K", "MIDDLE1POS", "MIDDLE1POS4K", "MIDDLE2POS", "MIDDLE2POS4K", "ENDPOS", "ENDPOS4K", "STARTROT", "STARTROT4K", "ENDROT", "ENDROT4K","DURATION","MOVEID"];
+  let searchStrings = ["REF2MOVER","HTML4REF2MOVER","HTMLFILENAME", "TITLE", "MARKER", "SCALE", "DIR", "LOOPBOOL", "LAT", "LONG", "GLB", "MARKER", "STARTPOS", "STARTPOS4K", "MIDDLE1POS", "MIDDLE1POS4K", "MIDDLE2POS", "MIDDLE2POS4K", "ENDPOS", "ENDPOS4K", "STARTROT", "STARTROT4K", "ENDROT", "ENDROT4K","DURATION","MOVEID"];
   let replaceForm = document.getElementById('replaceForm');
 
   for (let i = 0; i < strings.length; i++) {
@@ -158,7 +169,7 @@ function checkPosition(pNode) {
       <h1>JSON2AR File Creator</h1>
       <h2 id="HEADER4TITLE">Create Arame, AR and VR in HTML </h1>
     <hr>
-  <table>
+  <table border=1>
     <tr>
       <td><b>Title</b></td>
       <td><input type="text" id="TITLE" value="Nora running in Berlin"> title of the AR animation </td>
@@ -281,6 +292,14 @@ function checkPosition(pNode) {
         <input type="text" id="ENDROT" value="0 0 0" onchange="checkPosition(this)">
         <input type="text" id="ENDROT4K" value="0 , 0 , 0" style="display:none">
         <span name="rotcomment"></span>
+      </td>
+    </tr>
+    <tr>
+      <td><b>Linked Aframe Mover</b></td>
+      <td>
+        <input type="text" id="REF2MOVER" value="" onchange="createHTML4Ref2Mover(this.value)">
+        <input type="text" id="HTML4REF2MOVER" value="" style="display:none">
+        synchronize timing and processes with a parent mover by providing the parent mover ID e.g. "running" or "floating"
       </td>
     </tr>
   </table>
