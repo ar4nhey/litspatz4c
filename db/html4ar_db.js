@@ -13,10 +13,11 @@ vDataJSON.html4ar = `
         // Include the ObjectMover class
         // Create an instance of ObjectMover for the box
         const ___MOVEID___Mover = new AframeMover('___MOVEID___','ar');
-		// Time stamps alternative hide/show
-		// ___MOVEID___Mover.setVisibleTimes([ 0.1 , 0.3 , 0.5 , 0.7 , 0.9]);
+        ___HTML4REF2MOVER___
+        // Time stamps alternative hide/show
+        // ___MOVEID___Mover.setVisibleTimes([ 0.1 , 0.3 , 0.5 , 0.7 , 0.9]);
         // 0.1 = Hide after 10% of animation time
-        // 0.3 = Show after 30% of animation time
+        // 0.3 = Show after 30% of         animation time
         // 0.5 = Hide after 50% of animation time
         // ...
         // All positions are 3D coordinates (x,y,z)
@@ -24,10 +25,10 @@ vDataJSON.html4ar = `
         // y: -down/+up
         // z: -rear/+front
         // (0,0,0) is the marker position
-        ___MOVEID___Mover.setStartPosition(__STARTPOS4K__);
-        ___MOVEID___Mover.setMiddle1Position(__MIDDLE1POS4K__);
-        ___MOVEID___Mover.setMiddle2Position(__MIDDLE1POS4K__);
-        ___MOVEID___Mover.setEndPosition(__ENDPOS4K__);
+        ___MOVEID___Mover.setStartPosition(___STARTPOS4K___);
+        ___MOVEID___Mover.setMiddle1Position(___MIDDLE1POS4K___);
+        ___MOVEID___Mover.setMiddle2Position(___MIDDLE1POS4K___);
+        ___MOVEID___Mover.setEndPosition(___ENDPOS4K___);
         ___MOVEID___Mover.setLoop(___LOOPBOOL___);
         // Set start and end rotations - no rotation
         ___MOVEID___Mover.setStartRotation(___STARTROT4K___);
