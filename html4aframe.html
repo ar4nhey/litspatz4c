@@ -4,6 +4,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HTML4Aframe</title>
   <script src="js/string.js"></script>
+  <script src="js/save4file.js"></script>
 
   <script>
 	  var vDataJSON = {
@@ -11,6 +12,7 @@
 		  "html4ar":"HTML for AR Marker",
 		  "html4argeo":"HTML for AR Geolocation",
 		};
+    let searchStrings = ["CAMPOS","CAMROT","REF2MOVER","HTML4REF2MOVER","HTMLFILENAME", "TITLE", "MARKER", "SCALE", "DIR", "LOOPBOOL", "LAT", "LONG", "GLB", "SKY", "MARKER", "STARTPOS", "STARTPOS4K", "MIDDLE1POS", "MIDDLE1POS4K", "MIDDLE2POS", "MIDDLE2POS4K", "ENDPOS", "ENDPOS4K", "STARTROT", "STARTROT4K", "ENDROT", "ENDROT4K","DURATION","MOVEID"];
 	  var vBasename = "animation1";
 	  var vDir = "../";
 	  var vMarker = "kanji";
@@ -19,6 +21,28 @@
     var comment4rot = "1. rotation around x-axis -- 2. rotation around  y-axis -- 3. rotation around z-axis";
 
     var outTypes = ["AFRAME","AR","ARGEO"];
+
+    function getJSON4Data() {
+      var vJSON = {};
+      for (var i = 0; i < searchStrings.length; i++) {
+        vJSON[searchStrings[i]] = el(searchStrings[i]).value;
+      }
+      return vJSON;
+    }
+
+    function setJSON4Data(pJSON) {
+      var vJSON = pJSON || {};
+      for (var i = 0; i < searchStrings.length; i++) {
+        var vNode = el(searchStrings[i]);
+        if (vNode) {
+          vJSON[searchStrings[i]] = vNode.value;
+        } else {
+          console.error("DOM Node ["+searchStrings[i]+"] does not exist!");
+        }
+      }
+      return vJSON;
+    }
+
 
 function handleTypeChange(pType) {
 		    //alert(pType)
@@ -71,11 +95,16 @@ function setFilenames4HTML(pFilename) {
     }
 }
 
+function saveJSON4LC() {
+  var data = getJSON4Data();
+  var json = JSON.stringify(data);
+  saveToLocalStorage(json,"html4aframe");
+}
 
 function replaceLabels() {
+  saveJSON4LC();
   let stringID = ["aframe", "ar", "argeo"];
   let strings = ["aframe", "ar", "argeo"];
-  let searchStrings = ["REF2MOVER","HTML4REF2MOVER","HTMLFILENAME", "TITLE", "MARKER", "SCALE", "DIR", "LOOPBOOL", "LAT", "LONG", "GLB", "MARKER", "STARTPOS", "STARTPOS4K", "MIDDLE1POS", "MIDDLE1POS4K", "MIDDLE2POS", "MIDDLE2POS4K", "ENDPOS", "ENDPOS4K", "STARTROT", "STARTROT4K", "ENDROT", "ENDROT4K","DURATION","MOVEID"];
   let replaceForm = document.getElementById('replaceForm');
 
   for (let i = 0; i < strings.length; i++) {
@@ -114,7 +143,19 @@ function updateGeolocation() {
   el("out4GEOLOCATION").innerHTML = "( LONGITUDE: "+el("LONG").value+" , LATITUDE:"+el("LAT").value+" )"
 }
 
-function checkDecimal(pNode) {
+function checkDuration(pNode) {
+  if (pNode && pNode.value) {
+    var vNumber = pNode.value.replace(/[^\.0-9]+/g,"");
+    var val = parseInt(vNumber);
+    var sec = val/1000;
+    el("DURATION4SEC").innerHTML = sec;
+    pNode.value = vNumber;
+  }
+}
+
+
+
+function checkGeolocation(pNode) {
   if (pNode && pNode.value) {
     pNode.value = pNode.value.replace(/[^\+\-\.0-9]+/g,"");
     switch (pNode.id) {
@@ -133,14 +174,38 @@ function checkDecimal(pNode) {
 function checkPosition(pNode) {
   if (pNode && pNode.value) {
     //pNode.value = pNode.value.replace(/[^\+\-\.0-9]+/g,"");
-    pNode.value = pNode.value.replace(/^[a-zA-Z]+/g,"");
+    pNode.value = pNode.value.replace(/[, ]+/g," ");
+    pNode.value = pNode.value.replace(/[A-Za-z]+/g,"");
     pNode.value = pNode.value.replace(/^[ ]+/g,"");
     pNode.value = pNode.value.replace(/[ ]+$/g," ");
     el(pNode.id+"4K").value = pNode.value.replace(/[ ]+/g,",");
-    alert(pNode.id+"4K='"+el(pNode.id+"4K").value+"'");
+    //alert(pNode.id+"4K='"+el(pNode.id+"4K").value+"'");
   }
 }
 
+// Function to save JSON object to local storage
+function saveToLocalStorage(pJSON,pKey) {
+  pKey = pKey || "html4aframe";
+  if (pJSON) {
+    localStorage.setItem(pKey, JSON.stringify(pJSON));
+  } else {
+    console.error("saveToLocalStorage(pJSON,pKey)");
+  }
+}
+
+// Function to load JSON object from local storage
+function loadFromLocalStorage(pKey) {
+  pKey = pKey || "html4aframe";
+  if (pKey) {
+    var vJSON = localStorage.getItem(pKey);
+    if (vJSON) {
+      return JSON.parse(vJSON);
+    } else {
+      console.error("loadFromLocalStorage(pKey) value for pKey d");
+      return {}
+    }
+  }
+}
 </script>
 
  <script src="db/html4aframe_db.js"></script>
@@ -169,14 +234,18 @@ function checkPosition(pNode) {
       <h1>JSON2AR File Creator</h1>
       <h2 id="HEADER4TITLE">Create Arame, AR and VR in HTML </h1>
     <hr>
+  <center>
+    <button id="loadButton" onclick="">Load JSON</button>
+    <button id="saveButton" onclick="">Save JSON</button>
+  </center>
   <table border=1>
     <tr>
       <td><b>Title</b></td>
-      <td><input type="text" id="TITLE" value="Nora running in Berlin"> title of the AR animation </td>
+      <td><input type="text" id="TITLE" value="Bamberg Animation 2 Kran"> title of the AR animation </td>
     </tr>
     <tr>
       <td><b>HTML Filename:</b></td>
-      <td><input type="text" id="HTMLFILENAME" value="move360/myfile" onchange="calcDIR(this.value);setFilenames4HTML(this.value)"> filename without HTML extension. Use the correct path for <a href="https://github.com/ar4nhey/litspatz4c" target="_blank">LitSpatz-Respository</a> </td>
+      <td><input type="text" id="HTMLFILENAME"  size="45" value="move360/bamberg/animation1" onchange="calcDIR(this.value);setFilenames4HTML(this.value)"> filename without HTML extension. Use the correct path for <a href="https://github.com/ar4nhey/litspatz4c" target="_blank">LitSpatz-Respository</a> </td>
     </tr>
     <!-- Add more input fields for the other strings here -->
     <tr>
@@ -199,14 +268,28 @@ function checkPosition(pNode) {
       </td>
     </tr>
     <tr>
-      <td><b>Sky Image Filename:</b></td>
+      <td><b>Sky Image Filename (Aframe):</b></td>
       <td>
-        <input type="text" id="SKY" value="img360/sky4scene.jpg"> use an <a href="https://en.wikiversity.org/wiki/equirectangular" target="_blank">equirectangular image</a> as sky image for the scene.
+        <input type="text" id="SKY" size="45" value="img360/Bamberg2_Kran.JPG"> use an <a href="https://en.wikiversity.org/wiki/equirectangular" target="_blank">equirectangular image</a> as sky image for the scene.
+      </td>
+    </tr>
+    <tr>
+      <td><b>Camera Position (Aframe):</b></td>
+      <td>
+        <input type="text" id="CAMPOS" value="0 3 3">
+        <span name="poscomment"></span>
+      </td>
+    </tr>
+    <tr>
+      <td><b>Camera Rotation (Aframe):</b></td>
+      <td>
+        <input type="text" id="CAMROT" value="0 0 0">
+        <span name="rotcomment"></span>
       </td>
     </tr>
     <tr>
       <td><b>GLB Filename:</b></td>
-      <td><input type="text" id="GLB" value="model3d/myfile.glb"></td>
+      <td><input type="text" id="GLB"  size="45" value="model3d/treasure-chest_cutted_2.glb"></td>
     </tr>
     <tr>
       <td><b>Scale GLB Object:</b></td>
@@ -219,9 +302,9 @@ function checkPosition(pNode) {
         <a href="https://niebert.github.io/openlayer_selectlocation/index.html" target="_blank"> Select Geolocation </a>
         <br>
         Longitude
-        <input type="text" id="LONG" value="12.92983530222529" onchange="checkDecimal(this)">
+        <input type="text" id="LONG" value="12.92983530222529" onchange="checkGeolocation(this)">
         Latitude
-        <input type="text" id="LAT" value="50.83043675689984" onchange="checkDecimal(this)">
+        <input type="text" id="LAT" value="50.83043675689984" onchange="checkGeolocation(this)">
       </td>
     </tr>
     <tr>
@@ -235,11 +318,11 @@ function checkPosition(pNode) {
     </tr>
     <tr>
       <td><b>Track MOVEID</b></td>
-      <td><input type="text" id="MOVEID" value="running"> ID for the movement - e.g. "floating" "flying" "running" "jumping"</td>
+      <td><input type="text" id="MOVEID" value="floating"> ID for the movement - e.g. "floating" "flying" "running" "jumping"</td>
     </tr>
     <tr>
       <td><b>Track DURATION</b></td>
-      <td><input type="text" id="DURATION" value="8000"> in milliseconds 8000 = 8 seconds</td>
+      <td><input type="text" id="DURATION" value="30000" onchange="checkDuration(this)"> in milliseconds = <span id="DURATION4SEC">30</span> seconds</td>
     </tr>
     <tr>
       <td colspan="2">
@@ -364,6 +447,74 @@ function checkPosition(pNode) {
   }
   updateGeolocation();
 </script>
+
+<script>
+// Get the buttons
+var loadButton = document.getElementById('loadButton');
+var saveButton = document.getElementById('saveButton');
+
+// Add event listener for load button
+loadButton.addEventListener('click', function() {
+    var input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.json';
+    input.onchange = function(event) {
+        var file = event.target.files[0];
+        var reader = new FileReader();
+        reader.onload = function(){
+            var json = JSON.parse(reader.result);
+            console.log(json);
+            if (json) {
+              setJSON4Data(json);
+              saveToLocalStorage(json,"html4aframe");
+            };
+          }
+        reader.readAsText(file);
+    };
+    input.click();
+});
+
+function extractFilename(pJSON) {
+  var vFilename = "html4aframe.json";
+  if (pJSON) {
+    if (pJSON.hasOwnProperty("TITLE")) {
+      vFilename = pJSON.TITLE;
+      vFilename = vFilename.replace(/[^A-Za-z0-9_\-]+/g,"_");
+    } else {
+      console.log("JSON contains no TITLE sattribute");
+    };
+  }
+  return vFilename;
+}
+
+// Add event listener for save button
+saveButton.addEventListener('click', function() {
+    var data = getJSON4Data();
+    var json = JSON.stringify(data,null,4);
+    saveToLocalStorage(json,"html4aframe");
+    var blob = new Blob([json], {type: "application/json"});
+    var url  = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    var vFilename = extractFilename(data);
+    console.log("Save JSON: "+vFilename);
+    a.download = vFilename;
+    a.href = url;
+    a.click();
+});
+
+var vJSON = loadFromLocalStorage("html4aframe");
+if (vJSON) {
+  setJSON4Data(vJSON);
+} else {
+  console.log("No JSON data in local storage 'html4aframe'");
+}
+
+var vInitFile = el("DIR").value;
+calcDIR(vInitFile);
+setFilenames4HTML(vInitFile);
+checkDuration(el("DURATION").value);
+</script>
+
 <center>
   Repository: <a href="https://github.com/ar4nhey/litspatz4c" target="_blank">LitSpatz</a>
 </center>
