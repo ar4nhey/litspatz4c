@@ -26,7 +26,7 @@ vDataJSON.html4aframe = `
         // (0,0,0) is the marker position
         ___MOVEID___Mover.setStartPosition(___STARTPOS4K___);
         ___MOVEID___Mover.setMiddle1Position(___MIDDLE1POS4K___);
-        ___MOVEID___Mover.setMiddle2Position(___MIDDLE1POS4K___);
+        ___MOVEID___Mover.setMiddle2Position(___MIDDLE2POS4K___);
         ___MOVEID___Mover.setEndPosition(___ENDPOS4K___);
         ___MOVEID___Mover.setLoop(___LOOPBOOL___);
         // Set start and end rotations - no rotation
@@ -50,18 +50,18 @@ vDataJSON.html4aframe = `
     </a-assets>
 
     <!-- Add the 3D model to the scene -->
-    <a-entity gltf-model="#my3dmodel" ___MOVERID___
+    <a-entity gltf-model="#my3dmodel" ___MOVEID___
       scale="___SCALE___ ___SCALE___ ___SCALE___"
-      position="STARTPOS"
-      rotation="STARTROT"
+      position="___STARTPOS___"
+      rotation="___STARTROT___"
       animation-mixer></a-entity>
 
     <!-- Add some basic lighting -->
     <a-light type="ambient" color="#FFF" light=""></a-light>
-    <a-light type="point" color="#fff" position="___CAMPOS___" light=""></a-light>
+    <a-light type="point" color="#fff" position="0 2 2" light=""></a-light>
 	  <a-sky src="#sky"></a-sky>
     <!-- Add a camera -->
-    <a-camera position="0 2 -5" camera="" rotation="0 0 0" look-controls="" wasd-controls="" data-aframe-inspector-original-camera=""></a-camera>
+    <a-camera position="0 2 2" camera="" rotation="0 0 0" look-controls="" wasd-controls="" data-aframe-inspector-original-camera=""></a-camera>
   <div class="a-loader-title" style="display: none;">___TITLE___</div></a-scene>
 </body>
 </html>

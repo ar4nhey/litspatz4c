@@ -27,7 +27,7 @@ vDataJSON.html4ar = `
         // (0,0,0) is the marker position
         ___MOVEID___Mover.setStartPosition(___STARTPOS4K___);
         ___MOVEID___Mover.setMiddle1Position(___MIDDLE1POS4K___);
-        ___MOVEID___Mover.setMiddle2Position(___MIDDLE1POS4K___);
+        ___MOVEID___Mover.setMiddle2Position(___MIDDLE2POS4K___);
         ___MOVEID___Mover.setEndPosition(___ENDPOS4K___);
         ___MOVEID___Mover.setLoop(___LOOPBOOL___);
         // Set start and end rotations - no rotation
