@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AR.js - Bamberg Animation 2 Kran - hiro </title>
+  <script src="../../js/aframe-1.2.0.js"></script>
+  <script src="../../js/aframe-ar.js"> </script>
+  <script src="../../js/aframe-1.7.0-extras.js"></script>
+  <script src="../../js/aframe-object-mover.js"></script>
+  <script>
+        // Include the ObjectMover class
+        // Create an instance of ObjectMover for the box
+        const floatingMover = new AframeMover('floating','ar');
+        
+        // Time stamps alternative hide/show
+        // floatingMover.setVisibleTimes([ 0.1 , 0.3 , 0.5 , 0.7 , 0.9]);
+        // 0.1 = Hide after 10% of animation time
+        // 0.3 = Show after 30% of         animation time
+        // 0.5 = Hide after 50% of animation time
+        // ...
+        // All positions are 3D coordinates (x,y,z)
+        // x: -left/+right
+        // y: -down/+up
+        // z: -rear/+front
+        // (0,0,0) is the marker position
+        floatingMover.setStartPosition(-18,-3,-18);
+        floatingMover.setMiddle1Position(23,-3,-5);
+        floatingMover.setMiddle2Position(+33,-3,-9);
+        floatingMover.setEndPosition(+50,-3,13);
+        floatingMover.setLoop(true);
+        // Set start and end rotations - no rotation
+        floatingMover.setStartRotation(0 , 0 , 0);
+        floatingMover.setEndRotation(0 , 0 , 0);
+
+        // Set duration
+        floatingMover.setDuration(30000); // i.e. 30000/1000 seconds
+
+        // Start the movement
+        floatingMover.startMovement();
+  </script>
+
+</head>
+<body style="margin : 0px; overflow: hidden;">
+  <a-scene embedded arjs>
+  <a-marker preset="hiro">
+    <a-entity floating position="-18 -3 -18">
+      <a-entity
+        position="-18 -3 -18"
+        rotation="0 0 0"
+        scale="1.0 1.0 1.0"
+        animation-mixer="loop: repeat"
+        gltf-model="../../model3d/treasure-chest_cutted_2.glb" >
+      </a-entity>
+    </a-entity>
+  </a-marker>
+  <a-light type="ambient" color="#FFF" light=""></a-light>
+  <a-light type="point" color="#fff" position="0 3 0" light=""></a-light>
+  <a-light type="point" color="#fff" position="3 3 0" light=""></a-light>
+  <a-light type="point" color="#fff" position="-3 3 0" light=""></a-light>
+  <a-light type="point" color="#fff" position="3 3 -3" light=""></a-light>
+  <a-light type="point" color="#fff" position="-3 3 -3" light=""></a-light>
+  <a-light type="point" color="#fff" position="1.5 3 0" light=""></a-light>
+
+    <!-- Define the camera -->
+    <a-entity camera></a-entity>
+  </a-scene>
+</body>
+</html>
+
