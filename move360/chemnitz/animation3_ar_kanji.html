@@ -1,1 +1,71 @@
-Chemnitz animation 3 AR KANJI
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AR.js - Chemnitz Animation 3 - am Rathaus - ARGEO - kanji </title>
+  <script src="../../js/aframe-1.2.0.js"></script>
+  <script src="../../js/aframe-ar.js"> </script>
+  <script src="../../js/aframe-1.7.0-extras.js"></script>
+  <script src="../../js/aframe-object-mover.js"></script>
+  <script>
+        // Include the ObjectMover class
+        // Create an instance of ObjectMover for the box
+        const runningMover = new AframeMover('running','ar');
+        
+        // Time stamps alternative hide/show
+        // runningMover.setVisibleTimes([ 0.1 , 0.3 , 0.5 , 0.7 , 0.9]);
+        // 0.1 = Hide after 10% of animation time
+        // 0.3 = Show after 30% of         animation time
+        // 0.5 = Hide after 50% of animation time
+        // ...
+        // All positions are 3D coordinates (x,y,z)
+        // x: -left/+right
+        // y: -down/+up
+        // z: -rear/+front
+        // (0,0,0) is the marker position
+        runningMover.setStartPosition(0 , 0 , 0);
+        runningMover.setMiddle1Position(30,0,-10);
+        runningMover.setMiddle2Position(60,0,-20);
+        runningMover.setEndPosition(65,0,-25);
+        runningMover.setLoop(true);
+        // Set start and end rotations - no rotation
+        runningMover.setStartRotation(0,180,0);
+        runningMover.setEndRotation(0,180,0);
+
+        // Set duration
+        runningMover.setDuration(20000); // i.e. 20000/1000 seconds
+
+        // Start the movement
+        runningMover.startMovement();
+  </script>
+
+</head>
+<body style="margin : 0px; overflow: hidden;">
+  <a-scene embedded arjs>
+  <a-marker preset="kanji">
+    <a-entity running position="0 0 0">
+      <a-entity
+        position="0 0 0"
+        rotation="0 180 0"
+        scale="1.0 1.0 1.0"
+        animation-mixer="loop: repeat"
+        gltf-model="../../model3d/litspatz_elf_running.glb" >
+      </a-entity>
+    </a-entity>
+  </a-marker>
+  <a-light type="ambient" color="#FFF" light=""></a-light>
+  <a-light type="point" color="#fff" position="0 3 0" light=""></a-light>
+  <a-light type="point" color="#fff" position="3 3 0" light=""></a-light>
+  <a-light type="point" color="#fff" position="-3 3 0" light=""></a-light>
+  <a-light type="point" color="#fff" position="3 3 -3" light=""></a-light>
+  <a-light type="point" color="#fff" position="-3 3 -3" light=""></a-light>
+  <a-light type="point" color="#fff" position="1.5 3 0" light=""></a-light>
+
+    <!-- Define the camera -->
+    <a-entity camera></a-entity>
+  </a-scene>
+</body>
+</html>
+
