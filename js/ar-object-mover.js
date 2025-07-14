@@ -149,13 +149,28 @@ class ARMover {
     }
 
     setPosition4Scene(x,y,z) {
+      switch (this.mode4vr) {
+        case "ar":
+
+        break;
+        case "aframe":
+
+        break;
+        default:
+      }
       if (this.mode4vr == "ar") {
         // mode4vr = "ar"
       } else {
         // mode4vr = "aframe"
-        this.entity = document.getElementById(this.id);
-        console.log("Position="+JSON.stringify(this.entity.getAttribute('position'),null,4)+" ");
-        this.entity.setAttribute('position', this.startPos);
+        // for compatibility - handling objects with DOM ID
+        if (this.id) {
+          this.entity = document.getElementById(this.id);
+          if (this.entity) {
+            console.warn("Moving aframe object with DOM ID.")
+            console.log("Position="+JSON.stringify(this.entity.getAttribute('position'),null,4)+" ");
+            this.entity.setAttribute('position', this.startPos);
+          }
+        }
       }
     }
 
@@ -182,8 +197,11 @@ class ARMover {
         // mode4vr = "ar"
       } else {
         // mode4vr = "aframe"
-        this.entity = document.getElementById(this.id);
-        this.entity.setAttribute('rotation', { "x": x, "y": y, "z": z });
+        // for compatibility - handling objects with DOM ID
+        if (this.entity) {
+          this.entity = document.getElementById(this.id);
+          this.entity.setAttribute('rotation', { "x": x, "y": y, "z": z });
+        }
       }
     }
 
@@ -336,6 +354,7 @@ class ARMover {
        conv3vec: function (pStart,pMiddle1,pMiddle2,pEnd,t) {
          //console.log("conv3vec() - pStart="+JSON.stringify(pStart)+ " pMiddle1="+JSON.stringify(pMiddle1)+ " pMiddle2="+JSON.stringify(pMiddle2)+" pEnd="+JSON.stringify(pEnd));
          var vVec = {};
+         // iteration over "x", "y", "z"
          for (var key in pStart) {
            vVec[key] = this.conv3(pStart[key],pMiddle[key],pEnd[key],t)
          }
