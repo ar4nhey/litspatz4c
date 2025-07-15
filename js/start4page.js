@@ -1,20 +1,26 @@
 function showPage(pURL) {
 	if (pURL) {
-		console.log("URL: "+pURL);
+		console.log("showPage(pURL) pURL: "+pURL);
 		document.location.href = pURL
 	} else {
 		console.error("ERROR: showPage(pURL) - parameter pURL was not defined");
 	}
-}	
+}
 
 function show360Degree(pBasename,vDir) {
-	showPage(vDir + vBasename + "_aframe.html");
+	var vURL = vDir + vBasename + "_aframe.html";
+	//alert("show360Degree(pBasename,vDir) URL: "+vURL);
+	console.log("show360Degree(pBasename,vDir) URL: "+vURL);
+	showPage(vURL);
 }
 
 function showARMarker(pBasename,vDir,pMarker) {
   pMarker = pMarker || "HIRO";
   pMarker = pMarker.toLowerCase();
-  showPage(vDir + vBasename + "_ar_" + pMarker + ".html");
+	var vURL = vDir + vBasename + "_ar_" + pMarker + ".html";
+	//alert("showARMarker(pBasename,vDir,'"+pMarker+"') URL: "+vURL);
+	console.log("showARMarker(pBasename,vDir,'"+pMarker+"') URL: "+vURL);
+	showPage(vURL);
 }
 
 function showARGPS(pBasename,vDir) {
