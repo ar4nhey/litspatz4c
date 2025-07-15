@@ -5,64 +5,65 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chemnitz Animation 3 - am Rathaus - ARGEO</title>
-    <script src="../../js/aframe-1.7.0.js"></script>
-    <script src="../../js/aframe-extras.js"></script>
-    <script src="../../js/aframe-object-mover.js"></script>
-	<script>
-        // Include the ObjectMover class
-        // Create an instance of ObjectMover for the box
-        const runningMover = new AframeMover('running','ar');
-        
-        // Time stamps alternative hide/show
-        // runningMover.setVisibleTimes([ 0.1 , 0.3 , 0.5 , 0.7 , 0.9]);
-        // 0.1 = Hide after 10% of animation time
-        // 0.3 = Show after 30% of animation time
-        // 0.5 = Hide after 50% of animation time
-        // ...
-        // All positions are 3D coordinates (x,y,z)
-        // x: -left/+right
-        // y: -down/+up
-        // z: -rear/+front
-        // (0,0,0) is the marker position
-        runningMover.setStartPosition(0 , 0 , 0);
-        runningMover.setMiddle1Position(30,0,-10);
-        runningMover.setMiddle2Position(60,0,-20);
-        runningMover.setEndPosition(65,0,-25);
-        runningMover.setLoop(true);
-        // Set start and end rotations - no rotation
-        runningMover.setStartRotation(0,180,0);
-        runningMover.setEndRotation(0,180,0);
+  <script src="../../js/aframe-1.7.0.js"></script>
+  <script src="../../js/aframe-extras.js"></script>
+  <script src="../../js/aframe-object-mover.js"></script>
+<script>
+      // Include the ObjectMover class
+      // Create an instance of ObjectMover for the box
+      const runningMover = new AframeMover('running','aframe');
 
-        // Set duration
-        runningMover.setDuration(20000); // i.e. 20000/1000 seconds
+      // Time stamps alternative hide/show
+      // runningMover.setVisibleTimes([ 0.1 , 0.3 , 0.5 , 0.7 , 0.9]);
+      // 0.1 = Hide after 10% of animation time
+      // 0.3 = Show after 30% of animation time
+      // 0.5 = Hide after 50% of animation time
+      // ...
+      // All positions are 3D coordinates (x,y,z)
+      // x: -left/+right
+      // y: -down/+up
+      // z: -rear/+front
+      // (0,0,0) is the marker position
+      runningMover.setStartPosition(2 , 0 , 0);
+      runningMover.setMiddle1Position(4,0,-10);
+      runningMover.setMiddle2Position(6,0,-20);
+      runningMover.setEndPosition(2,0,-30);
+      runningMover.setLoop(true);
+      // Set start and end rotations - no rotation
+      runningMover.setStartRotation(0,-0.2,0);
+      runningMover.setEndRotation(0,0,0);
 
-        // Start the movement
-        runningMover.startMovement();
-	</script>
+      // Set duration
+      runningMover.setDuration(8000); // i.e. 30000/1000 seconds
+
+      // Start the movement
+      runningMover.startMovement();
+</script>
 
 </head>
 <body>
-  <a-scene inspector="" keyboard-shortcuts="" screenshot="" vr-mode-ui="" device-orientation-permission-ui="" visible="">
-    <!-- Load the 3D model -->
-    <a-assets>
-      <a-asset-item id="my3dmodel" src="../../model3d/litspatz_elf_running.glb"></a-asset-item>
-      <img id="sky" src="../../img360/Chemnitz1_AR3a.JPG">
-    </a-assets>
+<a-scene inspector="" keyboard-shortcuts="" screenshot="" vr-mode-ui="" device-orientation-permission-ui="" visible="">
+  <!-- Load the 3D model -->
+  <a-assets>
+    <a-asset-item id="my3dmodel" src="../../model3d/litspatz_elf_running_animation_bl3.glb"></a-asset-item>
+    <img id="sky" src="../../img360/Chemnitz3_AR3a.JPG">
+  </a-assets>
 
-    <!-- Add the 3D model to the scene -->
-    <a-entity gltf-model="#my3dmodel" running
-      scale="1.0 1.0 1.0"
+  <!-- Add the 3D model to the scene -->
+  <a-entity running position="0 -13 0" rotation="0 0 0">
+    <a-entity gltf-model="#my3dmodel"
+      scale="0.04 0.04 0.04"
       position="0 0 0"
       rotation="0 180 0"
       animation-mixer></a-entity>
+  </a-entity>
 
-    <!-- Add some basic lighting -->
-    <a-light type="ambient" color="#FFF" light=""></a-light>
-    <a-light type="point" color="#fff" position="0 2 2" light=""></a-light>
-	  <a-sky src="#sky"></a-sky>
-    <!-- Add a camera e.g. position="0 2 2" rotation="0 0 0" -->
-    <a-camera position="0 3 3" camera="" rotation="0 0 0" look-controls="" wasd-controls="" data-aframe-inspector-original-camera=""></a-camera>
+  <!-- Add some basic lighting -->
+  <a-light type="ambient" color="#FFF" light=""></a-light>
+  <a-light type="point" color="#fff" position="0 2 2" light=""></a-light>
+<a-sky src="#sky" rotation="0 -120 0" ></a-sky>
+  <!-- Add a camera e.g. position="0 2 2" rotation="0 0 0" -->
+  <a-camera position="0 3 3" camera="" rotation="0 0 0" look-controls="" wasd-controls="" data-aframe-inspector-original-camera=""></a-camera>
   <div class="a-loader-title" style="display: none;">Chemnitz Animation 3 - am Rathaus - ARGEO</div></a-scene>
 </body>
 </html>
-
