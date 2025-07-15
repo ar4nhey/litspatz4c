@@ -30,11 +30,11 @@
         runningMover.setEndPosition(0,0,-30);
         runningMover.setLoop(true);
         // Set start and end rotations - no rotation
-        runningMover.setStartRotation(0,0,0);
+        runningMover.setStartRotation(0,-0.2,0);
         runningMover.setEndRotation(0,0,0);
 
         // Set duration
-        runningMover.setDuration(25000); // i.e. 30000/1000 seconds
+        runningMover.setDuration(12000); // i.e. 30000/1000 seconds
 
         // Start the movement
         runningMover.startMovement();
@@ -45,14 +45,14 @@
   <a-scene inspector="" keyboard-shortcuts="" screenshot="" vr-mode-ui="" device-orientation-permission-ui="" visible="">
     <!-- Load the 3D model -->
     <a-assets>
-      <a-asset-item id="my3dmodel" src="../../model3d/elf_running_rig.glb"></a-asset-item>
+      <a-asset-item id="my3dmodel" src="../../model3d/litspatz_elf_running_animation_bl3.glb"></a-asset-item>
       <img id="sky" src="../../img360/Chemnitz1_AR1a.JPG">
     </a-assets>
 
     <!-- Add the 3D model to the scene -->
-    <a-entity running position="0 0 0" rotation="0 0 0">
+    <a-entity running position="0 -13 0" rotation="0 0 0">
     	<a-entity gltf-model="#my3dmodel"
-        scale="190.0 190.0 190.0"
+        scale="0.04 0.04 0.04"
         position="0 0 0"
         rotation="0 180 0"
         animation-mixer></a-entity>
@@ -61,7 +61,7 @@
     <!-- Add some basic lighting -->
     <a-light type="ambient" color="#FFF" light=""></a-light>
     <a-light type="point" color="#fff" position="0 2 2" light=""></a-light>
-	  <a-sky src="#sky" rotation="0 -90 0" ></a-sky>
+	<a-sky src="#sky" rotation="0 -90 0" ></a-sky>
     <!-- Add a camera e.g. position="0 2 2" rotation="0 0 0" -->
     <a-camera position="0 3 3" camera="" rotation="0 0 0" look-controls="" wasd-controls="" data-aframe-inspector-original-camera=""></a-camera>
   <div class="a-loader-title" style="display: none;">Chemnitz Animation 1</div></a-scene>
