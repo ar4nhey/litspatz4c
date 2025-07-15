@@ -29,8 +29,11 @@ vDataJSON.html4aframe = `
         ___MOVEID___Mover.setMiddle2Position(___MIDDLE2POS4K___);
         ___MOVEID___Mover.setEndPosition(___ENDPOS4K___);
         ___MOVEID___Mover.setLoop(___LOOPBOOL___);
-        // Set start and end rotations - no rotation
+        // Set start and end rotations for x-axis, y-axis, z-axis
+        // Set the angles with radians e.g. 3.141593 = 180 degress
         ___MOVEID___Mover.setStartRotation(___STARTROT4K___);
+        //___MOVEID___Mover.setMiddle1Rotation(0 , 3.131593 , 0);
+        //___MOVEID___Mover.setMiddle2Rotation(0 , -1.5 , 0);
         ___MOVEID___Mover.setEndRotation(___ENDROT4K___);
 
         // Set duration
@@ -60,8 +63,8 @@ vDataJSON.html4aframe = `
     <a-light type="ambient" color="#FFF" light=""></a-light>
     <a-light type="point" color="#fff" position="0 2 2" light=""></a-light>
 	  <a-sky src="#sky"></a-sky>
-    <!-- Add a camera -->
-    <a-camera position="0 2 2" camera="" rotation="0 0 0" look-controls="" wasd-controls="" data-aframe-inspector-original-camera=""></a-camera>
+    <!-- Add a camera e.g. position="0 2 2" rotation="0 0 0" -->
+    <a-camera position="___CAMPOS___" camera="" rotation="___CAMROT___" look-controls="" wasd-controls="" data-aframe-inspector-original-camera=""></a-camera>
   <div class="a-loader-title" style="display: none;">___TITLE___</div></a-scene>
 </body>
 </html>

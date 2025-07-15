@@ -8,11 +8,11 @@ vDataJSON.html4ar = `
   <script src="___DIR___/js/aframe-1.2.0.js"></script>
   <script src="___DIR___/js/aframe-ar.js"> </script>
   <script src="___DIR___/js/aframe-1.7.0-extras.js"></script>
-  <script src="___DIR___/js/aframe-object-mover.js"></script>
+  <script src="___DIR___/js/ar-object-mover.js"></script>
   <script>
         // Include the ObjectMover class
         // Create an instance of ObjectMover for the box
-        const ___MOVEID___Mover = new AframeMover('___MOVEID___','ar');
+        const ___MOVEID___Mover = new ARMover('___MOVEID___','ar');
         ___HTML4REF2MOVER___
         // Time stamps alternative hide/show
         // ___MOVEID___Mover.setVisibleTimes([ 0.1 , 0.3 , 0.5 , 0.7 , 0.9]);
@@ -30,8 +30,11 @@ vDataJSON.html4ar = `
         ___MOVEID___Mover.setMiddle2Position(___MIDDLE2POS4K___);
         ___MOVEID___Mover.setEndPosition(___ENDPOS4K___);
         ___MOVEID___Mover.setLoop(___LOOPBOOL___);
-        // Set start and end rotations - no rotation
+        // Set start and end rotations for x-axis, y-axis, z-axis
+        // Set the angles with radians e.g. 3.141593 = 180 degress
         ___MOVEID___Mover.setStartRotation(___STARTROT4K___);
+        //___MOVEID___Mover.setMiddle1Rotation(0 , 3.131593 , 0);
+        //___MOVEID___Mover.setMiddle2Rotation(0 , -1.5 , 0);
         ___MOVEID___Mover.setEndRotation(___ENDROT4K___);
 
         // Set duration
