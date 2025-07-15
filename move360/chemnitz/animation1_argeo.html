@@ -18,10 +18,10 @@
         <script>
               // Include the ObjectMover class
               // Create an instance of ObjectMover for the box
-              const runningMover = new AframeMover('running','ar');
-              
+              const elfMover = new AframeMover('running','ar');
+
               // Time stamps alternative hide/show
-      		    // runningMover.setVisibleTimes([ 0.1 , 0.3 , 0.5 , 0.7 , 0.9]);
+      		    // elfMover.setVisibleTimes([ 0.1 , 0.3 , 0.5 , 0.7 , 0.9]);
               // 0.1 = Hide after 10% of animation time
               // 0.3 = Show after 30% of animation time
               // 0.5 = Hide after 50% of animation time
@@ -31,20 +31,26 @@
               // y: -down/+up
               // z: -rear/+front
               // (0,0,0) is the marker position
-              runningMover.setStartPosition(0 , 0 , 0);
-              runningMover.setMiddle1Position(-15,0,10,);
-              runningMover.setMiddle2Position(-30,0,20);
-              runningMover.setEndPosition(-45,0,30);
-              runningMover.setLoop(true);
-              // Set start and end rotations - no rotation
-              runningMover.setStartRotation(0,0,180);
-              runningMover.setEndRotation(0,0,180);
+              elfMover.setStartPosition(0, 0, 0);
+              elfMover.setMiddle1Position(2, -4.5, -15);
+              elfMover.setMiddle2Position(2, -6, -30);
+              elfMover.setEndPosition(1, -9, -45);
 
+              // Loop - Repeat animation
+              elfMover.setLoop(true);
+
+
+              // Set start and end rotations - no rotation
+              elfMover.setStartRotation(0, 3.0, 0);
+              elfMover.setMiddle1Rotation(0, 3.14 , 0);
+              elfMover.setMiddle2Rotation(0, 3.24, 0);
+              elfMover.setEndRotation(0, 3.5, 0);
               // Set duration
-              runningMover.setDuration(30000); // i.e. 30000/1000 seconds
+
+              elfMover.setDuration(8000); // i.e. 30000/1000 seconds
 
               // Start the movement
-              runningMover.startMovement();
+              elfMover.startMovement();
         </script>
       </head>
 
@@ -58,21 +64,23 @@
             <a-assets>
                 <a-asset-item
                     id="animated-asset"
-                    src="../../model3d/litspatz_elf_running.glb"
+                    src="../../model3d/elf_running_rig.glb"
                 ></a-asset-item>
             </a-assets>
             <a-entity running position="0 0 0" >
-                <a-entity
-                    look-at="[gps-camera]"
-                    animation-mixer="loop: repeat"
-                    gltf-model="#animated-asset"
-                    scale="1.0 1.0 1.0"
-                    gps-entity-place="latitude: 50.83258172668246; longitude: 12.917393092296502  ;"
-                ></a-entity>
+              <a-entity
+              position="0 0 0"
+              rotation="0 0 0"
+              scale="0.04 0.04 0.04"
+              look-at="[gps-camera]"
+              animation-mixer="loop: repeat"
+              gps-entity-place="latitude: 50.83258172668246; longitude: 12.917393092296502  ;"
+              gltf-model="../../model3d/litspatz_elf_running_animation_bl3.glb"
+              ></a-entity>
+              <a-box id="geolocation" position="0 0 0" color="#c0c0c0" scale="1 0.02 1" material="opacity:0.7"></a-box>
             </a-entity>
 
             <a-camera gps-camera rotation-reader></a-camera>
         </a-scene>
     </body>
 </html>
-
