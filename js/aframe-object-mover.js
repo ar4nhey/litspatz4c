@@ -1,4 +1,4 @@
-/*
+Rot/*
  * AR.js Object Mover
  *
  * move objects with a given id in the 3D space of aframe
@@ -41,8 +41,11 @@ class AframeMover {
         this.middle2Pos = null; // e.g. { x: 0, y: 0, z: 0 }; Convex Combination Ord 3
         this.endPos = null; // { x: 0, y: 0, z: 0 };
         // initRot is base angles startRot is added to convex combination
+        this.order4rotation = 1;
         this.initRot = null; // init Rotation is added to rotation
         this.startRot = null; // { x: 0, y: 0, z: 0 };
+        this.middle1Rot = null; // e.g. { x: 0, y: 0, z: 0 }; Convex Combination Ord 2 / 3
+        this.middle2Rot = null; // e.g. { x: 0, y: 0, z: 0 }; Convex Combination Ord 3
         this.endRot = null; //{ x: 0, y: 0, z: 0 };
         this.duration = 5000; // Default duration in milliseconds 5 sec
         this.animationFrameId = null;
@@ -282,9 +285,9 @@ class AframeMover {
          var vVisible = mv.getVisible(progress);
          //alert("vVisible["+progress+"]="+vVisible);
          this.el.object3D.visible = vVisible;
-         console.log("tick() - vPos="+JSON.stringify(vPos)+" order4convex="+mv.order4convex);
+         console.log("tick() - vPos="+JSON.stringify(vPos)+" order4convex="+mv.order4convex+" oder4rotation="+mv.order4rotation);
          this.setPosition4Scene(vPos);
-         var vRot = this.conv1vec(mv.startRot,mv.endRot,progress);
+         var vRot = this.convex_rotation(progress);
          this.setRotation4Scene(vRot);
          this.currentTime += timeDelta;
          if (progress >= 1.0) {
@@ -312,11 +315,34 @@ class AframeMover {
              mv.order4convex = 3;
              vVec = this.conv3vec(mv.startPos,mv.middle1Pos,mv.middle2Pos,mv.endPos,t);
              console.log("convex combination - order 3");
-         }
+           }
          }
          console.log("convex_combination(t) = "+JSON.stringify(vVec));
          return vVec;
        },
+       convex_rotation: function (t) {
+         var mv = this.mover;
+         var vVec = mv.startRot;
+
+         if (!mv.middleRot1) {
+           mv.order4rotation = 1;
+           vVec = this.conv1vec(mv.startRot,mv.endRot,t);
+           console.log("convex rotation - order 1");
+         } else {
+           if (!mv.middleRot2) {
+             mv.order4rotation = 2;
+             vVec = this.conv2vec(mv.startRot,mv.middle1Rot,mv.endRot,t);
+             console.log("convex rotation - order 2");
+           } else {
+             mv.order4rotation = 3;
+             vVec = this.conv3vec(mv.startRot,mv.middle1Rot,mv.middle2Rot,mv.endRot,t);
+             console.log("convex rotation - order 3");
+           }
+         }
+         console.log("convex_rotation(t) = "+JSON.stringify(vVec));
+         return vVec;
+       },
+
        setPosition4Scene: function(pPosition) {
          if (pPosition) {
            this.el.object3D.position.x = pPosition.x;

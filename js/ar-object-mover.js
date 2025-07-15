@@ -25,97 +25,6 @@
         boxMover.startMovement();
  */
 
- function XXstartMovement4AR(pMover) {
-   console.log("startMovement4AR() pMover="+JSON.stringify(pMover,null,4));
-   var vMoverID = pMover.id.toLowerCase();
-   //AFRAME.registerComponent(vMoverID, {
-
-   AFRAME.registerComponent(vMoverID, {
-     mover: pMover,
-     startTime: 0,
-     currentTime: 0,
-
-     init: function() {
-       //this.el.object3D.scale.set(0.75, 0.75, 0.75);
-       this.startTime = performance.now();
-       console.log("init() ");
-     },
-
-     tick: function (time, timeDelta) {
-       //this.el.object3D.rotation.y += 0.01
-       var vPos = null;
-       var vRot = null;
-       var mv = this.mover;
-       this.currentTime = performance.now();
-       const elapsedTime = this.currentTime - this.startTime;
-       const progress = Math.min(elapsedTime / mv.duration, 1);
-       if (progress > 1.0) {
-         // check if Loop circle ended
-         if (mv.loopBool == true) {
-           // start a new loop
-           progress = 0.0;
-           this.startTime = performance.now();
-         }
-       }
-       // update position if progress <= 1.0
-       // this includes loop reset
-       if (progress <= 1.0) {
-         //console.log("tick("+time+","+timeDelta+") Progress: "+progress+" Duration: "+mv.duration);
-         var mv = this.mover;
-         console.log("tick("+time+","+timeDelta+") pStart="+JSON.stringify(mv.startPos)+ " pMiddle="+JSON.stringify(mv.middlePos)+" pEnd="+JSON.stringify(mv.endPos));
-       if (mv.middlePos) {
-           vPos = this.conv2vec(mv.startPos,mv.middlePos,mv.endPos,progress);
-         } else {
-           vPos = this.conv1vec(mv.startPos,mv.endPos,progress);
-         }
-         console.log("setPosition4Scene(vPos) - vPos="+JSON.stringify(vPos));
-         this.setPosition4Scene(vPos);
-         vRot = this.conv2vec(mv.startRot,mv.endRot,progress);
-         this.setRotation4Scene(vRot);
-       }
-     },
-
-     setPosition4Scene: function(pPosition) {
-       this.el.object3D.position.x = pPosition.x;
-       this.el.object3D.position.y = pPosition.y;
-       this.el.object3D.position.y = pPosition.z;
-     },
-
-     setRotation4Scene: function(pRotation) {
-       this.el.object3D.rotation.x = pRotation.x;
-       this.el.object3D.rotation.y = pRotation.y;
-       this.el.object3D.rotation.z = pRotation.z;
-     },
-
-     conv1: function (pStart,pEnd,t) {
-       return (1-t)* pStart + t * pEnd
-     },
-
-     conv1vec: function (pStart,pEnd,t) {
-       var vVec = {};
-       for (var key in pStart) {
-         vVec[key] = this.conv1(pStart[key],pEnd[key],t)
-       }
-       return vVec
-     } ,
-
-     conv2: function (pStart,pMiddle, pEnd,t) {
-       return Math.pow(1-t,2) * pStart + (1-t)* t * pMiddle + Math.pow(t,2)*pEnd
-     },
-
-     conv2vec: function (pStart,pMiddle,pEnd,t) {
-       console.log("pStart="+JSON.stringify(pStart)+ " pMiddle="+JSON.stringify(pMiddle)+" pEnd="+JSON.stringify(pEnd));
-       var vVec = {};
-       for (var key in pStart) {
-         vVec[key] = this.conv2(pStart[key],pMiddle[key],pEnd[key],t)
-       }
-       return vVec
-     }
-
-   });
- }
-
-
 class ARMover {
 
     constructor(pID,pMode) {
@@ -126,10 +35,14 @@ class ARMover {
 
         this.order4convex = 1;
         this.startPos = { x: 0, y: 0, z: 0 };
-        this.middlePos = null; // e.g. { x: 0, y: 0, z: 0 };
-        this.middlePos2 = null; // e.g. { x: 0, y: 0, z: 0 };
+        this.middle1Pos = null; // e.g. { x: 0, y: 0, z: 0 };
+        this.middle2Pos = null; // e.g. { x: 0, y: 0, z: 0 };
         this.endPos = { x: 0, y: 0, z: 0 };
+        this.order4rotation = 1;
+        this.initRot = null; // init Rotation is added to rotation
         this.startRot = { x: 0, y: 0, z: 0 };
+        this.middle1Rot = null; // e.g. { x: 0, y: 0, z: 0 };
+        this.middle2Rot = null; // e.g. { x: 0, y: 0, z: 0 };
         this.endRot = { x: 0, y: 0, z: 0 };
         this.duration = 5000; // Default duration in milliseconds 5 sec
         this.animationFrameId = null;
@@ -176,7 +89,25 @@ class ARMover {
 
     setMiddlePosition(x, y, z) {
       this.order4convex = 2;
-      this.middlePos = {
+      this.middle1Pos = {
+          "x": x,
+          "y": y,
+          "z": z
+      };//{ x, y, z };
+    }
+
+    setMiddle1Position(x, y, z) {
+      this.order4convex = 3;
+      this.middle1Pos = {
+          "x": x,
+          "y": y,
+          "z": z
+      };//{ x, y, z };
+    }
+
+    setMiddle2Position(x, y, z) {
+      this.order4convex = 3;
+      this.middle2Pos = {
           "x": x,
           "y": y,
           "z": z
@@ -212,6 +143,32 @@ class ARMover {
           "z": z
         };//{ x, y, z };
         this.setRotation4Scene(x,y,z);
+    }
+    setMiddleRotation(x, y, z) {
+      this.order4rotation = 2;
+      this.middle1Rot = {
+          "x": x,
+          "y": y,
+          "z": z
+      };//{ x, y, z };
+    }
+
+    setMiddle1Rotation(x, y, z) {
+      this.order4rotation = 3;
+      this.middle1Rot = {
+          "x": x,
+          "y": y,
+          "z": z
+      };//{ x, y, z };
+    }
+
+    setMiddle2Rotation(x, y, z) {
+      this.order4rotation = 3;
+      this.middle2Rot = {
+          "x": x,
+          "y": y,
+          "z": z
+      };//{ x, y, z };
     }
 
     setEndRotation(x, y, z) {
@@ -254,26 +211,45 @@ class ARMover {
        {
           this.startTime = performance.now();
           var mv = this.mover;
-          var startPos = mv.startPos;
+          var startPos = { x: 0, y: 0, z: 0 };
+          if (mv.startPos) {
+            startPos = mv.startPos;
+          } else {
+            if (this.el.object3D && this.el.object3D.position) {
+              mv.startPos = this.el.object3D.position;
+              startPos = this.el.object3D.position;
+            }
+          };
+          var initRot = { x: 0, y: 0, z: 0 };
+          if (mv.initRot) {
+            initRot = mv.initRot;
+          } else {
+            if (this.el.object3D && this.el.object3D.rotation) {
+              mv.initRot = this.el.object3D.rotation
+              initRot = this.el.object3D.rotation
+            }
+          };
           this.el.object3D.scale.set(0.75, 0.75, 0.75);
           this.el.object3D.position.set(startPos.x, startPos.y, startPos.z);
+          this.el.object3D.rotation.set(initRot.x, initRot.y, initRot.z);
           console.log("mover="+JSON.stringify(mv,null,4));
        },
 
        tick: function (time, timeDelta)
        {
          var mv = this.mover;
+         //alert("Order for Rotation: "+mv.order4rotation);
          this.el.object3D.position.x += 0.01;
          this.currentTime = performance.now();
 
          const elapsedTime = this.currentTime - this.startTime;
          const progress = Math.min(elapsedTime / this.mover.duration, 1);
          // console.log("Progress: "+progress);
-         //var vVec = this.conv2vec(mv.startPos,mv.middlePos,mv.endPos,progress);
+         //var vVec = this.conv2vec(mv.startPos,mv.middle1Pos,mv.endPos,progress);
          var vPos = this.convex_combination(progress);
-         console.log("tick() - vPos="+JSON.stringify(vPos)+" order4convex="+mv.order4convex);
+         console.log("tick() - vPos="+JSON.stringify(vPos)+" order4convex="+mv.order4convex+" order4rotation="+mv.order4rotation);
          this.setPosition4Scene(vPos);
-         var vRot = this.conv1vec(mv.startRot,mv.endRot,progress);
+         var vRot = this.convex_rotation(progress);
          this.setRotation4Scene(vRot);
          this.currentTime += timeDelta;
          if (progress >= 1.0) {
@@ -288,24 +264,47 @@ class ARMover {
          var mv = this.mover;
          var vVec = mv.startPos;
 
-         if (!mv.middlePos) {
+         if (!mv.middle1Pos) {
            mv.order4convex = 1;
            vVec = this.conv1vec(mv.startPos,mv.endPos,t);
            console.log("convex combination - order 1");
          } else {
-           if (!mv.middlePos2) {
+           if (!mv.middle2Pos) {
              mv.order4convex = 2;
-             vVec = this.conv2vec(mv.startPos,mv.middlePos,mv.endPos,t);
+             vVec = this.conv2vec(mv.startPos,mv.middle1Pos,mv.endPos,t);
              console.log("convex combination - order 2");
            } else {
              mv.order4convex = 3;
-             vVec = this.conv3vec(mv.startPos,mv.middlePos,mv.middlePos2,mv.endPos,t);
+             vVec = this.conv3vec(mv.startPos,mv.middle1Pos,mv.middle2Pos,mv.endPos,t);
              console.log("convex combination - order 3");
          }
          }
          console.log("convex_combination(t) = "+JSON.stringify(vVec));
          return vVec;
        },
+       convex_rotation: function (t) {
+         var mv = this.mover;
+         var vVec = mv.startRot;
+
+         if (!mv.middle1Rot) {
+           mv.order4rotation = 1;
+           vVec = this.conv1vec(mv.startRot,mv.endRot,t);
+           console.log("convex rotation - order 1");
+         } else {
+           if (!mv.middle2Rot) {
+             mv.order4rotation = 2;
+             vVec = this.conv2vec(mv.startRot,mv.middle1Rot,mv.endRot,t);
+             console.log("convex rotation - order 2");
+           } else {
+             mv.order4rotation = 3;
+             vVec = this.conv3vec(mv.startRot,mv.middle1Rot,mv.middle2Rot,mv.endRot,t);
+             console.log("convex rotation - order 3");
+           }
+         }
+         console.log("convex_rotation(t) = "+JSON.stringify(vVec));
+         return vVec;
+       },
+
        setPosition4Scene: function(pPosition) {
          if (pPosition) {
            this.el.object3D.position.x = pPosition.x;
@@ -356,7 +355,7 @@ class ARMover {
          var vVec = {};
          // iteration over "x", "y", "z"
          for (var key in pStart) {
-           vVec[key] = this.conv3(pStart[key],pMiddle[key],pEnd[key],t)
+           vVec[key] = this.conv3(pStart[key],pMiddle1[key],pMiddle2[key],pEnd[key],t)
          }
          console.log("conv3vec(pStart, pMiddle1,pMiddle2, pEnd)="+JSON.stringify(vVec));
          return vVec
@@ -379,10 +378,10 @@ class ARMover {
             var y = 0;
             var z = 0;
 
-            if (this.middlePos) {
-              x = (1-progress)**(2) * this.startPos.x + 2 * (1-progress)* progress * this.middlePos.x + (progress**2) * this.endPos.x ;
-              y = (1-progress)**(2)  * this.startPos.y + 2 * (1-progress)* progress * this.middlePos.y + (progress**2) * this.endPos.y ;
-              z = (1-progress)**(2)  * this.startPos.z + 2 * (1-progress)* progress * this.middlePos.z + (progress**2) * this.endPos.z ;
+            if (this.middle1Pos) {
+              x = (1-progress)**(2) * this.startPos.x + 2 * (1-progress)* progress * this.middle1Pos.x + (progress**2) * this.endPos.x ;
+              y = (1-progress)**(2)  * this.startPos.y + 2 * (1-progress)* progress * this.middle1Pos.y + (progress**2) * this.endPos.y ;
+              z = (1-progress)**(2)  * this.startPos.z + 2 * (1-progress)* progress * this.middle1Pos.z + (progress**2) * this.endPos.z ;
               //console.log("Ord2 progress^2="+(progress)+" - Point ("+x+","+y+","+z+")");
             } else {
               x = (1-progress) * this.startPos.x + progress * this.endPos.x ;
