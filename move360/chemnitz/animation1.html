@@ -8,7 +8,7 @@
   <script language="Javascript">
 	  var vTitle = "LitSpatz - Chemnitz 1 - vor Tietz, Marker am Boden";
 	  var vBasename = "animation1";
-	  var vDir = "";
+	  var vDir = "./";
 	  var vMarker = "kanji";
   </script>
   <script src="../../js/start4page.js"></script>
@@ -45,17 +45,17 @@
 </div>
 <div class="row">
   <div class="column" style="background-color:#bcd6cd;">
-	<button class="help-button" id="help1" onclick="show360DegreeHelper()">360-Gradbild</button> 
+	<button class="help-button" id="help1" onclick="show360DegreeHelper()">360-Gradbild</button>
 	<br/>
 	Illustration einer Litzspatz und Erklärung, dass es sich um eine 360-Grad-Bild darstellt
  </div>
   <div class="column" style="background-color:#bcd6cd;">
-	<button class="help-button" id="help2" onclick="showARMarkerHelper(vMarker)">AR-Marker</button> 
+	<button class="help-button" id="help2" onclick="showARMarkerHelper(vMarker)">AR-Marker</button>
 	<br/>
-    Erklärung: Mit AR können Sie Markern auf Ihrem Bild folgen und eine realistische Darstellung von Litzspatz erstellen		
+    Erklärung: Mit AR können Sie Markern auf Ihrem Bild folgen und eine realistische Darstellung von Litzspatz erstellen
  </div>
   <div class="column" style="background-color:#bcd6cd;">
-    <button class="help-button" id="help3" onclick="showARGPSHelper()">AR-GPS</button> 
+    <button class="help-button" id="help3" onclick="showARGPSHelper()">AR-GPS</button>
 	<br/>
 	Erklärung: Mit AR können Sie die Position der Litzspatz in der Realität über GPS-Koordinaten visualisieren und eine georeferenzierte Darstellung erstellen
  </div>
@@ -63,6 +63,7 @@
 <center>
 	<a href="https://github.com/ar4nhey/litspatz4c/" target="_bank">GitHub-Repository</a>
 </center>
+
 <script language="Javascript">
 	// Get the H2 header element
 const header = document.getElementById('title4page');
@@ -81,10 +82,10 @@ function checkMarkerImage () {
 }
 
 function toggleMarkers() {
- 	  
+
   // Toggle visibility of marker1
   marker1.style.display = marker1.style.display === 'none' ? 'block' : 'none';
-  
+
   // Toggle visibility of marker2
   marker2.style.display = marker2.style.display === 'none' ? 'block' : 'none';
 }
@@ -99,8 +100,8 @@ function replaceHeaderText() {
 setTimeout(() => {
   replaceHeaderText();
   checkMarkerImage();
-}, 500);
+}, 200);
 
-</script>	
+</script>
 </body>
 </html>
