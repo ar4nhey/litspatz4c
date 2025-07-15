@@ -8,7 +8,7 @@
   <script language="Javascript">
 	  var vTitle = "LitSpatz - Chemnitz 3 - am Rathhaus - horizontaler Marker";
 	  var vBasename = "animation3";
-	  var vDir = "";
+    var vDir = "./";
 	  var vMarker = "kanji";
   </script>
   <script src="../../js/start4page.js"></script>
@@ -62,10 +62,11 @@
 </div>
 <hr>
 <center>
-	<a href="https://github.com/ar4nhey/litspatz4c/" target="_bank">GitHub-Repository</a>
+	<a href="https://github.com/ar4nhey/litspatz4c/" target="_bank">GitHub-Repository - LitSpatz</a>
 </center>
-</hr>
-<script>
+<hr>
+
+<script language="Javascript">
 	// Get the H2 header element
 const header = document.getElementById('title4page');
 
@@ -101,48 +102,7 @@ function replaceHeaderText() {
 setTimeout(() => {
   replaceHeaderText();
   checkMarkerImage();
-}, 500);
-
-</script>
-</body>
-</html>
-
-	// Get the H2 header element
-const header = document.getElementById('title4page');
-
-// Get the image elements
-const marker1 = document.getElementById('marker1');
-const marker2 = document.getElementById('marker2');
-
-// Function to toggle visibility of images
-function checkMarkerImage () {
-  vMarker = vMarker || "kanji";
-  //alert("vMarker='"+vMarker+"'");
-  if (vMarker == "kanji") {
-	  toggleMarkers();
-  }
-}
-
-function toggleMarkers() {
-
-  // Toggle visibility of marker1
-  marker1.style.display = marker1.style.display === 'none' ? 'block' : 'none';
-
-  // Toggle visibility of marker2
-  marker2.style.display = marker2.style.display === 'none' ? 'block' : 'none';
-}
-
-// Function to replace H2 header text
-function replaceHeaderText() {
-  // Replace H2 header text with new text
-  header.textContent = vTitle;
-}
-
-// Set timeout to call functions after 2 seconds
-setTimeout(() => {
-  replaceHeaderText();
-  checkMarkerImage();
-}, 500);
+}, 200);
 
 </script>
 </body>
