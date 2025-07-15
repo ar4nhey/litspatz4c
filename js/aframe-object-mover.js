@@ -1,10 +1,15 @@
 /*
- * AR.js Object Mover
+ * AFRAME Object Mover
  *
- * move objects with a given id in the 3D space of aframe
+ * created by Bert Niehaus 2025 - niebert GitHub
+ * Version: 1.0.3
+ * publish under the GNU Public License GPL v3.0
+ * https://www.gnu.org/licenses/gpl-3.0.en.html
+ *
+ * Library move objects with a given move id in the 3D space of aframe
  * the following code shows how to use the Aframe
 		// Create an instance of ObjectMover for the box
-        const boxMover = new ARMover('movingBox');
+        const boxMover = new AframeMover('movingBox');
 
         // Set start and end positions
         boxMover.setStartPosition(0, 1.6, -5);
