@@ -1,4 +1,4 @@
-Rot/*
+/*
  * AR.js Object Mover
  *
  * move objects with a given id in the 3D space of aframe
