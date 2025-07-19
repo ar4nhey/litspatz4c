@@ -78,6 +78,20 @@ The used marker is the Hiro-Marker that can be downloaded as [PDF](https://niebe
 * **[Aframe Version](https://aframe.io)** -  - HTML file: [wizard\_hat\_aframe.html - Hiro-Marker](wizard_hat_aframe.html)
 * **License Info:** Creative Commons Attribution (<http://creativecommons.org/licenses/by/4.0/>) by [niebert](https://www.github.com/niebert).
 
+### Argon Raft
+
+* **Browser Preview** - [HTML file - argon\_raft.html](https://ar4nhey.github.io/litspatz4c/argon_raft.html)
+* **3D-Model** - [GLB argon\_raft.glb](model3d/argon_raft.glb)
+
+* **[AR.js](https://ar-js-org.github.io/AR.js-Docs/)** - HTML file: [argon\_raft.html - Hiro-Marker](argon_raft.html)
+
+* **URL Source:**
+  <https://sketchfab.com/3d-models/argon-raft-dbbf07018a534e2eab54e94d50ed5020>
+
+* **Licence Info** - "Argon Raft" by Bar0nline is licensed under Creative Commons Attribution (<http://creativecommons.org/licenses/by/4.0/>).
+
+
+
 ## Moving Objects in AR.js and Aframe
 Geometrical object have a reference position `(x,y,z)` in the coordinate system of the 3D space. Markers in [AR.js](https://ar-js-org.github.io/AR.js-Docs/) define the origine `(0,0,0)` of the coordinate system in the center of the marker and the size of the marker defines the unit length of the coordinate system.
 Double size of the marker increases the size of object by the factor 2. To perform object movements the library [ar-object-mover.js](js/ar-object-mover.js) is used. 
