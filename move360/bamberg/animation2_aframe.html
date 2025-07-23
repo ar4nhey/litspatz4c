@@ -82,7 +82,7 @@
      <!-- Add the 3D model to the scene -->
    <a-entity movingbox position="-18, -3, -18">
 	<a-entity gltf-model="#treasure3d"
-		scale="0.01 0.01 0.01"
+		scale="0.1 0.1 0.1"
       		rotation="0 0 0"
 		animation-mixer>
 	</a-entity>	    
@@ -91,7 +91,7 @@
     <!-- Add some basic lighting -->
     <a-light type="ambient" color="#FFF" light=""></a-light>
     <a-light type="point" color="#fff" position="0 2 2" light=""></a-light>
-	  <a-sky src="#sky"></a-sky>
+	  <a-sky src="#sky" rotation="0 1.51 0"></a-sky>
     <!-- Add a camera -->
     <a-camera position="0 2 2" camera="" rotation="0 0 0" look-controls="" wasd-controls="" data-aframe-inspector-original-camera=""></a-camera>
   <div class="a-loader-title" style="display: none;">Bamberg Animation 2 Kran</div></a-scene>
