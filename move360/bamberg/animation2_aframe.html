@@ -51,11 +51,14 @@
     </a-assets>
 
     <!-- Add the 3D model to the scene -->
-    <a-entity gltf-model="#my3dmodel" floating
-      scale="0.001 0.001 0.001"
+    <a-entity floating
+      scale="0.01 0.01 0.01"
       position="-18 -3 -18"
       rotation="0 0 0"
-      animation-mixer></a-entity>
+      animation-mixer>
+	<a-entity gltf-model="#my3dmodel">
+	</a-entity>	    
+    </a-entity>
 
     <!-- Add some basic lighting -->
     <a-light type="ambient" color="#FFF" light=""></a-light>
