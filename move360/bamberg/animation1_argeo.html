@@ -1,1 +1,87 @@
-Bamberg animation 1 ARGEO
+
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>AR.js - Bamberg Animation 1 - ARGEO - Geolocation </title>
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+        <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+        <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+        <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+        <!--
+        <script src="../../js/aframe-1.2.0.js"></script>
+        <script src="../../js/aframe-ar.js"> </script>
+        <script src="../../js/aframe-1.7.0-extras.js"></script>
+        -->
+        <script src="../../js/aframe-object-mover.js"></script>
+        <script>
+              // Include the ObjectMover class
+              // Create an instance of ObjectMover for the box
+              const elfMover = new AframeMover('running','ar');
+
+              // Time stamps alternative hide/show
+      		    // elfMover.setVisibleTimes([ 0.1 , 0.3 , 0.5 , 0.7 , 0.9]);
+              // 0.1 = Hide after 10% of animation time
+              // 0.3 = Show after 30% of animation time
+              // 0.5 = Hide after 50% of animation time
+              // ...
+              // All positions are 3D coordinates (x,y,z)
+              // x: -left/+right
+              // y: -down/+up
+              // z: -rear/+front
+              // (0,0,0) is the marker position
+              elfMover.setStartPosition(0, 0, 0);
+              elfMover.setMiddle1Position(2, -4.5, -15);
+              elfMover.setMiddle2Position(2, -6, -30);
+              elfMover.setEndPosition(1, -9, -45);
+
+              // Loop - Repeat animation
+              elfMover.setLoop(true);
+
+
+              // Set start and end rotations - no rotation
+              elfMover.setStartRotation(0, 3.0, 0);
+              elfMover.setMiddle1Rotation(0, 3.14 , 0);
+              elfMover.setMiddle2Rotation(0, 3.24, 0);
+              elfMover.setEndRotation(0, 3.5, 0);
+              // Set duration
+
+              elfMover.setDuration(8000); // i.e. 30000/1000 seconds
+
+              // Start the movement
+              elfMover.startMovement();
+        </script>
+      </head>
+
+    <body style="margin: 0; overflow: hidden;">
+        <a-scene
+            renderer="logarithmicDepthBuffer: true;"
+            embedded
+            loading-screen="enabled: false;"
+            arjs="sourceType: webcam; debugUIEnabled: false;"
+        >
+            <a-assets>
+                <a-asset-item
+                    id="animated-asset"
+                    src="../../model3d/elf_running_rig.glb"
+                ></a-asset-item>
+            </a-assets>
+            <a-entity running position="0 0 0" >
+              <a-entity
+              position="0 0 0"
+              rotation="0 0 0"
+              scale="0.04 0.04 0.04"
+              look-at="[gps-camera]"
+              animation-mixer="loop: repeat"
+              gps-entity-place="latitude: 50.8310003019522; longitude: 12.922874186418463  ;"
+              gltf-model="../../model3d/litspatz_elf_running_animation_bl3.glb"
+              ></a-entity>
+              <a-box id="geolocation" position="0 0 0" color="#c0c0c0" scale="1 0.02 1" material="opacity:0.7"></a-box>
+            </a-entity>
+
+            <a-camera gps-camera rotation-reader></a-camera>
+        </a-scene>
+    </body>
+</html>
+
