@@ -19,10 +19,11 @@
           // x: -left/+right
           // y: -down/+up
           // z: -rear/+front
+	  var dx =
           elfMover.setStartPosition(0, 0, 0);
           elfMover.setMiddle1Position(2, -4.5, -15);
-  		    elfMover.setMiddle2Position(2, -6, -30);
-  		    elfMover.setEndPosition(1, -9, -45);
+  	  elfMover.setMiddle2Position(2, -6, -30);
+  	  elfMover.setEndPosition(1, -9, -45);
 
           // Loop - Repeat animation
           elfMover.setLoop(true);
@@ -30,7 +31,7 @@
           // Set start and end rotations - no rotation
           elfMover.setStartRotation(0, 3.0, 0);
           elfMover.setMiddle1Rotation(0, 3.14 , 0);
-  		    elfMover.setMiddle2Rotation(0, 3.24, 0);
+          elfMover.setMiddle2Rotation(0, 3.24, 0);
   		    elfMover.setEndRotation(0, 3.5, 0);
 
           // Set duration
@@ -49,7 +50,7 @@
 		<a-entity
 		position="0 0 0"
 		rotation="0 0 0"
-		scale="0.04 0.04 0.04"
+		scale="0.05 0.05 0.05"
 		animation-mixer="loop: repeat"
 		gltf-model="../../model3d/litspatz_elf_running_animation_mit_stab_bl3.glb"
 		></a-entity>
