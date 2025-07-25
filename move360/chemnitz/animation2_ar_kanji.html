@@ -25,7 +25,7 @@
           elfMover.setStartPosition(dx, -2, dz);
           elfMover.setMiddle1Position(dx, dy/3, dz);
   	  elfMover.setMiddle2Position(dx, dy*2/3, dz);
-  	  elfMover.setEndPosition(dx+4, dy, dz);
+  	  elfMover.setEndPosition(dx, dy, dz);
 
           // Loop - Repeat animation
           elfMover.setLoop(true);
@@ -37,10 +37,11 @@
           elfMover.setStartRotation(rx, ry, rz);
           elfMover.setMiddle1Rotation(rx, ry , rz);
   	  elfMover.setMiddle2Rotation(rx, ry , rz);
-  	   elfMover.setEndRotation(rx, ry+1.6, rz);
+  	  elfMover.setEndRotation(rx, ry, rz);
+   	  //elfMover.setEndRotation(rx, ry+1.6, rz);
 
           // Set duration
-          elfMover.setDuration(18000); // 4 seconds
+          elfMover.setDuration(25000); // 4 seconds
 
           // Start the movement
           elfMover.startMovement();
