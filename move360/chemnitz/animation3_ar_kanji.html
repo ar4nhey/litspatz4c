@@ -22,7 +22,7 @@
 	  var x0 = 2;
 	  var dx = 0;
           var y0 = 0;
-	  var dy = -9;
+	  var dy = 0;
           var z0 = 0.0;
 	  var dz = -170;
           elfMover.setStartPosition(x0, y0, z0);
@@ -44,7 +44,7 @@
   	  elfMover.setEndRotation(0, 3.5, 0);
 
           // Set duration
-          elfMover.setDuration(8000); // 4 seconds
+          elfMover.setDuration(12000); // 12 seconds
 
           // Start the movement
           elfMover.startMovement();
@@ -59,7 +59,7 @@
 		<a-entity
 		position="0 0 0"
 		rotation="0 0 0"
-		scale="0.05 0.05 0.05"
+		scale="0.12 0.12 0.12"
 		animation-mixer="loop: repeat"
 		gltf-model="../../model3d/litspatz_elf_running_animation_mit_stab_bl3.glb"
 		></a-entity>
