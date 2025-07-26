@@ -29,9 +29,9 @@
           var x0 = 0;
 	  var dx = -3.0;
 	  var y0 = 0;
-          var dy = -105.0;
+          var dy = -1.35; //-105.0;
 	  var z0 = 0;
-          var dz = -1.35;
+          var dz = -105.0; //-1.35;
           elfMover.setStartPosition(x0, y0, z0);
           elfMover.setMiddle1Position(x0+dx, y0+dy/3, z0+dz/3);
   	  elfMover.setMiddle2Position(x0+dx, y0+dy*2/3, z0+2/3*dz);
@@ -41,9 +41,9 @@
           elfMover.setLoop(true);
 
           // Set start and end rotations - no rotation
-          var rx = 3.1414/2; // -3.1414;
+          var rx = 0; //3.1414/2; 
           var ry = 0; // 3.1414;
-          var rz = 3.1414; // 3.1414;
+          var rz = 0; // 3.1414;
           elfMover.setStartRotation(rx, ry, rz);
           elfMover.setMiddle1Rotation(rx, ry , rz);
   	  elfMover.setMiddle2Rotation(rx, ry , rz);
@@ -51,7 +51,7 @@
    	  //elfMover.setEndRotation(rx, ry+1.6, rz);
 
           // Set duration
-          elfMover.setDuration(25000); // 4 seconds
+          elfMover.setDuration(8000); // 4 seconds
 
           // Start the movement
           elfMover.startMovement();
