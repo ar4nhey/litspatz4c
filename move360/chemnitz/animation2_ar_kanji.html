@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AR.js - move - Kirchgäßchen - Kanj</title>
+  <title>AR.js - move - Kirchgäßchen - Kanji</title>
   <script src="../../js/aframe.min.js"></script>
   <script src="../../js/aframe-ar.js"> </script>
   <script src="../../js/aframe-extras.js"></script>
@@ -15,27 +15,21 @@
           const elfMover = new ARMover('running','ar');
           //elfMover.setVisibleTimes([0.5,0.7]);
 
-          // HORIZONTAL MARKER
-	  // Set start and end positions (x,y,z)
-          // x: -left/+right
-          // y: -down/+up
-          // z: -rear/+front
-          
-	  // VERTICAL MARKER
-	  // Set start and end positions (x,y,z)
+          // VERTICAL MARKER y and z axis swapped		
+          // Set start and end positions (x,y,z)
           // x: -left/+right
           // y: -rear/+front
-          // z: -down/+up
-          var x0 = 1;
-	  var dx = 0.0;
-	  var y0 = -1.35;
-          var dy = -105.0; // -1.35 Marker height //-105.0;
-	  var z0 = 0;
-          var dz = -1.35; //-1.35;
+          // z: +down/-up
+          var x0 = 5;
+          var y0 = -10;
+          var z0 = 20;
+          var dx = 5.0;
+          var dy = -200.0;
+          var dz = 0;
           elfMover.setStartPosition(x0, y0, z0);
-          elfMover.setMiddle1Position(x0+dx, y0+dy/3, z0+dz/3);
-  	  elfMover.setMiddle2Position(x0+dx, y0+dy*2/3, z0+2/3*dz);
-  	  elfMover.setEndPosition(x0+dx, y0+dy, z0+dz);
+          elfMover.setMiddle1Position(x0+dx/3, y0+dy/3, z0+dz);
+  		  elfMover.setMiddle2Position(x0+dx*2/3, y0+dy*2/3, z0+dz);
+  		  elfMover.setEndPosition(z0+dx, y0+dy, z0+dz);
 
           // Loop - Repeat animation
           elfMover.setLoop(true);
@@ -46,9 +40,8 @@
           var rz = 3.1414; // 3.1414;
           elfMover.setStartRotation(rx, ry, rz);
           elfMover.setMiddle1Rotation(rx, ry , rz);
-  	  elfMover.setMiddle2Rotation(rx, ry , rz);
-  	  elfMover.setEndRotation(rx, ry, rz);
-   	  //elfMover.setEndRotation(rx, ry+1.6, rz);
+  		  elfMover.setMiddle2Rotation(rx, ry , rz);
+  		  elfMover.setEndRotation(rx, ry, rz);
 
           // Set duration
           elfMover.setDuration(8000); // 4 seconds
@@ -66,9 +59,9 @@
 		<a-entity
 		position="0 0 0"
 		rotation="0 0 0"
-		scale="0.12 0.12 0.12"
+		scale="0.5 0.5 0.5"
 		animation-mixer="loop: repeat"
-		gltf-model="../../model3d/litspatz_elf_running_animation_mit_stab_bl3.glb"
+		gltf-model="../../model3d/litspatz_elf_running_animation_bl3.glb"
 		></a-entity>
       </a-entity>
       <a-box id="markerlocation" position="0 0 0" color="#c0c0c0" scale="1 0.02 1" material="opacity:0.7"></a-box>
