@@ -27,11 +27,11 @@
           // y: -rear/+front
           // z: -down/+up
           var x0 = 0;
-	  var dx = -3.0;
+	  var dx = 0.0;
 	  var y0 = -1.35;
-          var dy = 0; // -1.35 Marker height //-105.0;
+          var dy = -105.0; // -1.35 Marker height //-105.0;
 	  var z0 = 0;
-          var dz = -105.0; //-1.35;
+          var dz = -1.35; //-1.35;
           elfMover.setStartPosition(x0, y0, z0);
           elfMover.setMiddle1Position(x0+dx, y0+dy/3, z0+dz/3);
   	  elfMover.setMiddle2Position(x0+dx, y0+dy*2/3, z0+2/3*dz);
@@ -41,9 +41,9 @@
           elfMover.setLoop(true);
 
           // Set start and end rotations - no rotation
-          var rx = 0; //3.1414/2; 
+          var rx = 3.1414/2; // -3.1414;
           var ry = 0; // 3.1414;
-          var rz = 0; // 3.1414;
+          var rz = 3.1414; // 3.1414;
           elfMover.setStartRotation(rx, ry, rz);
           elfMover.setMiddle1Rotation(rx, ry , rz);
   	  elfMover.setMiddle2Rotation(rx, ry , rz);
@@ -66,7 +66,7 @@
 		<a-entity
 		position="0 0 0"
 		rotation="0 0 0"
-		scale="0.05 0.05 0.05"
+		scale="0.12 0.12 0.12"
 		animation-mixer="loop: repeat"
 		gltf-model="../../model3d/litspatz_elf_running_animation_mit_stab_bl3.glb"
 		></a-entity>
