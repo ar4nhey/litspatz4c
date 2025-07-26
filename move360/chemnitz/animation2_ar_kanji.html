@@ -27,9 +27,9 @@
           var dy = -100.0;
           var dz = 200; // calibration Smartphone
           elfMover.setStartPosition(x0, y0, z0);
-          elfMover.setMiddle1Position(x0+dx/3, y0+dy/3, z0+dz);
-  		  elfMover.setMiddle2Position(x0+dx*2/3, y0+dy*2/3, z0+dz);
-  		  elfMover.setEndPosition(z0+dx, y0+dy, z0+dz);
+          //elfMover.setMiddle1Position(x0+dx/3, y0+dy/3, z0+dz);
+  	  //elfMover.setMiddle2Position(x0+dx*2/3, y0+dy*2/3, z0+dz);
+  	  elfMover.setEndPosition(z0+dx, y0+dy, z0+dz);
 
           // Loop - Repeat animation
           elfMover.setLoop(true);
@@ -40,8 +40,8 @@
           var rz = 3.1414; // 3.1414;
           elfMover.setStartRotation(rx, ry, rz);
           elfMover.setMiddle1Rotation(rx, ry , rz);
-  		  elfMover.setMiddle2Rotation(rx, ry , rz);
-  		  elfMover.setEndRotation(rx, ry, rz);
+  	  elfMover.setMiddle2Rotation(rx, ry , rz);
+  	  elfMover.setEndRotation(rx, ry, rz);
 
           // Set duration
           elfMover.setDuration(8000); // 4 seconds
