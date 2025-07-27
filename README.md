@@ -90,7 +90,15 @@ The used marker is the Hiro-Marker that can be downloaded as [PDF](https://niebe
 
 * **Licence Info** - "Argon Raft" by Bar0nline is licensed under Creative Commons Attribution (<http://creativecommons.org/licenses/by/4.0/>).
 
+### Old Treasure Chest
 
+* **Browser Preview** - [HTML file - old\_treasure\_chest.html](https://ar4nhey.github.io/litspatz4c/old_treasure_chest.html)
+
+* **[AR.js](https://ar-js-org.github.io/AR.js-Docs/)** - HTML file: [old\_treasure\_chest.html - Hiro-Marker](old_treasure_chest.html)
+
+* **URL Source:** <https://sketchfab.com/3d-models/old-treasure-chest-82a0eebb3ab54b75b5cdd1f98544d102>
+
+* **Licence Info** - "Old Treasure Chest" by PedroViestel is licensed under Creative Commons Attribution (<http://creativecommons.org/licenses/by/4.0/>).
 
 ## Moving Objects in AR.js and Aframe
 Geometrical object have a reference position `(x,y,z)` in the coordinate system of the 3D space. Markers in [AR.js](https://ar-js-org.github.io/AR.js-Docs/) define the origine `(0,0,0)` of the coordinate system in the center of the marker and the size of the marker defines the unit length of the coordinate system.
