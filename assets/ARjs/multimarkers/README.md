@@ -5,3 +5,4 @@ This can be used
 * when you turn around and loose one marker in the camera view,
 * others markers can take over to provide positioning information.
  This allows to place multiple markers in the 3D space and a single marker is sufficient to detect the position of the AR object.
+see also <https://medium.com/arjs/area-learning-with-multi-markers-in-ar-js-1ff03a2f9fbe>
