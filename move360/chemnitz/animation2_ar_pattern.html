@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AR.js - move - Kirchgäßchen - Pattern</title>
+  <script src="../../js/aframe.min.js"></script>
+  <script src="../../js/aframe-ar.js"> </script>
+  <script src="../../js/aframe-extras.js"></script>
+  <script src="../../js/ar-object-mover.js"></script>
+  <script>
+          // Include the ObjectMover class
+          // Create an instance of ObjectMover for the box
+
+          const elfMover = new ARMover('running','ar');
+          //elfMover.setVisibleTimes([0.5,0.7]);
+
+          // Set start and end positions (x,y,z)
+          // x: -left/+right
+          // y: -down/+up
+          // z: -rear/+front
+	  var x0 = 1.0;
+	  var y0 = 0.0;
+	  var z0 = 0.0;
+	  
+          var dx = 2.0;
+          var dy = -105.0;
+          var dz = 1.35;
+          elfMover.setStartPosition(x0+dx, y0, z0+dz);
+          elfMover.setMiddle1Position(x0+dx, y0+dy/3, z0+dz);
+          elfMover.setMiddle2Position(x0+dx, y0+dy*2/3, z0+dz);
+	        elfMover.setEndPosition(x0+dx+4, y0+dy, z0+dz);
+
+          // Loop - Repeat animation
+          elfMover.setLoop(true);
+
+          // Set start and end rotations - no rotation
+          var rx = 3.1414/2; // -3.1414;
+          var ry = 0; // 3.1414;
+          var rz = 3.1414; // 3.1414;
+          elfMover.setStartRotation(rx, ry, rz);
+          elfMover.setMiddle1Rotation(rx, ry , rz);
+	        elfMover.setMiddle2Rotation(rx, ry , rz);
+	        elfMover.setEndRotation(rx, ry+1.6, rz);
+
+          // Set duration
+          elfMover.setDuration(16000); // 4 seconds
+
+          // Start the movement
+          elfMover.startMovement();
+
+  </script>
+
+</head>
+<body style="margin : 0px; overflow: hidden;">
+  <a-scene embedded arjs>
+  <a-marker preset="kanji">
+      <a-entity running position="0 0 0">
+		<a-entity
+		position="0 0 0"
+		rotation="0 0 0"
+		scale="0.08 0.08 0.08"
+		animation-mixer="loop: repeat"
+		gltf-model="../../model3d/litspatz_elf_running_animation_bl3.glb"
+		></a-entity>
+      </a-entity>
+      <a-box id="markerlocation" position="0 0 0" color="#c0c0c0" scale="1 0.02 1" material="opacity:0.7"></a-box>
+
+   <a-light type="ambient" color="#FFF" light=""></a-light>
+   <a-light type="point" color="#fff" position="0 3 0" light=""></a-light>
+   <a-light type="point" color="#fff" position="3 3 0" light=""></a-light>
+   <a-light type="point" color="#fff" position="-3 3 0" light=""></a-light>
+   <a-light type="point" color="#fff" position="3 3 -3" light=""></a-light>
+   <a-light type="point" color="#fff" position="-3 3 -3" light=""></a-light>
+   <a-light type="point" color="#fff" position="1.5 3 0" light=""></a-light>
+
+  </a-marker>
+
+  <a-entity camera></a-entity>
+  </a-scene>
+</body>
+</html>
