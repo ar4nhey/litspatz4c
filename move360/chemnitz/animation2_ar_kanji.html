@@ -19,13 +19,17 @@
           // x: -left/+right
           // y: -down/+up
           // z: -rear/+front
+	  var x0 = 1.0;
+	  var y0 = 0.0;
+	  var z0 = 0.0;
+	  
           var dx = 2.0;
           var dy = -105.0;
           var dz = 1.35;
-          elfMover.setStartPosition(dx, 0, dz);
-          elfMover.setMiddle1Position(dx, dy/3, dz);
-  		    elfMover.setMiddle2Position(dx, dy*2/3, dz);
-  		    elfMover.setEndPosition(dx+4, dy, dz);
+          elfMover.setStartPosition(x0+dx, y0, z0+dz);
+          elfMover.setMiddle1Position(x0+dx, y0+dy/3, z0+dz);
+	  elfMover.setMiddle2Position(x0+dx, y0+dy*2/3, z0+dz);
+	  elfMover.setEndPosition(x0+dx+4, y0+dy, z0+dz);
 
           // Loop - Repeat animation
           elfMover.setLoop(true);
@@ -36,11 +40,11 @@
           var rz = 3.1414; // 3.1414;
           elfMover.setStartRotation(rx, ry, rz);
           elfMover.setMiddle1Rotation(rx, ry , rz);
-  		    elfMover.setMiddle2Rotation(rx, ry , rz);
-  		    elfMover.setEndRotation(rx, ry+1.6, rz);
+	  elfMover.setMiddle2Rotation(rx, ry , rz);
+	  elfMover.setEndRotation(rx, ry+1.6, rz);
 
           // Set duration
-          elfMover.setDuration(8000); // 4 seconds
+          elfMover.setDuration(16000); // 4 seconds
 
           // Start the movement
           elfMover.startMovement();
@@ -55,7 +59,7 @@
 		<a-entity
 		position="0 0 0"
 		rotation="0 0 0"
-		scale="0.04 0.04 0.04"
+		scale="0.08 0.08 0.08"
 		animation-mixer="loop: repeat"
 		gltf-model="../../model3d/litspatz_elf_running_animation_bl3.glb"
 		></a-entity>
