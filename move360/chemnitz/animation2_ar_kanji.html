@@ -37,14 +37,14 @@
           elfMover.setLoop(true);
 
           // Set start and end rotations - no rotation
-          var rx = 3.1414; // -3.1414;
+          var rx = 0; // 3.1414 // -3.1414;
           var ry = 0; // 3.1414;
-          var rz = 3.1414; // 3.1414;
-          elfMover.setStartRotation(rx, ry, rz);
-          elfMover.setMiddle1Rotation(rx, ry , rz);
-          elfMover.setMiddle2Rotation(rx, ry , rz);
+          var rz = 0; // 3.1414;
+          //elfMover.setStartRotation(rx, ry, rz);
+          //elfMover.setMiddle1Rotation(rx, ry , rz);
+          //elfMover.setMiddle2Rotation(rx, ry , rz);
           //elfMover.setEndRotation(rx, ry+1.6, rz);
-          elfMover.setEndRotation(rx, ry, rz);
+          //elfMover.setEndRotation(rx, ry, rz);
 
           // Set duration
           elfMover.setDuration(16000); // 4 seconds
@@ -61,7 +61,7 @@
       <a-entity running position="0 0 0">
 		<a-entity
 		position="0 0 0"
-		rotation="0 0 0"
+		rotation="3.1414 0 3.1414"
 		scale="0.1 0.1 0.1"
 		animation-mixer="loop: repeat"
 		gltf-model="../../model3d/litspatz_elf_running_animation_bl3.glb"
