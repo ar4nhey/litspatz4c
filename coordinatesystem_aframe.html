@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>A-Frame - Model 3D </title>
+    <meta name="description" content="A-Frame Model 3D">
+    <meta name="createdwith" content="https://niebert.githhub.io/JSON3D4Aframe">
+    <!-- <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script> -->
+    <script src="./js/aframe-v1.7.1.js"></script> 
+  </head>
+  <body>
+    <a-scene>
+      <!-- X-Axis (Red) -->
+	  <a-entity id="xAxis" position="0 0 0" rotation="0 0 -90">
+		<a-cylinder position="0 0 0" radius="0.05" height="10.0" color="red"></a-cylinder>
+		<a-cone position="0 5 0" radius-bottom="0.2" radius-top="0" height="0.5" color="red"></a-cone>
+	    <!-- Units -->
+	    <a-entity id="xSegments" position="0 -5 0" rotation="0 0 0">
+			<a-cylinder position="0 1.0 0" rotation="0 0 0" radius="0.15" height="0.06" color="red"></a-circle>
+			<a-cylinder position="0 1.0 0" rotation="0 0 0" radius="0.15" height="0.06" color="red"></a-circle>
+			<a-cylinder position="0 1.0 0" rotation="0 0 0" radius="0.15" height="0.06" color="red"></a-circle>
+			<a-cylinder position="0 1.0 0" rotation="0 0 0" radius="0.15" height="0.06" color="red"></a-circle>
+			<a-cylinder position="0 1.0 0" rotation="0 0 0" radius="0.15" height="0.06" color="red"></a-circle>
+			<a-cylinder position="0 1.0 0" rotation="0 0 0" radius="0.15" height="0.06" color="red"></a-circle>
+			<a-cylinder position="0 1.0 0" rotation="0 0 0" radius="0.15" height="0.06" color="red"></a-circle>
+			<a-cylinder position="0 1.0 0" rotation="0 0 0" radius="0.15" height="0.06" color="red"></a-circle>
+			<a-cylinder position="0 1.0 0" rotation="0 0 0" radius="0.15" height="0.06" color="red"></a-circle>		
+		</a-entity>
+	  </a-entity>
+	  <!-- Y-Axis (Green) -->
+      <a-entity id="yAxis" position="0 0 0" rotation="0 0 0">
+		<a-cylinder position="0 0 0" radius="0.05" height="10.0" color="green"></a-cylinder>
+		<a-cone position="0 5 0" radius-bottom="0.2" radius-top="0" height="0.5" color="green"></a-cone>
+	    <!-- Units -->
+        <a-cylinder position="0 -4.0 0" rotation="0 0 0" radius="0.15" height="0.06" color="green"></a-circle>
+        <a-cylinder position="0 1.0 0" rotation="0 0 0" radius="0.15" height="0.06" color="green"></a-circle>
+        <a-cylinder position="0 1.0 0" rotation="0 0 0" radius="0.15" height="0.06" color="green"></a-circle>
+        <a-cylinder position="0 1.0 0" rotation="0 0 0" radius="0.15" height="0.06" color="green"></a-circle>
+        <a-cylinder position="0 1.0 0" rotation="0 0 0" radius="0.15" height="0.06" color="green"></a-circle>
+        <a-cylinder position="0 1.0 0" rotation="0 0 0" radius="0.15" height="0.06" color="green"></a-circle>
+        <a-cylinder position="0 1.0 0" rotation="0 0 0" radius="0.15" height="0.06" color="green"></a-circle>
+        <a-cylinder position="0 1.0 0" rotation="0 0 0" radius="0.15" height="0.06" color="green"></a-circle>
+        <a-cylinder position="0 1.0 0" rotation="0 0 0" radius="0.15" height="0.06" color="green"></a-circle>
+       </a-entity>
+	  <!-- Z-Axis (Blue) -->
+      <a-entity id="zAxis" position="0 0 0" rotation="90 0 0">
+		<a-cylinder position="0 0 0" radius="0.05" height="10.0" color="blue"></a-cylinder>
+		<a-cone position="0 5 0" radius-bottom="0.2" radius-top="0" height="0.5" color="blue"></a-cone>
+	    <a-cylinder position="0 -4 0" rotation="0 0 0" radius="0.15" height="0.06" color="blue"></a-circle>
+        <a-cylinder position="0  1 0" rotation="0 0 0" radius="0.15" height="0.06" color="blue"></a-circle>
+        <a-cylinder position="0  1 0" rotation="0 0 0" radius="0.15" height="0.06" color="blue"></a-circle>
+        <a-cylinder position="0  1 0" rotation="0 0 0" radius="0.15" height="0.06" color="blue"></a-circle>
+        <a-cylinder position="0  1 0" rotation="0 0 0" radius="0.15" height="0.06" color="blue"></a-circle>
+        <a-cylinder position="0  1 0" rotation="0 0 0" radius="0.15" height="0.06" color="blue"></a-circle>
+        <a-cylinder position="0  1 0" rotation="0 0 0" radius="0.15" height="0.06" color="blue"></a-circle>
+        <a-cylinder position="0  1 0" rotation="0 0 0" radius="0.15" height="0.06" color="blue"></a-circle>
+      </a-entity>
+	  
+	  <a-entity id="myCameraPosition" position="0 2 4">
+        <a-entity id="myCamera" camera look-controls look-controls wasd-controls keyboard-controls>
+        </a-entity>
+      </a-entity>
+
+    </a-scene>
+  </body>
+</html>
