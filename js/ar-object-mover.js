@@ -138,6 +138,7 @@ class ARMover {
     setEndPositionVert(x, y, z) {
       setEndPosition(x, -z, y)
     }
+	
     setRotation4Scene(x,y,z) {
       //this.entity.setAttribute('rotation', { x: x, y: y, z: z });
       if (this.mode4vr == "ar") {
