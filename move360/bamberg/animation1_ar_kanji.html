@@ -45,16 +45,27 @@
 <body style="margin : 0px; overflow: hidden;">
   <a-scene embedded arjs>
   <a-marker preset="kanji">
-      <a-entity running position="0 0 0">
-		<a-entity
-		position="0 0 0"
-		rotation="0 0 0"
-		scale="0.04 0.04 0.04"
-		animation-mixer="loop: repeat"
-		gltf-model="../../model3d/litspatz_elf_running_animation_bl3.glb"
-		></a-entity>
-      </a-entity>
-      <a-box id="markerlocation" position="0 0 0" color="#c0c0c0" scale="1 0.02 1" material="opacity:0.7"></a-box>
+   
+    <!-- Add the 3D model to the scene -->
+    <a-entity running position="0 -13 0" rotation="0 0 0">
+    	<a-entity gltf-model="../../model3d/treasure-chest-cutted_2.glb"
+        scale="0.04 0.04 0.04"
+        position="0 0 0"
+        rotation="0 180 0"
+        animation-mixer></a-entity>
+	<a-entity position="0 0 3" rotation="0 0 0" scale="0.5 0.5 0.5">   
+	  <!-- Comment for CONE: Hat Cone -->
+          <a-cone id="78912379812" position="0.00 1.00 -0.50" material="color: #a32c30;opacity:0.7" rotation="0 0 0"  radius-bottom="0.40" height="1.00" ></a-cone>
+          <!-- Comment for CYLINDER: Hat - base -->
+          <a-cylinder id="1747831504151" position="0.00 0.50 0.00" material="color: #a32c30;opacity:0.7" rotation="0 0 0"  radius="0.60" height="0.10" ></a-cylinder>
+          <!-- Comment for SPHERE: Head -->
+	  <!--
+          <a-sphere id="1748960421097" position="0.00 0.10 0.00" material="color: #5e5c64;opacity:0.7" rotation="0 0 0"  radius="0.40" ></a-sphere>
+	  -->
+	</a-entity>
+    
+    </a-entity>
+    <a-box id="markerlocation" position="0 0 0" color="#c0c0c0" scale="1 0.02 1" material="opacity:0.7"></a-box>
 
    <a-light type="ambient" color="#FFF" light=""></a-light>
    <a-light type="point" color="#fff" position="0 3 0" light=""></a-light>
