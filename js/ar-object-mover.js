@@ -304,7 +304,7 @@ class ARMover {
              if (mv && mv.startRot) {
 		// if startRot is set
                 // reset the start rotation angles
-                // otherwise rotate further    
+                // otherwise rotate further with given angles   
             	this.el.object3D.rotation.set(mv.startRot.x, mv.startRot.y, mv.startRot.z);
              }   
            }
