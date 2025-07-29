@@ -141,18 +141,20 @@ class ARMover {
         };//{ x, y, z };
     }
 	
+    
     setStartPositionVert(x, y, z) {
-      setStartPosition(x, -z, y)
+      setStartPosition(x, z, -y)
     }
     setMiddle1PositionVert(x, y, z) {
-      setMiddle1Position(x, -z, y)
+      setMiddle1Position(x, z, -y)
     }
     setMiddle2PositionVert(x, y, z) {
-      setMiddle2Position(x, -z, y)
+      setMiddle2Position(x, z, -y)
     }
     setEndPositionVert(x, y, z) {
-      setEndPosition(x, -z, y)
+      setEndPosition(x, z, -y)
     }
+
 	
     setRotation4Scene(x,y,z) {
       //this.entity.setAttribute('rotation', { x: x, y: y, z: z });
@@ -211,17 +213,18 @@ class ARMover {
         };//{ x, y, z };
     }
 
+    
     seStartRotationVert(x, y, z) {
-      setStartRotation(x, -z, y)
+      setStartRotation(x, z, -y)
     }
     setMiddle1RotationVert(x, y, z) {
-      setMiddle1Rotation(x, -z, y)
+      setMiddle1Rotation(x, z, -y)
     }
     setMiddle2RotationVert(x, y, z) {
-      setMiddle2Rotation(x, -z, y)
+      setMiddle2Rotation(x, z, -y)
     }
     setEndRotationVert(x, y, z) {
-      setEndRotation(x, -z, y)
+      setEndRotation(x, z, -y)
     }
 	
     setDuration(duration) {
