@@ -11,7 +11,37 @@
   <script>
           // Include the ObjectMover class
           // Create an instance of ObjectMover for the box
+ // Include the ObjectMover class
+        // Create an instance of ObjectMover for the box
+        const runningMover = new AframeMover('running','aframe');
 
+        // Time stamps alternative hide/show
+        // runningMover.setVisibleTimes([ 0.1 , 0.3 , 0.5 , 0.7 , 0.9]);
+        // 0.1 = Hide after 10% of animation time
+        // 0.3 = Show after 30% of animation time
+        // 0.5 = Hide after 50% of animation time
+        // ...
+        // All positions are 3D coordinates (x,y,z)
+        // x: -left/+right
+        // y: -down/+up
+        // z: -rear/+front
+        // (0,0,0) is the marker position
+        runningMover.setStartPositionVert(1 , 0 , 0);
+        runningMover.setMiddle1PositionVert(2,0,-20);
+        runningMover.setMiddle2PositionVert(4,0,-40);
+        runningMover.setEndPositionVert(-1,0,-80);
+        runningMover.setLoop(true);
+        // Set start and end rotations - no rotation
+        runningMover.setStartRotationVert(0,-0.2,0);
+        runningMover.setEndRotationVert(0,0,0);
+
+        // Set duration
+        runningMover.setDuration(12000); // i.e. 30000/1000 seconds
+
+        // Start the movement
+        runningMover.startMovement();
+
+	  /*
           const elfMover = new ARMover('running','ar');
           //elfMover.setVisibleTimes([0.5,0.7]);
           // VERTICAL MARKER 	
@@ -51,7 +81,7 @@
 
           // Start the movement
           elfMover.startMovement();
-
+	*/
   </script>
 
 </head>
