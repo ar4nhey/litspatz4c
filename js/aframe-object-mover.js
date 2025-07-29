@@ -206,17 +206,18 @@ class AframeMover {
         };//{ x, y, z };
     }
 
-    seStartRotationVert(x, y, z) {
-      setStartRotation(x, -z, y)
+    
+    setStartRotationVert(x, y, z) {
+      setStartRotation(x, z, -y)
     }
     setMiddle1RotationVert(x, y, z) {
-      setMiddle1Rotation(x, -z, y)
+      setMiddle1Rotation(x, z, -y)
     }
     setMiddle2RotationVert(x, y, z) {
-      setMiddle2Rotation(x, -z, y)
+      setMiddle2Rotation(x, z, -y)
     }
     setEndRotationVert(x, y, z) {
-      setEndRotation(x, -z, y)
+      setEndRotation(x, z, -y)
     }
 	
     setDuration(duration) {
