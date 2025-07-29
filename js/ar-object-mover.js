@@ -229,14 +229,14 @@ class ARMover {
             initRot = mv.initRot;
           } else {
             if (this.el.object3D && this.el.object3D.rotation) {
-              mv.initRot = this.el.object3D.rotation
-              initRot = this.el.object3D.rotation
+              mv.initRot = this.el.object3D.rotation;
+              initRot = this.el.object3D.rotation;
             }
           };
-          this.el.object3D.scale.set(0.75, 0.75, 0.75);
+          //this.el.object3D.scale.set(0.75, 0.75, 0.75);
           this.el.object3D.position.set(startPos.x, startPos.y, startPos.z);
           this.el.object3D.rotation.set(initRot.x, initRot.y, initRot.z);
-          console.log("mover="+JSON.stringify(mv,null,4));
+          //console.log("mover="+JSON.stringify(mv,null,4));
        },
 
        tick: function (time, timeDelta)

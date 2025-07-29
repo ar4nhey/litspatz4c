@@ -270,7 +270,7 @@ class AframeMover {
               initRot = this.el.object3D.rotation
             }
           };
-          this.el.object3D.scale.set(0.75, 0.75, 0.75);
+          //this.el.object3D.scale.set(0.75, 0.75, 0.75);
           this.el.object3D.position.set(startPos.x, startPos.y, startPos.z);
           this.el.object3D.rotation.set(initRot.x, initRot.y, initRot.z);
           //console.log("mover="+JSON.stringify(mv,null,4));
@@ -290,7 +290,7 @@ class AframeMover {
          var vVisible = mv.getVisible(progress);
          //alert("vVisible["+progress+"]="+vVisible);
          this.el.object3D.visible = vVisible;
-         console.log("tick() - vPos="+JSON.stringify(vPos)+" order4convex="+mv.order4convex+" oder4rotation="+mv.order4rotation);
+         //console.log("tick() - vPos="+JSON.stringify(vPos)+" order4convex="+mv.order4convex+" oder4rotation="+mv.order4rotation);
          this.setPosition4Scene(vPos);
          var vRot = this.convex_rotation(progress);
          this.setRotation4Scene(vRot);
@@ -299,8 +299,13 @@ class AframeMover {
            if (this.mover.loopBool == true) {
              this.startTime = performance.now();
              this.el.object3D.position.set(mv.startPos.x, mv.startPos.y, mv.startPos.z);
-             this.el.object3D.rotation.set(mv.startRot.x + mv.initRot.x, mv.startRot.y + mv.initRot.y, mv.startRot.z + mv.initRot.z);
-            }
+             if (mv.startRot) {
+               // if startRot is set
+               // reset the start rotation angles
+               // other rotate further
+               this.el.object3D.rotation.set(mv.startRot.x, mv.startRot.y, mv.startRot.z);
+             }
+           }
          }
        },
        convex_combination: function (t) {
