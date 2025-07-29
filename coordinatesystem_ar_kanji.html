@@ -13,7 +13,8 @@
 <body style="margin : 0px; overflow: hidden;">
   <a-scene embedded arjs>
   <a-marker preset="kanji">
-	      <!-- X-Axis (Red) -->
+	<a-entity id="coordinatesystem" position="0 0 0" rotation="0 0 0">
+	  <!-- X-Axis (Red) -->
 	  <a-entity id="xAxis" position="0 0 0" rotation="0 0 -90">
 		<a-cylinder position="0 0 0" radius="0.05" height="10.0" color="red"></a-cylinder>
 		<a-cone position="0 5 0" radius-bottom="0.2" radius-top="0" height="0.5" color="red"></a-cone>
@@ -54,6 +55,7 @@
             <a-cylinder position="0  3 0" rotation="0 0 0" radius="0.15" height="0.06" color="blue"></a-cylinder>
             <a-cylinder position="0  4 0" rotation="0 0 0" radius="0.15" height="0.06" color="blue"></a-cylinder>
       </a-entity>	
+    </a-entity>	
   </a-marker>
   
     <!-- Define the camera -->
