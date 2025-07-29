@@ -145,6 +145,9 @@ class ARMover {
     setStartPositionVert(x, y, z) {
       setStartPosition(x, z, -y)
     }
+    setMiddlePositionVert(x, y, z) {
+      setMiddlePosition(x, z, -y)
+    }
     setMiddle1PositionVert(x, y, z) {
       setMiddle1Position(x, z, -y)
     }
@@ -214,8 +217,11 @@ class ARMover {
     }
 
     
-    seStartRotationVert(x, y, z) {
+    setStartRotationVert(x, y, z) {
       setStartRotation(x, z, -y)
+    }
+    setMiddleRotationVert(x, y, z) {
+      setMiddleRotation(x, z, -y)
     }
     setMiddle1RotationVert(x, y, z) {
       setMiddle1Rotation(x, z, -y)
