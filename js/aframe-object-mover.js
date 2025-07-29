@@ -45,9 +45,10 @@ class AframeMover {
         this.middle1Pos = null; // e.g. { x: 0, y: 0, z: 0 }; Convex Combination Ord 2 / 3
         this.middle2Pos = null; // e.g. { x: 0, y: 0, z: 0 }; Convex Combination Ord 3
         this.endPos = null; // { x: 0, y: 0, z: 0 };
-        // initRot is base angles startRot is added to convex combination
         this.order4rotation = 1;
-        this.initRot = null; // init Rotation is added to rotation
+        this.initRot = null;
+        // initialize Rotation does it once,
+        // while start Rotation provides the angles for every loop
         this.startRot = null; // { x: 0, y: 0, z: 0 };
         this.middle1Rot = null; // e.g. { x: 0, y: 0, z: 0 }; Convex Combination Ord 2 / 3
         this.middle2Rot = null; // e.g. { x: 0, y: 0, z: 0 }; Convex Combination Ord 3
@@ -59,6 +60,22 @@ class AframeMover {
     setLoop(pBoolean) {
         this.loopBool = pBoolean;
     }
+
+    degree2radians(pDegree,pShift) {
+      var vRet = 0;
+      pShift = pShift || 0.0;
+      if (pDegree) {
+        if (isNaN(pDegree)) {
+          console.error("degree2radians(pDegree) pDegree is not a number - calculation undefined!");
+        } else {
+          vRet = 2 * Math.PI * (pDegree + pShift)/360
+        }
+      } else {
+        console.error("degree2radians(pDegree) pDegree was undefined!");
+      }
+      return vRet;
+    }
+
     setVisibleTimes(pVisibleTimes) {
         //this.visibleTimes = [0.5,0.7]; //alternating hide-show-hide;
         //this.visibleBoolean = [false,true]; //alternating false-true-false;
@@ -135,6 +152,7 @@ class AframeMover {
       };//{ x, y, z };
     }
 
+
     setMiddle1Position(x, y, z) {
       this.order4convex = 3;
       this.middle1Pos = {
@@ -158,26 +176,22 @@ class AframeMover {
           "x": x,
           "y": y,
           "z": z
-        };//{ x, y, z }; 
+        };//{ x, y, z };
     }
 
     setStartPositionVert(x, y, z) {
-      setStartPosition(x, z, -y)
-    }
-    setMiddlePositionVert(x, y, z) {
-      setMiddlePosition(x, z, -y)
+      this.setStartPosition(x, z, -y)
     }
     setMiddle1PositionVert(x, y, z) {
-      setMiddle1Position(x, z, -y)
+      this.setMiddle1Position(x, z, -y)
     }
     setMiddle2PositionVert(x, y, z) {
-      setMiddle2Position(x, z, -y)
+      this.setMiddle2Position(x, z, -y)
     }
     setEndPositionVert(x, y, z) {
-      setEndPosition(x, z, -y)
+      this.setEndPosition(x, z, -y)
     }
 
- 	
     setRotation4Scene(x,y,z) {
       //this.entity.setAttribute('rotation', { x: x, y: y, z: z });
       if (this.mode4vr == "ar") {
@@ -201,6 +215,34 @@ class AframeMover {
         this.setRotation4Scene(x,y,z);
     }
 
+    setMiddleRotation(x, y, z) {
+      this.order4convex = 2;
+      this.middle1Rot = {
+          "x": x,
+          "y": y,
+          "z": z
+      };//{ x, y, z };
+    }
+
+
+    setMiddle1Rotation(x, y, z) {
+      this.order4convex = 3;
+      this.middle1Rot = {
+          "x": x,
+          "y": y,
+          "z": z
+      };//{ x, y, z };
+    }
+
+    setMiddle2Rotation(x, y, z) {
+      this.order4convex = 3;
+      this.middle2Rot = {
+          "x": x,
+          "y": y,
+          "z": z
+      };//{ x, y, z };
+    }
+
     setEndRotation(x, y, z) {
         this.endRot = {
           "x": x,
@@ -209,25 +251,35 @@ class AframeMover {
         };//{ x, y, z };
     }
 
-    
-    
-    setStartRotationVert(x, y, z) {
-      setStartRotation(x, z, -y)
-    }
-    setMiddleRotationVert(x, y, z) {
-      setMiddleRotation(x, z, -y)
-    }
-    setMiddle1RotationVert(x, y, z) {
-      setMiddle1Rotation(x, z, -y)
-    }
-    setMiddle2RotationVert(x, y, z) {
-      setMiddle2Rotation(x, z, -y)
-    }
-    setEndRotationVert(x, y, z) {
-      setEndRotation(x, z, -y)
+
+
+    setEndRotation(x, y, z) {
+        this.endRot = {
+          "x": x,
+          "y": y,
+          "z": z
+        };//{ x, y, z };
     }
 
-	
+
+    setStartRotationVert(x, y, z) {
+      this.setStartRotation(x, z, -y)
+    }
+    setMiddleRotationVert(x, y, z) {
+      this.setMiddleRotation(x, z, -y)
+    }
+    setMiddle1RotationVert(x, y, z) {
+      this.setMiddle1Rotation(x, z, -y)
+    }
+    setMiddle2RotationVert(x, y, z) {
+      this.setMiddle2Rotation(x, z, -y)
+    }
+    setEndRotationVert(x, y, z) {
+      this.setEndRotation(x, z, -y)
+    }
+
+
+
     setDuration(duration) {
         this.duration = duration;
     }

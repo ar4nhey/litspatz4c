@@ -43,7 +43,9 @@ class ARMover {
         this.middle2Pos = null; // e.g. { x: 0, y: 0, z: 0 };
         this.endPos = { x: 0, y: 0, z: 0 };
         this.order4rotation = 1;
-        this.initRot = null; // init Rotation is added to rotation
+        this.initRot = null;
+        // initialize Rotation does it once,
+        // while start Rotation provides the angles for every loop
         this.startRot = { x: 0, y: 0, z: 0 };
         this.middle1Rot = null; // e.g. { x: 0, y: 0, z: 0 };
         this.middle2Rot = null; // e.g. { x: 0, y: 0, z: 0 };
@@ -55,7 +57,7 @@ class ARMover {
     setLoop(pBoolean) {
         this.loopBool = pBoolean;
     }
-    
+
     degree2radians(pDegree,pShift) {
       var vRet = 0;
       pShift = pShift || 0.0;
@@ -140,25 +142,24 @@ class ARMover {
           "z": z
         };//{ x, y, z };
     }
-	
-    
+
     setStartPositionVert(x, y, z) {
-      setStartPosition(x, z, -y)
+      this.setStartPosition(x, z, -y)
     }
     setMiddlePositionVert(x, y, z) {
-      setMiddlePosition(x, z, -y)
+      this.setMiddlePosition(x, z, -y)
     }
     setMiddle1PositionVert(x, y, z) {
-      setMiddle1Position(x, z, -y)
+      this.setMiddle1Position(x, z, -y)
     }
     setMiddle2PositionVert(x, y, z) {
-      setMiddle2Position(x, z, -y)
+      this.setMiddle2Position(x, z, -y)
     }
     setEndPositionVert(x, y, z) {
-      setEndPosition(x, z, -y)
+      this.setEndPosition(x, z, -y)
     }
 
-	
+
     setRotation4Scene(x,y,z) {
       //this.entity.setAttribute('rotation', { x: x, y: y, z: z });
       if (this.mode4vr == "ar") {
@@ -216,23 +217,23 @@ class ARMover {
         };//{ x, y, z };
     }
 
-    
     setStartRotationVert(x, y, z) {
-      setStartRotation(x, z, -y)
+      this.setStartRotation(x, z, -y)
     }
     setMiddleRotationVert(x, y, z) {
-      setMiddleRotation(x, z, -y)
+      this.setMiddleRotation(x, z, -y)
     }
     setMiddle1RotationVert(x, y, z) {
-      setMiddle1Rotation(x, z, -y)
+      this.setMiddle1Rotation(x, z, -y)
     }
     setMiddle2RotationVert(x, y, z) {
-      setMiddle2Rotation(x, z, -y)
+      this.setMiddle2Rotation(x, z, -y)
     }
     setEndRotationVert(x, y, z) {
-      setEndRotation(x, z, -y)
+      this.setEndRotation(x, z, -y)
     }
-	
+
+
     setDuration(duration) {
         this.duration = duration;
     }
@@ -301,7 +302,7 @@ class ARMover {
          // console.log("Progress: "+progress);
          //var vVec = this.conv2vec(mv.startPos,mv.middle1Pos,mv.endPos,progress);
          var vPos = this.convex_combination(progress);
-         console.log("tick() - vPos="+JSON.stringify(vPos)+" order4convex="+mv.order4convex+" order4rotation="+mv.order4rotation);
+         //console.log("tick() - vPos="+JSON.stringify(vPos)+" order4convex="+mv.order4convex+" order4rotation="+mv.order4rotation);
          this.setPosition4Scene(vPos);
          var vRot = this.convex_rotation(progress);
          this.setRotation4Scene(vRot);
@@ -310,12 +311,12 @@ class ARMover {
            if (this.mover.loopBool == true) {
              this.startTime = performance.now();
              this.el.object3D.position.set(mv.startPos.x, mv.startPos.y, mv.startPos.z);
-             if (mv && mv.startRot) {
-		// if startRot is set
-                // reset the start rotation angles
-                // otherwise rotate further with given angles   
-            	this.el.object3D.rotation.set(mv.startRot.x, mv.startRot.y, mv.startRot.z);
-             }   
+             if (mv.startRot) {
+               // if startRot is set
+               // reset the start rotation angles
+               // other rotate further
+               this.el.object3D.rotation.set(mv.startRot.x, mv.startRot.y, mv.startRot.z);
+             }
            }
          }
        },
