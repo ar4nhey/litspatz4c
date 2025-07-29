@@ -55,6 +55,21 @@ class ARMover {
     setLoop(pBoolean) {
         this.loopBool = pBoolean;
     }
+    
+    degree2radians(pDegree,pShift) {
+      var vRet = 0;
+      pShift = pShift || 0.0;
+      if (pDegree) {
+        if (isNaN(pDegree)) {
+          console.error("degree2radians(pDegree) pDegree is not a number - calculation undefined!");
+        } else {
+          vRet = 2 * Math.PI * (pDegree + pShift)/360
+        }
+      } else {
+        console.error("degree2radians(pDegree) pDegree was undefined!");
+      }
+      return vRet;
+    }
 
     setStartPosition(x, y, z) {
         this.startPos = {
@@ -286,8 +301,10 @@ class ARMover {
            if (this.mover.loopBool == true) {
              this.startTime = performance.now();
              this.el.object3D.position.set(mv.startPos.x, mv.startPos.y, mv.startPos.z);
-             this.el.object3D.rotation.set(mv.startRot.x, mv.startRot.y, mv.startRot.z);
-            }
+             if (mv && mv.startRot) {
+            	this.el.object3D.rotation.set(mv.startRot.x, mv.startRot.y, mv.startRot.z);
+             }   
+           }
          }
        },
        convex_combination: function (t) {
