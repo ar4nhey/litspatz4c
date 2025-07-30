@@ -10,14 +10,14 @@
   <script src="../../js/aframe-1.7.0-extras.js"></script>
   <script src="../../js/aframe-object-mover.js"></script>
   <script>
-        // Include the ObjectMover class
+     // Include the ObjectMover class
         // Create an instance of ObjectMover for the box
         const floatingMover = new AframeMover('floating','ar');
         
         // Time stamps alternative hide/show
-        // floatingMover.setVisibleTimes([ 0.1 , 0.3 , 0.5 , 0.7 , 0.9]);
+        floatingMover.setVisibleTimes([ 0.001 , 0.42 ]);
         // 0.1 = Hide after 10% of animation time
-        // 0.3 = Show after 30% of         animation time
+        // 0.3 = Show after 30% of animation time
         // 0.5 = Hide after 50% of animation time
         // ...
         // All positions are 3D coordinates (x,y,z)
@@ -25,9 +25,9 @@
         // y: -down/+up
         // z: -rear/+front
         // (0,0,0) is the marker position
-        floatingMover.setStartPosition(-18,-3,-18);
-        floatingMover.setMiddle1Position(23,-3,-5);
-        floatingMover.setMiddle2Position(+33,-3,-9);
+        floatingMover.setStartPosition(-18,-3,-28);
+        floatingMover.setMiddle1Position(23,-3,-19);
+        floatingMover.setMiddle2Position(+33,-3,-10);
         floatingMover.setEndPosition(+50,-3,13);
         floatingMover.setLoop(true);
         // Set start and end rotations - no rotation
@@ -39,6 +39,27 @@
 
         // Start the movement
         floatingMover.startMovement();
+
+	const boxMover = new AframeMover('movingbox','ar');
+
+		// Set start and end positions (x,y,z)
+		// x: -left/+right
+		// y: -down/+up
+		// z: -rear/+front
+		
+		boxMover.setStartPosition(-18, -3, -18);
+	        boxMover.setMiddlePosition(23, -3, -5);
+	  	boxMover.setEndPosition(+50, -3, 13);
+	  	boxMover.setLoop(true);
+		// Set start and end rotations - no rotation
+		boxMover.setStartRotation(0, 0, 0);
+		boxMover.setEndRotation(0, 2, 0);
+
+		// Set duration
+		boxMover.setDuration(30000); // 30 seconds
+
+		// Start the movement
+		boxMover.startMovement();	
   </script>
 
 </head>
