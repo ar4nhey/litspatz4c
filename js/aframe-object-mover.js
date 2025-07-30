@@ -182,6 +182,9 @@ class AframeMover {
     setStartPositionVert(x, y, z) {
       this.setStartPosition(x, z, -y)
     }
+    setMiddlePositionVert(x, y, z) {
+      this.setMiddlePosition(x, z, -y)
+    }
     setMiddle1PositionVert(x, y, z) {
       this.setMiddle1Position(x, z, -y)
     }
