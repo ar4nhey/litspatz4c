@@ -10,10 +10,11 @@
   <script src="../../js/aframe-1.7.0-extras.js"></script>
   <script src="../../js/aframe-object-mover.js"></script>
   <script>
+    var scale4dist = 0.65;
      // Include the ObjectMover class
         // Create an instance of ObjectMover for the box
         const floatingMover = new AframeMover('floating','ar');
-
+        floatingMover.setScale4Dist(scale4dist);
         // Time stamps alternative hide/show
         floatingMover.setVisibleTimes([ 0.001 , 0.42 ]);
         // 0.1 = Hide after 10% of animation time
@@ -41,6 +42,7 @@
         floatingMover.startMovement();
 
 	const boxMover = new AframeMover('movingbox','ar');
+    boxMover.setScale4Dist(scale4dist);
 
 		// Set start and end positions (x,y,z)
 		// x: -left/+right
@@ -77,7 +79,7 @@
     <a-entity floating position="-18 -3 -18">
 	<a-entity gltf-model="#my3dmodel"
 		scale="0.01 0.01 0.01"
-      		rotation="90 0 0"
+      		rotation="-90 0 0"
 		animation-mixer>
 	</a-entity>
      </a-entity>
@@ -85,7 +87,7 @@
      <a-entity movingbox position="-18, -3, -18">
 	<a-entity gltf-model="#treasure3d"
 		scale="0.05 0.05 0.05"
-      		rotation="90 0 0"
+      		rotation="-90 0 0"
 		animation-mixer>
 	</a-entity>
     </a-entity>
