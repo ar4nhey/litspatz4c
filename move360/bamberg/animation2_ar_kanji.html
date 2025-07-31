@@ -16,7 +16,7 @@
         const floatingMover = new AframeMover('floating','ar');
         floatingMover.setScale4Dist(scale4dist);
         // Time stamps alternative hide/show
-        floatingMover.setVisibleTimes([ 0.001 , 0.42 ]);
+        floatingMover.setVisibleTimes([ 0.001 , 0.15 ]);
         // 0.1 = Hide after 10% of animation time
         // 0.3 = Show after 30% of animation time
         // 0.5 = Hide after 50% of animation time
@@ -27,9 +27,9 @@
         // z: -rear/+front
         // (0,0,0) is the marker position
         floatingMover.setStartPositionVert(-18,-3,-28);
-        floatingMover.setMiddle1PositionVert(23,-3,-19);
-        floatingMover.setMiddle2PositionVert(+33,-3,-10);
-        floatingMover.setEndPositionVert(+50,-3,13);
+        floatingMover.setMiddle1PositionVert(-10,-3,-19);
+        floatingMover.setMiddle2PositionVert(+10,-3,-10);
+        floatingMover.setEndPositionVert(+18,-3,13);
         floatingMover.setLoop(true);
         // Set start and end rotations - no rotation
         floatingMover.setStartRotationVert(0 , 0 , 0);
@@ -49,9 +49,9 @@
 		// y: -down/+up
 		// z: -rear/+front
 
-		boxMover.setStartPositionVert(-18, -3, -18);
-	  boxMover.setMiddlePositionVert(23, -3, -5);
-	  boxMover.setEndPositionVert(+50, -3, 13);
+		boxMover.setStartPositionVert(-18, -2, -18);
+	  boxMover.setMiddlePositionVert(0, -2, -5);
+	  boxMover.setEndPositionVert(+18, -2, -13);
 	  boxMover.setLoop(true);
 		// Set start and end rotations - no rotation
 		boxMover.setStartRotationVert(0, 0, 0);
