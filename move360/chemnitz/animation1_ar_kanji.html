@@ -9,39 +9,39 @@
   <script src="../../js/aframe-extras.js"></script>
   <script src="../../js/ar-object-mover.js"></script>
   <script>
-          // Include the ObjectMover class
-          // Create an instance of ObjectMover for the box
-	  var scale4dist = 0.65;
-          //const floatingMover = new AframeMover('floating','ar');
-          //floatingMover.setScale4Dist(scale4dist);
-    
-          const elfMover = new ARMover('running','ar');
-          //elfMover.setVisibleTimes([0.5,0.7]);
-	  //elfMover.setScale4Dist(scale4dist);	
-          // Set start and end positions (x,y,z)
-          // x: -left/+right
-          // y: -down/+up
-          // z: -rear/+front
-	  
-          elfMover.setStartPosition(0, 0, 0);
-          elfMover.setMiddle1Position(2, 0, -15);
-  	  elfMover.setMiddle2Position(2, 0, -40);
-  	  elfMover.setEndPosition(1, 0, -90);
+        // Include the ObjectMover class
+        // Create an instance of ObjectMover for the box
+	      var scale4dist = 0.65;
+        //const floatingMover = new AframeMover('floating','ar');
+        //floatingMover.setScale4Dist(scale4dist);
 
-          // Loop - Repeat animation
-          elfMover.setLoop(true);
+        const elfMover = new ARMover('running','ar');
+        //elfMover.setVisibleTimes([0.5,0.7]);
+	      elfMover.setScale4Dist(scale4dist);
+        // Set start and end positions (x,y,z)
+        // x: -left/+right
+        // y: -down/+up
+        // z: -rear/+front
 
-          // Set start and end rotations - no rotation
-          elfMover.setStartRotation(0, 3.0, 0);
-          elfMover.setMiddle1Rotation(0, 3.14 , 0);
-          elfMover.setMiddle2Rotation(0, 3.24, 0);
-  	  elfMover.setEndRotation(0, 3.5, 0);
+        elfMover.setStartPosition(0, 0, 0);
+        elfMover.setMiddle1Position(2, 0, -45);
+        elfMover.setMiddle2Position(2, 0, -90);
+        elfMover.setEndPosition(1, 0, -130);
 
-          // Set duration
-          elfMover.setDuration(12000); // 12 seconds
+        // Loop - Repeat animation
+        elfMover.setLoop(true);
 
-          // Start the movement
-          elfMover.startMovement();
+        // Set start and end rotations - no rotation
+        elfMover.setStartRotation(0, 3.0, 0);
+        elfMover.setMiddle1Rotation(0, 3.14 , 0);
+        elfMover.setMiddle2Rotation(0, 3.24, 0);
+        elfMover.setEndRotation(0, 3.5, 0);
+
+        // Set duration
+        elfMover.setDuration(12000); // 12 seconds
+
+        // Start the movement
+        elfMover.startMovement();
 
   </script>
 
@@ -77,7 +77,7 @@
 		<a-cylinder position="0 0 0" radius="0.025" height="2.0" color="blue"></a-cylinder>
 		<a-cone position="0 1 0" radius-bottom="0.1" radius-top="0" height="0.3" color="blue"></a-cone>
       	</a-entity>
-    	  
+
    <a-light type="ambient" color="#FFF" light=""></a-light>
    <a-light type="point" color="#fff" position="0 3 0" light=""></a-light>
    <a-light type="point" color="#fff" position="3 3 0" light=""></a-light>
