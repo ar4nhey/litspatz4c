@@ -11,10 +11,13 @@
   <script>
           // Include the ObjectMover class
           // Create an instance of ObjectMover for the box
-
+	  var scale4dist = 0.65;
+          //const floatingMover = new AframeMover('floating','ar');
+          //floatingMover.setScale4Dist(scale4dist);
+    
           const elfMover = new ARMover('running','ar');
           //elfMover.setVisibleTimes([0.5,0.7]);
-
+	  //elfMover.setScale4Dist(scale4dist);	
           // Set start and end positions (x,y,z)
           // x: -left/+right
           // y: -down/+up
