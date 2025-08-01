@@ -55,7 +55,25 @@
 		gltf-model="../../model3d/litspatz_elf_running_animation_bl3.glb"
 		></a-entity>
       </a-entity>
-      <a-box id="markerlocation" position="0 0 0" color="#c0c0c0" scale="1 0.02 1" material="opacity:0.7"></a-box>
+      <!--
+      	<a-box id="markerlocation" position="0 0 0" color="#c0c0c0" scale="1 0.02 1" material="opacity:0.7"></a-box>
+	-->
+	<!-- COORDINATE SYSTEM for UNIT 1 -->
+        <!-- X-Axis (Red) -->
+	<a-entity id="xAxis" position="0 0 0" rotation="0 0 -90">
+		<a-cylinder position="0 0 0" radius="0.025" height="2.0" color="red"></a-cylinder>
+    		<a-cone position="0 1 0" radius-bottom="0.1" radius-top="0" height="0.3" color="red"></a-cone>
+	</a-entity>
+     	<!-- Y-Axis (Green) -->
+     	<a-entity id="yAxis" position="0 0 0" rotation="0 0 0">
+		<a-cylinder position="0 0 0" radius="0.025" height="2.0" color="green"></a-cylinder>
+		<a-cone position="0 1 0" radius-bottom="0.1" radius-top="0" height="0.3" color="green"></a-cone>
+       	</a-entity>
+	<!-- Z-Axis (Blue) -->
+      	<a-entity id="zAxis" position="0 0 0" rotation="90 0 0">
+		<a-cylinder position="0 0 0" radius="0.025" height="2.0" color="blue"></a-cylinder>
+		<a-cone position="0 1 0" radius-bottom="0.1" radius-top="0" height="0.3" color="blue"></a-cone>
+      	</a-entity>
 
    <a-light type="ambient" color="#FFF" light=""></a-light>
    <a-light type="point" color="#fff" position="0 3 0" light=""></a-light>
