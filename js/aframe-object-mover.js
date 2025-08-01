@@ -2,8 +2,8 @@
  * AFRAME Object Mover
  *
  * created by Bert Niehaus 2025 - niebert GitHub
- * Version:  1.0.19
- * Date:     2025/07/31 14:52:57
+ * Version:  1.0.50
+ * Date:     2025/08/01 20:03:37
  * publish under the GNU Public License GPL v3.0
  * https://www.gnu.org/licenses/gpl-3.0.en.html
  *
@@ -33,6 +33,7 @@
 
 class AframeMover {
 
+
     constructor(pID,pMode) {
         this.id = pID;
         this.mode4vr = pMode || "aframe";
@@ -40,7 +41,10 @@ class AframeMover {
         this.loopBool = false;
         this.visibleTimes = []; //alternating hide-show-hide;
         this.visibleBoolean = []; //alternating false-true-false;
-        this.order4convex = 1;
+        //--------------------------
+        //------- POSITION ---------
+        //--------------------------
+        this.order4pos = 1;
         this.scale4dist = 1.0; // emulate distance by scaling.
         // scale4dist = 1.0 means no scaling except the standard scaling for distance
         //this.startPos = { x: 0, y: 0, z: 0 };
@@ -48,14 +52,24 @@ class AframeMover {
         this.middle1Pos = null; // e.g. { x: 0, y: 0, z: 0 }; Convex Combination Ord 2 / 3
         this.middle2Pos = null; // e.g. { x: 0, y: 0, z: 0 }; Convex Combination Ord 3
         this.endPos = null; // { x: 0, y: 0, z: 0 };
-        this.order4rotation = 1;
-        this.initRot = null;
-        // initialize Rotation does it once,
-        // while start Rotation provides the angles for every loop
+        //--------------------------
+        //------- ROTATION ---------
+        //--------------------------
+        this.order4rot = 1;
         this.startRot = null; // { x: 0, y: 0, z: 0 };
         this.middle1Rot = null; // e.g. { x: 0, y: 0, z: 0 }; Convex Combination Ord 2 / 3
         this.middle2Rot = null; // e.g. { x: 0, y: 0, z: 0 }; Convex Combination Ord 3
         this.endRot = null; //{ x: 0, y: 0, z: 0 };
+        //--------------------------
+        //------- SCALE ------------
+        //--------------------------
+        this.order4scale = 1;
+        this.startScale = null;   // 1.0
+        this.middle1Scale = null; // 0.5 Convex Combination Ord 2 / 3
+        this.middle2Scale = null; // 0.2 { x: 0, y: 0, z: 0 }; Convex Combination Ord 3
+        this.endScale = null;     // 0.1
+        //--------------------------
+
         this.duration = 5000; // Default duration in milliseconds 5 sec
         this.animationFrameId = null;
     }
@@ -137,21 +151,18 @@ class AframeMover {
         case "aframe":
 
         break;
-        default:
-      }
-      if (this.mode4vr == "ar") {
-        // mode4vr = "ar"
-      } else {
-        // mode4vr = "aframe"
-        // for compatibility - handling objects with DOM ID
-        if (this.id) {
-          this.entity = document.getElementById(this.id);
-          if (this.entity) {
-            console.warn("Moving aframe object with DOM ID.")
-            console.log("Position="+JSON.stringify(this.entity.getAttribute('position'),null,4)+" ");
-            this.entity.setAttribute('position', this.startPos);
+        case "aframe4domid":
+          // for compatibility - handling objects with DOM ID
+          if (this.id) {
+            this.entity = document.getElementById(this.id);
+            if (this.entity) {
+              console.warn("Moving aframe object with DOM ID.")
+              console.log("Position="+JSON.stringify(this.entity.getAttribute('position'),null,4)+" ");
+              this.entity.setAttribute('position', this.startPos);
+            }
           }
-        }
+        break;
+        default:
       }
     }
 
@@ -170,7 +181,7 @@ class AframeMover {
         retPos.x = x;
         retPos.y = y;
         retPos.z = z;
-        if ((s < 1.0) && (s > 0.0)) {
+        if ((s < 1.0) && (s >= 0.0)) {
             var norm4pos = Math.sqrt(x * x + y * y + z * z);
             s = this.scale4dist
             s += (1-this.scale4dist)/(1+norm4pos);
@@ -183,6 +194,9 @@ class AframeMover {
       return retPos;
     }
 
+    //--------------------------
+    //------- POSITION ---------
+    //--------------------------
     setStartPosition(x, y, z) {
       this.startPos = this.getScalePosition({
           "x": x,
@@ -193,7 +207,7 @@ class AframeMover {
     }
 
     setMiddlePosition(x, y, z) {
-      this.order4convex = 2;
+      this.order4pos = 2;
       this.middle1Pos = this.getScalePosition({
           "x": x,
           "y": y,
@@ -204,7 +218,7 @@ class AframeMover {
 
 
     setMiddle1Position(x, y, z) {
-      this.order4convex = 3;
+      this.order4pos = 3;
       this.middle1Pos = this.getScalePosition({
           "x": x,
           "y": y,
@@ -214,7 +228,7 @@ class AframeMover {
     }
 
     setMiddle2Position(x, y, z) {
-      this.order4convex = 3;
+      this.order4pos = 3;
       this.middle2Pos = this.getScalePosition({
           "x": x,
           "y": y,
@@ -248,12 +262,12 @@ class AframeMover {
       this.setEndPosition(x, z, -y)
     }
 
+    //--------------------------
+    //------- ROTATION ---------
+    //--------------------------
     setRotation4Scene(x,y,z) {
       //this.entity.setAttribute('rotation', { x: x, y: y, z: z });
-      if (this.mode4vr == "ar") {
-        // mode4vr = "ar"
-      } else {
-        // mode4vr = "aframe"
+      if (this.mode4vr == "aframe4domid") {
         // for compatibility - handling objects with DOM ID
         if (this.entity) {
           this.entity = document.getElementById(this.id);
@@ -273,7 +287,7 @@ class AframeMover {
 
     setMiddleRotation(x, y, z) {
 
-      this.order4convex = 2;
+      this.order4rot = 2;
       this.middle1Rot = {
           "x": x,
           "y": y,
@@ -283,7 +297,7 @@ class AframeMover {
 
 
     setMiddle1Rotation(x, y, z) {
-      this.order4convex = 3;
+      this.order4rot = 3;
       this.middle1Rot = {
           "x": x,
           "y": y,
@@ -292,7 +306,7 @@ class AframeMover {
     }
 
     setMiddle2Rotation(x, y, z) {
-      this.order4convex = 3;
+      this.order4rot = 3;
       this.middle2Rot = {
           "x": x,
           "y": y,
@@ -335,7 +349,91 @@ class AframeMover {
       this.setEndRotation(x, z, -y)
     }
 
+    //--------------------------
+    //------- SCALE ------------
+    //--------------------------
+    setScale4Scene(x,y,z) {
+      //this.entity.setAttribute('rotation', { x: x, y: y, z: z });
+      if (this.mode4vr == "aframe4domid") {
+        if (this.entity) {
+          this.entity = document.getElementById(this.id);
+          this.entity.setAttribute('scale', { "x": x, "y": y, "z": z });
+        }
+      }
+    }
 
+    setStartScale(x, y, z) {
+        this.startScale = {
+          "x": x,
+          "y": y,
+          "z": z
+        };//{ x, y, z };
+        this.setScale4Scene(x,y,z);
+    }
+
+    setMiddleScale(x, y, z) {
+
+      this.order4scale = 2;
+      this.middle1Scale = {
+          "x": x,
+          "y": y,
+          "z": z
+      };//{ x, y, z };
+    }
+
+
+    setMiddle1Scale(x, y, z) {
+      this.order4scale = 3;
+      this.middle1Scale = {
+          "x": x,
+          "y": y,
+          "z": z
+      };//{ x, y, z };
+    }
+
+    setMiddle2Scale(x, y, z) {
+      this.order4scale = 3;
+      this.middle2Scale = {
+          "x": x,
+          "y": y,
+          "z": z
+      };//{ x, y, z };
+    }
+
+    setEndScale(x, y, z) {
+        this.endScale = {
+          "x": x,
+          "y": y,
+          "z": z
+        };//{ x, y, z };
+    }
+
+
+
+    setEndScale(x, y, z) {
+        this.endScale = {
+          "x": x,
+          "y": y,
+          "z": z
+        };//{ x, y, z };
+    }
+
+
+    setStartScaleVert(x, y, z) {
+      this.setStartScale(x, z, y)
+    }
+    setMiddleScaleVert(x, y, z) {
+      this.setMiddleScale(x, z, y)
+    }
+    setMiddle1ScaleVert(x, y, z) {
+      this.setMiddle1Scale(x, z, y)
+    }
+    setMiddle2ScaleVert(x, y, z) {
+      this.setMiddle2Scale(x, z, y)
+    }
+    setEndScaleVert(x, y, z) {
+      this.setEndScale(x, z, y)
+    }
 
     setDuration(duration) {
         this.duration = duration;
@@ -406,12 +504,18 @@ AFRAME.registerComponent(vMoverID , {
       }
     };
     var initRot = { x: 0, y: 0, z: 0 };
-    if (mv.initRot) {
-      initRot = mv.initRot;
+    if (mv.startRot) {
+      initRot = mv.startRot;
     } else {
+      // startRot was not set, try to read object rotation
       if (this.el.object3D && this.el.object3D.rotation) {
-        mv.initRot = this.el.object3D.rotation
+        mv.startRot = this.el.object3D.rotation
         initRot = this.el.object3D.rotation
+      }
+    };
+    if (mv.startScale) {
+      if (mv.startScale.x) {
+        this.el.object3D.scale.set(mv.startScale.x, mv.startScale.y, mv.startScale.z);
       }
     };
     //this.el.object3D.scale.set(0.75, 0.75, 0.75);
@@ -430,99 +534,138 @@ AFRAME.registerComponent(vMoverID , {
    const progress = Math.min(elapsedTime / this.mover.duration, 1);
    // console.log("Progress: "+progress);
    //var vVec = this.conv2vec(mv.startPos,mv.middle1Pos,mv.endPos,progress);
-   var vPos = this.convex_combination(progress);
+   var vPos = this.convex_position(progress);
    var vVisible = mv.getVisible(progress);
    //alert("vVisible["+progress+"]="+vVisible);
    this.el.object3D.visible = vVisible;
-   //console.log("tick() - vPos="+JSON.stringify(vPos)+" order4convex="+mv.order4convex+" oder4rotation="+mv.order4rotation);
+   //console.log("tick() - vPos="+JSON.stringify(vPos)+" order4rot="+mv.order4rot+" oder4rotation="+mv.order4rotation);
    this.setPosition4Scene(vPos);
    var vRot = this.convex_rotation(progress);
    this.setRotation4Scene(vRot);
+   var vScale = this.convex_scale(progress);
+   this.setScale4Scene(vScale);
    this.currentTime += timeDelta;
    if (progress >= 1.0) {
      if (this.mover.loopBool == true) {
        this.startTime = performance.now();
        this.el.object3D.position.set(mv.startPos.x, mv.startPos.y, mv.startPos.z);
-       if (mv.startRot) {
+       var s = 1.0;
+
+       if (mv.startRot && mv.startRot.x) {
          // if startRot is set
          // reset the start rotation angles
-         // other rotate further
          this.el.object3D.rotation.set(mv.startRot.x, mv.startRot.y, mv.startRot.z);
+       }
+       if (mv.startScale && mv.startScale.x) {
+         // if startScale is set
+         // reset the start scale of object
+         this.el.object3D.scale.set(mv.startScale.x, mv.startScale.y, mv.startScale.z);
        }
      }
    }
  },
- convex_combination: function (t) {
+ convex_position: function (t) {
    var mv = this.mover;
    var vVec = mv.startPos;
 
    if (!mv.middle1Pos) {
-     mv.order4convex = 1;
+     mv.order4rot = 1;
      vVec = this.conv1vec(mv.startPos,mv.endPos,t);
-     console.log("convex combination - order 1");
+     //console.log("convex combination for position- order 1");
    } else {
      if (!mv.middle2Pos) {
-       mv.order4convex = 2;
+       mv.order4rot = 2;
        vVec = this.conv2vec(mv.startPos,mv.middle1Pos,mv.endPos,t);
-       console.log("convex combination - order 2");
+       //console.log("convex combination - order 2");
      } else {
-       mv.order4convex = 3;
+       mv.order4rot = 3;
        vVec = this.conv3vec(mv.startPos,mv.middle1Pos,mv.middle2Pos,mv.endPos,t);
-       console.log("convex combination - order 3");
+       //console.log("convex combination - order 3");
      }
    }
-   console.log("convex_combination(t) = "+JSON.stringify(vVec));
+   console.log("convex_position(t,ord+"+mv.order4rot+") = "+JSON.stringify(vVec));
    return vVec;
  },
  convex_rotation: function (t) {
    var mv = this.mover;
    var vVec = mv.startRot;
+   if (!mv.startRot) {
+     alert("startRot not defined")
+   }
 
-   if (!mv.middleRot1) {
-     mv.order4rotation = 1;
+   if (!mv.middle1Rot) {
+     mv.order4rot = 1;
      vVec = this.conv1vec(mv.startRot,mv.endRot,t);
-     console.log("convex rotation - order 1");
+     //console.log("convex rotation - order 1");
    } else {
-     if (!mv.middleRot2) {
-       mv.order4rotation = 2;
+     if (!mv.middle2Rot) {
+       mv.order4rot = 2;
        vVec = this.conv2vec(mv.startRot,mv.middle1Rot,mv.endRot,t);
-       console.log("convex rotation - order 2");
+       //console.log("convex rotation - order 2");
      } else {
-       mv.order4rotation = 3;
+       mv.order4rot = 3;
        vVec = this.conv3vec(mv.startRot,mv.middle1Rot,mv.middle2Rot,mv.endRot,t);
-       console.log("convex rotation - order 3");
+       //console.log("convex rotation - order 3");
      }
    }
-   console.log("convex_rotation(t) = "+JSON.stringify(vVec));
+   console.log("convex_rotation(t,ord"+mv.order4rot+") = "+JSON.stringify(vVec));
+   return vVec;
+ },
+
+ convex_scale: function (t) {
+   var mv = this.mover;
+   var vVec = mv.startScale;
+
+   if (!mv.middle1Scale) {
+     mv.order4rot = 1;
+     vVec = this.conv1vec(mv.startScale,mv.endScale,t);
+     //console.log("convex scale - order 1");
+   } else {
+     if (!mv.middle2Scale) {
+       mv.order4rot = 2;
+       vVec = this.conv2vec(mv.startScale,mv.middle1Scale,mv.endScale,t);
+       //console.log("convex scale - order 2");
+     } else {
+       mv.order4rot = 3;
+       vVec = this.conv3vec(mv.startScale,mv.middle1Scale,mv.middle2Scale,mv.endScale,t);
+       //console.log("convex scale - order 3");
+     }
+   }
+   console.log("convex_scale(t,ord"+mv.order4rot+") = "+JSON.stringify(vVec));
    return vVec;
  },
 
  setPosition4Scene: function(pPosition) {
-   if (pPosition) {
-     this.el.object3D.position.x = pPosition.x;
-     this.el.object3D.position.y = pPosition.y;
-     this.el.object3D.position.z = pPosition.z;
-     var s = pPosition.s || 1.0;
-     this.el.object3D.scale.set(s, s, s);
+   if (this.el.object3D) {
+     if (pPosition) {
+       this.el.object3D.position.x = pPosition.x;
+       this.el.object3D.position.y = pPosition.y;
+       this.el.object3D.position.z = pPosition.z;
+       //var s = pPosition.s || 1.0;
+       //this.el.object3D.scale.set(s, s, s);
+     }
+   } else {
+     console.error("this.el.object3D is not defined in setPosition4Scene()");
    }
  },
  setRotation4Scene: function(pRotation) {
    var mv = this.mover;
-   if (pRotation) {
-     // initRot is the initial rotation setting of object
-     // rotation is added to the initial rotation
-     this.el.object3D.rotation.x = pRotation.x;
-     this.el.object3D.rotation.y = pRotation.y;
-     this.el.object3D.rotation.z = pRotation.z;
+   if (this.el.object3D) {
+     if (pRotation) {
+       this.el.object3D.rotation.x = pRotation.x;
+       this.el.object3D.rotation.y = pRotation.y;
+       this.el.object3D.rotation.z = pRotation.z;
+     }
+   } else {
+     console.error("this.el.object3D is not defined in setRotation4Scene()");
    }
  },
- setScale4Scene: function(pScaleX,pScaleY,pScaleZ) {
-   pScaleX = pScaleX || 1.0;
-   pScaleY = pScaleY || pScaleX || 1.0;
-   pScaleZ = pScaleZ || pScaleX || 1.0;
-
+ setScale4Scene: function(pScale) {
+   var mv = this.mover;
    if (this.el.object3D) {
-     this.el.object3D.scale.set(pScaleX,pScaleY,pScaleZ);
+     if (pScale && pScale.x) {
+       this.el.object3D.scale.set(pScale.x,pScale.y,pScale.z);
+     }
    } else {
      console.error("this.el.object3D is not defined in setScale4Scene()");
    }
@@ -533,8 +676,22 @@ AFRAME.registerComponent(vMoverID , {
 
  conv1vec: function (pStart,pEnd,t) {
    var vVec = {};
-   for (var key in pStart) {
-     vVec[key] = this.conv1(pStart[key],pEnd[key],t)
+   if (pStart) {
+     vVec = pStart
+   } else {
+     return null;
+   }
+   if (pEnd) {
+     for (var key in pStart) {
+       if (pEnd[key]) {
+         vVec[key] = this.conv1(pStart[key],pEnd[key],t)
+       } else {
+         console.warn("pEnd."+key+ " undefined!");
+         vVec[key] = pStart[key];
+       }
+     }
+   } else {
+     return null;
    }
    //console.log("conv1vec(pStart,pEnd,"+t+") - vVec="+JSON.stringify(vVec));
    return vVec
@@ -550,7 +707,7 @@ AFRAME.registerComponent(vMoverID , {
    for (var key in pStart) {
      vVec[key] = this.conv2(pStart[key],pMiddle1[key],pEnd[key],t)
    }
-   console.log("conv2vec(pStart, pMiddle1, pEnd)="+JSON.stringify(vVec));
+   //console.log("conv2vec(pStart, pMiddle1, pEnd)="+JSON.stringify(vVec));
    return vVec
  },
 
@@ -565,10 +722,9 @@ AFRAME.registerComponent(vMoverID , {
    for (var key in pStart) {
      vVec[key] = this.conv3(pStart[key],pMiddle1[key],pMiddle2[key],pEnd[key],t)
    }
-   console.log("conv3vec(pStart, pMiddle1,pMiddle2, pEnd)="+JSON.stringify(vVec));
+   //console.log("conv3vec(pStart, pMiddle1,pMiddle2, pEnd)="+JSON.stringify(vVec));
    return vVec
  },
-
 
 });
 
