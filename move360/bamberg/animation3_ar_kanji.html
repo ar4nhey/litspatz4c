@@ -1,1 +1,133 @@
-Bamberg animation 3 AR KANJI
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AR.js - Bamberg Animation 3 - Brücke blaues Haus - kanji </title>
+  <script src="../../js/aframe-1.2.0.js"></script>
+  <script src="../../js/aframe-ar.js"> </script>
+  <script src="../../js/aframe-1.7.0-extras.js"></script>
+  <script src="../../js/aframe-object-mover.js"></script>
+  <script>
+    var scale4dist = 0.65;
+     // Include the ObjectMover class
+        // Create an instance of ObjectMover for the box
+        const floatingMover = new AframeMover('floating','ar');
+        floatingMover.setScale4Dist(scale4dist);
+        // Time stamps alternative hide/show
+        floatingMover.setVisibleTimes([ 0.001 , 0.15 ]);
+        // 0.1 = Hide after 10% of animation time
+        // 0.3 = Show after 30% of animation time
+        // 0.5 = Hide after 50% of animation time
+        // ...
+        // All positions are 3D coordinates (x,y,z)
+        // x: -left/+right
+        // y: -down/+up
+        // z: -rear/+front
+        // (0,0,0) is the marker position
+        floatingMover.setStartPositionVert(-18,-3,-28);
+        floatingMover.setMiddle1PositionVert(-10,-3,-19);
+        floatingMover.setMiddle2PositionVert(+10,-3,-10);
+        floatingMover.setEndPositionVert(+18,-3,13);
+        floatingMover.setLoop(true);
+        // Set start and end rotations - no rotation
+        floatingMover.setStartRotationVert(0 , 0 , 0);
+        floatingMover.setEndRotationVert(0 , 0 , 0);
+
+        // Set duration
+        floatingMover.setDuration(30000); // i.e. 30000/1000 seconds
+
+        // Start the movement
+        floatingMover.startMovement();
+
+	const boxMover = new AframeMover('movingbox','ar');
+    boxMover.setScale4Dist(scale4dist);
+
+		// Set start and end positions (x,y,z)
+		// x: -left/+right
+		// y: -down/+up
+		// z: -rear/+front
+
+		boxMover.setStartPositionVert(-18, -2, -18);
+	  boxMover.setMiddlePositionVert(0, -2, -5);
+	  boxMover.setEndPositionVert(+18, -2, -13);
+	  boxMover.setLoop(true);
+		// Set start and end rotations - no rotation
+		boxMover.setStartRotationVert(0, 0, 0);
+		boxMover.setEndRotationVert(0, 2, 0);
+
+		// Set duration
+		boxMover.setDuration(30000); // 30 seconds
+
+		// Start the movement
+		boxMover.startMovement();
+  </script>
+
+</head>
+<body style="margin : 0px; overflow: hidden;">
+  <a-scene embedded arjs>
+  <a-assets>
+      <a-asset-item id="my3dmodel" src="../../model3d/ortwin_raft.glb"></a-asset-item>
+      <a-asset-item id="treasure3d" src="../../model3d/treasure-chest-cutted_2.glb"></a-asset-item>
+      <!-- <img id="sky" src="../../img360/Bamberg2_Kran.JPG"> -->
+    </a-assets>
+
+    <a-marker preset="kanji">
+
+    <!-- Add the 3D model to the scene -->
+    <a-entity floating position="-18 -3 -18">
+	<a-entity gltf-model="#my3dmodel"
+		scale="0.01 0.01 0.01"
+      		rotation="-90 0 0"
+		animation-mixer>
+	</a-entity>
+     </a-entity>
+     <!-- Add the 3D model to the scene -->
+     <a-entity movingbox position="-18, -3, -18">
+	<a-entity gltf-model="#treasure3d"
+		scale="0.05 0.05 0.05"
+      		rotation="-90 0 0"
+		animation-mixer>
+	</a-entity>
+    </a-entity>
+    <a-box id="markerlocation" position="0 -0.2 0" color="#c0c0c0" scale="1 0.02 1" material="opacity:0.7"></a-box>
+    <!--
+    <a-sphere id="xAxisSphere" position="1 0 0" color="black" scale="0.02 0.02 0.02"></a-sphere>
+    <a-sphere id="xAxisSphere" position="1 0 0" color="red" scale="0.02 0.02 0.02"></a-sphere>
+    <a-sphere id="yAxisSphere" position="0 1 0" color="green" scale="0.02 0.02 0.02"></a-sphere>
+    <a-sphere id="zAxisSpere" position="0 0 1" color="blue" scale="0.02 0.02 0.02"></a-sphere>
+    -->
+    <!-- COORDINATE SYSTEM for UNIT 1 -->
+        <!-- X-Axis (Red) -->
+	  <a-entity id="xAxis" position="0 0 0" rotation="0 0 -90">
+		<a-cylinder position="0 0 0" radius="0.025" height="2.0" color="red"></a-cylinder>
+    		<a-cone position="0 1 0" radius-bottom="0.1" radius-top="0" height="0.3" color="red"></a-cone>
+	  </a-entity>
+     <!-- Y-Axis (Green) -->
+     <a-entity id="yAxis" position="0 0 0" rotation="0 0 0">
+	    <a-cylinder position="0 0 0" radius="0.025" height="2.0" color="green"></a-cylinder>
+	    <a-cone position="0 1 0" radius-bottom="0.1" radius-top="0" height="0.3" color="green"></a-cone>
+       </a-entity>
+	  <!-- Z-Axis (Blue) -->
+      	<a-entity id="zAxis" position="0 0 0" rotation="90 0 0">
+	    <a-cylinder position="0 0 0" radius="0.025" height="2.0" color="blue"></a-cylinder>
+	    <a-cone position="0 1 0" radius-bottom="0.1" radius-top="0" height="0.3" color="blue"></a-cone>
+      </a-entity>
+    <!-- Add some basic lighting -->
+    <a-light type="ambient" color="#FFF" light=""></a-light>
+    <a-light type="point" color="#fff" position="0 2 2" light=""></a-light>
+  </a-marker>
+  <a-light type="ambient" color="#FFF" light=""></a-light>
+  <a-light type="point" color="#fff" position="0 3 0" light=""></a-light>
+  <a-light type="point" color="#fff" position="3 3 0" light=""></a-light>
+  <a-light type="point" color="#fff" position="-3 3 0" light=""></a-light>
+  <a-light type="point" color="#fff" position="3 3 -3" light=""></a-light>
+  <a-light type="point" color="#fff" position="-3 3 -3" light=""></a-light>
+  <a-light type="point" color="#fff" position="1.5 3 0" light=""></a-light>
+
+    <!-- Define the camera -->
+    <a-entity camera></a-entity>
+  </a-scene>
+</body>
+</html>
