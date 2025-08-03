@@ -2,8 +2,8 @@
 * AR.js Object Mover
 *
 * created by Bert Niehaus 2025 - niebert GitHub
-* Version:  1.0.50
-* Date:     2025/08/01 20:03:37
+* Version:  1.0.55
+* Date:     2025/08/03 13:30:14
 * publish under the GNU Public License GPL v3.0
 * https://www.gnu.org/licenses/gpl-3.0.en.html
 *
@@ -686,7 +686,7 @@ AFRAME.registerComponent(vMoverID , {
        if (pEnd[key]) {
          vVec[key] = this.conv1(pStart[key],pEnd[key],t)
        } else {
-         console.warn("pEnd."+key+ " undefined!");
+         console.error("pEnd."+key+ " undefined!");
          vVec[key] = pStart[key];
        }
      }
