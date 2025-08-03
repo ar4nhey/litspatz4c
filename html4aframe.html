@@ -4,6 +4,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HTML4Aframe</title>
   <script src="js/string.js"></script>
+  <script src="js/showhide.js"></script>
+  <script src="js/string.js"></script>
+  <script src="js/load4file.js"></script>
   <script src="js/save4file.js"></script>
 
   <script>
@@ -11,17 +14,34 @@
 		  "html4aframe":"HTML for Aframe",
 		  "html4ar":"HTML for AR Marker",
 		  "html4argeo":"HTML for AR Geolocation",
+      "initdata": {}
 		};
-    let searchStrings = ["CAMPOS","CAMROT","REF2MOVER","HTML4REF2MOVER","HTMLFILENAME", "TITLE", "MARKER", "SCALE", "DIR", "LOOPBOOL", "LAT", "LONG", "GLB", "SKY", "MARKER", "STARTPOS", "STARTPOS4K", "MIDDLE1POS", "MIDDLE1POS4K", "MIDDLE2POS", "MIDDLE2POS4K", "ENDPOS", "ENDPOS4K", "STARTROT", "STARTROT4K", "ENDROT", "ENDROT4K","DURATION","MOVEID"];
+    var vFileHash = {
+      "AFRAME":"",
+      "AR":"",
+      "ARGEO": "",
+      "JSON": ""
+    }
+    var vFile4AR = "";
+    var vFile4ARGEO = "";
+    let searchStrings = ["CAMPOS","CAMROT","REF2MOVER","HTML4REF2MOVER","HTMLFILENAME", "TITLE", "MARKER", "SCALE", "DIR", "LOOPBOOL", "LAT", "LONG", "GLB", "SKY", "MARKER", "STARTPOS", "STARTPOS4K", "MIDDLE1POS", "MIDDLE1POS4K", "MIDDLE2POS", "MIDDLE2POS4K", "ENDPOS", "ENDPOS4K", "STARTROT", "STARTROT4K", "ENDROT", "ENDROT4K","DURATION","MOVEID","VERTICAL"];
 	  var vBasename = "animation1";
 	  var vDir = "../";
 	  var vMarker = "kanji";
-
+    var vVertical = "";
     var comment4pos = "x-axis (-)left (+)right -- y-axis (-)down (+)up -- z-axis (-)front (+)rear";
     var comment4rot = "1. rotation around x-axis -- 2. rotation around  y-axis -- 3. rotation around z-axis";
 
     var outTypes = ["AFRAME","AR","ARGEO"];
+</script>
 
+ <script src="db/initdata_db.js"></script>
+
+ <script src="db/html4aframe_db.js"></script>
+ <script src="db/html4ar_db.js"></script>
+ <script src="db/html4argeo_db.js"></script>
+
+<script>
     function getJSON4Data() {
       var vJSON = {};
       for (var i = 0; i < searchStrings.length; i++) {
@@ -35,7 +55,9 @@
       for (var i = 0; i < searchStrings.length; i++) {
         var vNode = el(searchStrings[i]);
         if (vNode) {
-          vJSON[searchStrings[i]] = vNode.value;
+          if (vJSON.hasOwnProperty(searchStrings[i])) {
+            vNode.value = vJSON[searchStrings[i]];
+          }
         } else {
           console.error("DOM Node ["+searchStrings[i]+"] does not exist!");
         }
@@ -47,6 +69,25 @@
 function handleTypeChange(pType) {
 		    //alert(pType)
     console.log("handleTypeChange("+pType.value+")");
+    switch (pType) {
+      case "ar":
+        show("marker4vertical");
+        handleMarkerOrientation(el("sVERTICAL").value);
+      break;
+      default:
+        handleMarkerOrientation("-");
+        hide("marker4vertical");
+    }
+}
+
+function handleMarkerOrientation(pOrientation) {
+  switch (pOrientation) {
+    case "vertical":
+      el("VERTICAL").value = "Vert";
+    break;
+    default:
+      el("VERTICAL").value = "";
+  }
 }
 
 function el(pID) {
@@ -86,12 +127,20 @@ function calcDIR(pFilename) {
 }
 
 function setFilenames4HTML(pFilename) {
+    var vFilename = pFilename || el("HTMLFILENAME").value || "animation";
+    var vBasename = vFilename;
+    if (vFilename && (vFilename.indexOf("/") >= 0)) {
+      vBasename = vFilename.substring(vFilename.lastIndexOf("/")+1)
+    };
+    vFileHash["BASENAME"] = vBasename;
+    vFileHash["PATHNAME"] = vFilename.substring(vFilename.lastIndexOf("/")+1);
     for (var i = 0; i < outTypes.length; i++) {
       if (outTypes[i] == "AR") {
-        el("FILE4"+outTypes[i]).innerHTML = pFilename + "_" + outTypes[i].toLowerCase() + "_" + el("MARKER").value + ".html"
+        vFileHash[outTypes[i]] = pFilename + "_" + outTypes[i].toLowerCase() + "_" + el("MARKER").value + ".html"
       } else {
-        el("FILE4"+outTypes[i]).innerHTML = pFilename + "_" + outTypes[i].toLowerCase() + ".html";
+        vFileHash[outTypes[i]]  = pFilename + "_" + outTypes[i].toLowerCase() + ".html";
       }
+      el("FILE4"+outTypes[i]).innerHTML = vFileHash[outTypes[i]];
     }
 }
 
@@ -102,6 +151,7 @@ function saveJSON4LC() {
 }
 
 function replaceLabels() {
+  setFilenames4HTML(el("HTMLFILENAME").value);
   saveJSON4LC();
   let stringID = ["aframe", "ar", "argeo"];
   let strings = ["aframe", "ar", "argeo"];
@@ -183,6 +233,11 @@ function checkPosition(pNode) {
   }
 }
 
+function clearLocalStorage(pKey) {
+  pKey = pKey || "html4aframe";
+  setJSON4Data(vDataJSON.initdata);
+  localStorage.removeItem(pKey);
+}
 // Function to save JSON object to local storage
 function saveToLocalStorage(pJSON,pKey) {
   pKey = pKey || "html4aframe";
@@ -202,15 +257,45 @@ function loadFromLocalStorage(pKey) {
       return JSON.parse(vJSON);
     } else {
       console.error("loadFromLocalStorage(pKey) value for pKey d");
-      return {}
+      return null;
     }
   }
 }
-</script>
 
- <script src="db/html4aframe_db.js"></script>
- <script src="db/html4ar_db.js"></script>
- <script src="db/html4argeo_db.js"></script>
+function saveGeneratedFile(pType) {
+  pType = pType.toUpperCase() || "AFRAME";
+  console.log("saveGeneratedFile("+pType+")");
+  var vBasename = vFileHash["BASENAME"];
+  var vContent = "undefined content";
+  var vFilename = "undefinedfile";
+  switch (pType) {
+    case "AFRAME":
+      vFilename = vBasename+"_" + pType.toLowerCase()  + ".html";
+      vContent = el("tHTML4AFRAME").value;
+      saveFile2HDD(vFilename,vContent);
+    break;
+    case "AR":
+      vFilename = vBasename+"_" + pType.toLowerCase() + "_" + el("MARKER").value + ".html";
+      vContent = el("tHTML4AR").value;
+      saveFile2HDD(vFilename,vContent);
+    break;
+    case "ARGEO":
+      vFilename = vBasename+"_" + pType.toLowerCase()  + ".html";
+      vContent = el("tHTML4ARGEO").value;
+      saveFile2HDD(vFilename,vContent);
+    break;
+    default:
+    vFilename = vBasename+"_html4aframe.json";
+    saveJSON2HDD(vFilename);
+  }
+}
+
+function saveJSON4HDD(pFilename) {
+  var vJSON = getJSON4Data();
+  var vContent = JSON.stringify(vJSON,null,4);
+  saveFile2HDD(pFilename,vContent);
+}
+</script>
 
  <style>
    body {
@@ -235,9 +320,13 @@ function loadFromLocalStorage(pKey) {
       <h2 id="HEADER4TITLE">Create Arame, AR and VR in HTML </h1>
     <hr>
   <center>
+    <button id="loadButtonHTML" onclick="">Load HTML</button>
     <button id="loadButton" onclick="">Load JSON</button>
     <button id="saveButton" onclick="">Save JSON</button>
-  </center>
+    <button id="initButton" onclick="clearLocalStorage(vKey4LC)">Init JSON</button>
+
+  <button id="saveButton" onclick="saveGeneratedFile('JSON')" style="display:none">Save generated JSON</button>
+   </center>
   <table border=1>
     <tr>
       <td><b>Title</b></td>
@@ -256,6 +345,14 @@ function loadFromLocalStorage(pKey) {
           <option value="ar">AR Marker</option>
           <option value="argeo">AR Geolocation</option>
         </select>
+        <span id="marker4vertical" style="display:none">
+          <b> Marker Orientation: </b>
+          <input type="text" id="VERTICAL" size="10" value="" style="display:none">
+          <select id="sVERTICAL" onchange="handleMarkerOrientation(this.value)">
+            <option value="horizontal" selected>horizontal</option>
+            <option value="vertical">vertical</option>
+          </select>
+        </span>
       </td>
     </tr>
     <tr>
@@ -409,6 +506,9 @@ function loadFromLocalStorage(pKey) {
   	myfile_aframe.html
     </h4>
   </tt>
+  <p>
+    <input type="button" value="Save AFRAME" onclick="saveGeneratedFile('AFRAME')">
+  </p>
   <textarea id="tHTML4AFRAME" rows="7"></textarea>
   <h3>
   	HTML for AR.js
@@ -418,6 +518,9 @@ function loadFromLocalStorage(pKey) {
       myfile_ar_hiro.html
     </h4>
   </tt>
+  <p>
+    <input type="button" value="Save AR" onclick="saveGeneratedFile('AR')">
+  </p>
   <textarea id="tHTML4AR" rows="7"></textarea>
   <h3>
   	HTML for AR.js Geolocation
@@ -430,12 +533,13 @@ function loadFromLocalStorage(pKey) {
   <h4 id="out4GEOLOCATION">
      (Longitude,Latitude)
   </h4>
-
+  <p>
+    <input type="button" value="Save ARGEO" onclick="saveGeneratedFile('ARGEO')">
+  </p>
   <textarea id="tHTML4ARGEO" rows="7"></textarea>
 </center>
 
 <script>
-  setFilenames4HTML(el("HTMLFILENAME").value);
 
   var elems = document.getElementsByName("poscomment");
   for (var i = 0; i < elems.length; i++) {
@@ -452,6 +556,7 @@ function loadFromLocalStorage(pKey) {
 // Get the buttons
 var loadButton = document.getElementById('loadButton');
 var saveButton = document.getElementById('saveButton');
+var loadButtonHTML = document.getElementById('loadButtonHTML');
 
 // Add event listener for load button
 loadButton.addEventListener('click', function() {
@@ -467,6 +572,30 @@ loadButton.addEventListener('click', function() {
             if (json) {
               setJSON4Data(json);
               saveToLocalStorage(json,"html4aframe");
+            };
+          }
+        reader.readAsText(file);
+    };
+    input.click();
+});
+
+// Add event listener for load button
+loadButtonHTML.addEventListener('click', function() {
+    var input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.html';
+    input.onchange = function(event) {
+        var vJSON = {};
+        var file = event.target.files[0];
+        // Filename: event.target.files[0].name;
+        vJSON["HTMLFILENAME"] = file.name;
+        var reader = new FileReader();
+        reader.onload = function(){
+            var vContent = reader.result;
+            if (vContent) {
+              vJSON = parseLoadedFile(vContent,vJSON);
+              setJSON4Data(vJSON);
+              console.log(JSON.stringify(vJSON,null,4));
             };
           }
         reader.readAsText(file);
@@ -511,7 +640,7 @@ if (vJSON) {
 
 var vInitFile = el("DIR").value;
 calcDIR(vInitFile);
-setFilenames4HTML(vInitFile);
+setFilenames4HTML(el("HTMLFILENAME").value);
 checkDuration(el("DURATION").value);
 </script>
 
