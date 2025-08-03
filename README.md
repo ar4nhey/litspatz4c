@@ -336,3 +336,11 @@ use the Open Source software
 
 * [Rigging - Bones of Character - Animation](https://www.youtube.com/watch?v=m-Obo_nC3SM)
 
+## Packages / Libraries
+* [Aframe](https://aframe.io) URL: <https://aframe.io>
+* [AR.js](https://ar-js-org.github.io/AR.js-Docs/) URL: <https://ar-js-org.github.io/AR.js-Docs>
+* [JSON3D4Aframe](https://niebert.github.io/JSON3D4Aframe) URL: <https://niebert.github.io/JSON3D4Aframe> to play with 3D primitive and export formats Aframe, AR, AR-Geolocation.
+* [aframe-clipping-plane-component.js](https://github.com/akbartus/A-Frame-Clipping-Plane-Component) by `akbartus` to hide animated GLB partially that are covered e.g. by a bridge
+* [aframe-object-mover.js](./js/aframe-object-mover.js) by `niebert` to move Aframe objects with a [convex combination](https://en.wikiversity.org/wiki/Convex_combination) of order 1,2,3 in the 3D space. It allow scaling, rotating, hiding and displaying of 3D objects on the path.
+* [ar-object-mover.js](./js/ar-object-mover.js) by `niebert` to move AR.js objects e.g on a marker with a [convex combination](https://en.wikiversity.org/wiki/Convex_combination) of order 1,2,3 in the 3D space. The library is used to move objects on a curved path in the 3D space. The library is used for the following GLB files e.g. for animating a running person in the 3D space.
+
