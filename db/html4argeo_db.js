@@ -18,6 +18,7 @@ vDataJSON.html4argeo = `
         <script>
               // Include the ObjectMover class
               // Create an instance of ObjectMover for the box
+              // const scale4dist = 1.0;
               const ___MOVEID___Mover = new ARMover('___MOVEID___','ar');
               ___HTML4REF2MOVER___
               // Time stamps alternative hide/show
@@ -43,6 +44,16 @@ vDataJSON.html4argeo = `
               //___MOVEID___Mover.setMiddle2Rotation(0 , -1.5 , 0);
               ___MOVEID___Mover.setEndRotation(___ENDROT4K___);
 
+              // Set the scales with 1.0 is not scale
+              // var vScale = 1.0;
+              //___MOVEID___Mover.setStartScale(vScale, vScale, vScale);
+              // vScale = 1.0;
+              //___MOVEID___Mover.setMiddle1Scale(vScale, vScale, vScale);
+              // vScale = 1.0;
+              //___MOVEID___Mover.setMiddle2Scale(vScale, vScale, vScale);
+              // vScale = 1.0;
+              //___MOVEID___Mover.setEndScale(vScale, vScale, vScale);
+
               // Set duration
               ___MOVEID___Mover.setDuration(___DURATION___); // i.e. ___DURATION___/1000 seconds
 
@@ -64,14 +75,23 @@ vDataJSON.html4argeo = `
                     src="___DIR___/___GLB___"
                 ></a-asset-item>
             </a-assets>
-            <a-entity ___MOVEID___ position="___STARTPOS___" >
-                <a-entity
+            <!-- GEOLOCATION 1 - ___TITLE___
+              -- Entity as reference point in scene
+            -->
+             <a-entity
                     look-at="[gps-camera]"
-                    animation-mixer="loop: repeat"
-                    gltf-model="#animated-asset"
-                    scale="___SCALE___ ___SCALE___ ___SCALE___"
-                    gps-entity-place="latitude: ___LAT___; longitude: ___LONG___;"
-                ></a-entity>
+                    scale="10.0 ___SCALE___ ___SCALE___"
+                    gps-entity-place="latitude: ___LAT___; longitude: ___LONG___;">
+
+                    <!-- OBJECT 1 -----
+                    placed in scene at (___STARTPOS4K___)
+                    with relative coordinate system for geolocation.
+                    -->
+					          <a-entity ___MOVEID___ position="___STARTPOS___" >
+                        animation-mixer="loop: repeat"
+                        scale="___SCALE___ ___SCALE___ ___SCALE___"
+                        gltf-model="#animated-asset"
+                    ></a-entity>
             </a-entity>
 
             <a-camera gps-camera rotation-reader></a-camera>

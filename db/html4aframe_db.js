@@ -11,6 +11,7 @@ vDataJSON.html4aframe = `
 	<script>
         // Include the ObjectMover class
         // Create an instance of ObjectMover for the box
+        // const scale4dist = 1.0;
         const ___MOVEID___Mover = new AframeMover('___MOVEID___','ar');
         ___HTML4REF2MOVER___
         // Time stamps alternative hide/show
@@ -29,12 +30,23 @@ vDataJSON.html4aframe = `
         ___MOVEID___Mover.setMiddle2Position(___MIDDLE2POS4K___);
         ___MOVEID___Mover.setEndPosition(___ENDPOS4K___);
         ___MOVEID___Mover.setLoop(___LOOPBOOL___);
+
         // Set start and end rotations for x-axis, y-axis, z-axis
         // Set the angles with radians e.g. 3.141593 = 180 degress
         ___MOVEID___Mover.setStartRotation(___STARTROT4K___);
         //___MOVEID___Mover.setMiddle1Rotation(0 , 3.131593 , 0);
         //___MOVEID___Mover.setMiddle2Rotation(0 , -1.5 , 0);
         ___MOVEID___Mover.setEndRotation(___ENDROT4K___);
+
+        // Set the scales with 1.0 is not scale
+        // var vScale = 1.0;
+        //___MOVEID___Mover.setStartScale(vScale, vScale, vScale);
+        // vScale = 1.0;
+        //___MOVEID___Mover.setMiddle1Scale(vScale, vScale, vScale);
+        // vScale = 1.0;
+        //___MOVEID___Mover.setMiddle2Scale(vScale, vScale, vScale);
+        // vScale = 1.0;
+        //___MOVEID___Mover.setEndScale(vScale, vScale, vScale);
 
         // Set duration
         ___MOVEID___Mover.setDuration(___DURATION___); // i.e. ___DURATION___/1000 seconds
