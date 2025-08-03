@@ -11,6 +11,11 @@ For positioning single object [JSON3d4Aframe](https://niebert.github.io/JSON3D4A
 The following 3D models were published by Sketchfab as Creative Commons resources.
 The used marker is the Hiro-Marker that can be downloaded as [PDF](https://niebert.github.io/JSON3D4Aframe/pdf/marker_hiro_kanji_printout.pdf) from the GitHub-repository [JSON3D4Aframe](https://niebert.github.io/JSON3D4Aframe).
 
+### Aframe / AR.js components 
+* [aframe-clipping-plane-component.js](https://github.com/akbartus/A-Frame-Clipping-Plane-Component) by `akbartus` to hide animated GLB partially that are covered e.g. by a bridge
+* [aframe-object-mover.js](./js/aframe-object-mover.js) - to move Aframe objects with a convex combination of order 1,2,3 in the 3D space
+* [ar-object-mover.js](./js/ar-object-mover.js) - to move AR.js objects e.g on a marker with a convex combination of order 1,2,3 in the 3D space
+
 ### Treasure Chest
 
 * **Browser Preview** - [HTML file - treasure_chest.html](https://ar4nhey.github.io/litspatz4c/treasure-chest-cutted.html)
