@@ -17,9 +17,13 @@ The used marker is the Hiro-Marker that can be downloaded as [PDF](https://niebe
 * [ar-object-mover.js](./js/ar-object-mover.js) by `niebert` to move AR.js objects e.g on a marker with a [convex combination](https://en.wikiversity.org/wiki/Convex_combination) of order 1,2,3 in the 3D space. The library is used to move objects on a curved path in the 3D space. The library is used for the following GLB files e.g. for animating a running person in the 3D space.
 
 ### Convex Combinations and Points
-The following image was created with Geogebra to show how the 2 points in between shape the curve.
+The following image was created with Geogebra to show how the 2 points in between shape the curve of the [convex combination](https://en.wikiversity.org/wiki/Convex_combination).
 
 ![Convex Combination](./img/convcomb_STARTPOS_ENDPOS_ord3.png)
+
+### WebApp to create HTML-file
+The repository contains also a tool [HTML4Aframe](https://ar4nhey.github.io/litspatz4c/html4aframe.html) with which you can create your own version of the 
+AR VR and ARGEO files.
 
 ### Treasure Chest
 
