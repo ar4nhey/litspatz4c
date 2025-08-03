@@ -10,8 +10,8 @@
   <script src="../../js/aframe-1.7.0-extras.js"></script>
   <script src="../../js/aframe-object-mover.js"></script>
   <script>
-    var scale4dist = 0.65;
-     // Include the ObjectMover class
+        var scale4dist = 0.65;
+        // Include the ObjectMover class
         // Create an instance of ObjectMover for the box
         const floatingMover = new AframeMover('floating','ar');
         floatingMover.setScale4Dist(scale4dist);
@@ -49,16 +49,16 @@
 		// y: -down/+up
 		// z: -rear/+front
 
-	  	boxMover.setStartPositionVert(-18, -2.5, -18);
-	  	boxMover.setMiddlePositionVert(0, -2.5, -5);
-	  	boxMover.setEndPositionVert(+18, -2.5, -13);
-	  	boxMover.setLoop(true);
+		boxMover.setStartPositionVert(-18, -2, -18);
+	  boxMover.setMiddlePositionVert(0, -2, -5);
+	  boxMover.setEndPositionVert(+18, -2, -13);
+	  boxMover.setLoop(true);
 		// Set start and end rotations - no rotation
 		boxMover.setStartRotationVert(0, 0, 0);
 		boxMover.setEndRotationVert(0, 2, 0);
 
 		// Set duration
-		boxMover.setDuration(40000); // 40 seconds
+		boxMover.setDuration(30000); // 30 seconds
 
 		// Start the movement
 		boxMover.startMovement();
