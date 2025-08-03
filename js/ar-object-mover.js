@@ -2,8 +2,8 @@
 * AR.js Object Mover
 *
 * created by Bert Niehaus 2025 - niebert GitHub
-* Version:  1.0.87
-* Date:     2025/08/03 17:10:36
+* Version:  1.0.88
+* Date:     2025/08/03 23:01:02
 * publish under the GNU Public License GPL v3.0
 * https://www.gnu.org/licenses/gpl-3.0.en.html
 *
