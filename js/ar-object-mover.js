@@ -2,8 +2,8 @@
 * AR.js Object Mover
 *
 * created by Bert Niehaus 2025 - niebert GitHub
-* Version:  1.0.55
-* Date:     2025/08/03 13:30:14
+* Version:  1.0.87
+* Date:     2025/08/03 17:10:36
 * publish under the GNU Public License GPL v3.0
 * https://www.gnu.org/licenses/gpl-3.0.en.html
 *
@@ -282,7 +282,7 @@ class ARMover {
           "y": y,
           "z": z
         };//{ x, y, z };
-        this.setRotation4Scene(x,y,z);
+        //this.setRotation4Scene(x,y,z);
     }
 
     setMiddleRotation(x, y, z) {
@@ -368,7 +368,7 @@ class ARMover {
           "y": y,
           "z": z
         };//{ x, y, z };
-        this.setScale4Scene(x,y,z);
+        //this.setScale4Scene(x,y,z);
     }
 
     setMiddleScale(x, y, z) {
@@ -454,6 +454,16 @@ class ARMover {
 
       return { azimuth, polar };
     }
+
+    cloneJSON(pJSON) {
+      var vJSON = {};
+      if (pJSON) {
+        vJSON = JSON.parse(JSON.stringify(pJSON));
+      } else {
+        console.log("ERROR: cloneJSON(pJSON) - pJSON undefined!");
+      };
+      return vJSON
+    };
 /*
     // Get the element
     const element = document.querySelector('#my-element');
@@ -489,41 +499,49 @@ AFRAME.registerComponent(vMoverID , {
   mover: pMover,
   startTime: 0,
   currentTime: 0,
+  keys: ["x","y","z"],
 
+  coordExist: function(pHash,pKeys) {
+     if (!pHash) {
+       return false;
+     }
+     var vBool = true;
+     var keys = pKeys || this.keys || ["x","y","z"];
+     for (var i = 0; i < keys.length; i++) {
+       if (!(pHash.hasOwnProperty(keys[i])) ) {
+         vBool = false;
+         //alert("coordExist() "+JSON.stringify(pHash));
+       }
+     }
+     return vBool;
+ },
  init: function()
  {
     this.startTime = performance.now();
     var mv = this.mover;
     var startPos = { x: 0, y: 0, z: 0 };
-    if (mv.startPos) {
-      startPos = mv.startPos;
-    } else {
+    if (this.coordExist(mv.startPos) == true) {
       if (this.el.object3D && this.el.object3D.position) {
-        mv.startPos = this.el.object3D.position;
-        startPos = this.el.object3D.position;
+        this.el.object3D.rotation.set(mv.startPos.x, mv.startPos.y, mv.startPos.z);
       }
     };
     var initRot = { x: 0, y: 0, z: 0 };
-    if (mv.startRot) {
-      initRot = mv.startRot;
-    } else {
-      // startRot was not set, try to read object rotation
+    if (this.coordExist(mv.startRot) == true) {
       if (this.el.object3D && this.el.object3D.rotation) {
-        mv.startRot = this.el.object3D.rotation
-        initRot = this.el.object3D.rotation
+        this.el.object3D.rotation.set(mv.startRot.x, mv.startRot.y, mv.startRot.z);
       }
     };
-    if (mv.startScale) {
+    //alert("INIT mv.startRot="+JSON.stringify(mv.startRot))
+
+    if (this.coordExist(mv.startScale) == true) {
       if (mv.startScale.x) {
         this.el.object3D.scale.set(mv.startScale.x, mv.startScale.y, mv.startScale.z);
       }
     };
     //this.el.object3D.scale.set(0.75, 0.75, 0.75);
-    this.el.object3D.position.set(startPos.x, startPos.y, startPos.z);
-    this.el.object3D.rotation.set(initRot.x, initRot.y, initRot.z);
+    //this.el.object3D.rotation.set(initRot.x, initRot.y, initRot.z);
     //console.log("mover="+JSON.stringify(mv,null,4));
  },
-
  tick: function (time, timeDelta)
  {
    var mv = this.mover;
@@ -540,23 +558,28 @@ AFRAME.registerComponent(vMoverID , {
    this.el.object3D.visible = vVisible;
    //console.log("tick() - vPos="+JSON.stringify(vPos)+" order4rot="+mv.order4rot+" oder4rotation="+mv.order4rotation);
    this.setPosition4Scene(vPos);
+   //alert("TICK 1 mv.startRot="+JSON.stringify(mv.startRot))
    var vRot = this.convex_rotation(progress);
+   //alert("TICK 2 mv.startRot="+JSON.stringify(mv.startRot))
    this.setRotation4Scene(vRot);
+   //alert("TICK 3 mv.startRot="+JSON.stringify(mv.startRot))
    var vScale = this.convex_scale(progress);
    this.setScale4Scene(vScale);
    this.currentTime += timeDelta;
    if (progress >= 1.0) {
      if (this.mover.loopBool == true) {
        this.startTime = performance.now();
-       this.el.object3D.position.set(mv.startPos.x, mv.startPos.y, mv.startPos.z);
-       var s = 1.0;
-
-       if (mv.startRot && mv.startRot.x) {
+       if (this.coordExist(mv.startPos) == true) {
+         this.el.object3D.position.set(mv.startPos.x, mv.startPos.y, mv.startPos.z);
+       }
+       //alert("mv.startRot="+JSON.stringify(mv.startRot))
+       //alert("mv.endRot="+JSON.stringify(mv.endRot))
+       if (this.coordExist(mv.startRot) == true) {
          // if startRot is set
          // reset the start rotation angles
          this.el.object3D.rotation.set(mv.startRot.x, mv.startRot.y, mv.startRot.z);
        }
-       if (mv.startScale && mv.startScale.x) {
+       if (this.coordExist(mv.startScale) == true) {
          // if startScale is set
          // reset the start scale of object
          this.el.object3D.scale.set(mv.startScale.x, mv.startScale.y, mv.startScale.z);
@@ -566,46 +589,72 @@ AFRAME.registerComponent(vMoverID , {
  },
  convex_position: function (t) {
    var mv = this.mover;
-   var vVec = mv.startPos;
+   var vVec = {
+     "x": 0,
+     "y": 0,
+     "z": 0
+   };
+   if (this.coordExist(mv.startPos) == false) {
+     console.warn("convex_postion(t) - startPos not defined");
+     return vVec;
+   } else {
+     vVec = mv.cloneJSON(mv.startPos);
+   }
 
-   if (!mv.middle1Pos) {
-     mv.order4rot = 1;
+   if (this.coordExist(mv.endPos) == false) {
+     mv.order4pos = 0;
+     console.warn("convex_position(t) - endPos not defined");
+     return vVec;
+   }
+
+   if (this.coordExist(mv.middle1Pos) == false) {
+     mv.order4pos = 1;
      vVec = this.conv1vec(mv.startPos,mv.endPos,t);
      //console.log("convex combination for position- order 1");
    } else {
-     if (!mv.middle2Pos) {
-       mv.order4rot = 2;
+     if (this.coordExist(mv.middle2Pos) == false) {
+       mv.order4pos = 2;
        vVec = this.conv2vec(mv.startPos,mv.middle1Pos,mv.endPos,t);
        //console.log("convex combination - order 2");
      } else {
-       mv.order4rot = 3;
+       mv.order4pos = 3;
        vVec = this.conv3vec(mv.startPos,mv.middle1Pos,mv.middle2Pos,mv.endPos,t);
        //console.log("convex combination - order 3");
      }
    }
-   console.log("convex_position(t,ord+"+mv.order4rot+") = "+JSON.stringify(vVec));
+   console.log("convex_position(t,ord"+mv.order4pos+") = "+JSON.stringify(vVec));
    return vVec;
  },
  convex_rotation: function (t) {
    var mv = this.mover;
-   var vVec = mv.startRot;
-   if (!mv.startRot) {
-     alert("startRot not defined")
+   var vVec = {
+     "x": 0,
+     "y": 0,
+     "z": 0
+   };
+   if (this.coordExist(mv.startRot) == false) {
+     console.warn("convex_rotation(t) - startRot not defined");
+     return null;
+   } else {
+     vVec = mv.cloneJSON(mv.startRot);
    }
-
-   if (!mv.middle1Rot) {
+   if (this.coordExist(mv.endRot) == false) {
+     console.warn("convex_rotation(t) - endRot not defined");
+     return vVec;
+   }
+   if (this.coordExist(mv.middle1Rot) == false) {
      mv.order4rot = 1;
      vVec = this.conv1vec(mv.startRot,mv.endRot,t);
-     //console.log("convex rotation - order 1");
+     console.warn("convex rotation - order 1 vec="+JSON.stringify(vVec));
    } else {
-     if (!mv.middle2Rot) {
+     if (this.coordExist(mv.middle2Rot) == false) {
        mv.order4rot = 2;
        vVec = this.conv2vec(mv.startRot,mv.middle1Rot,mv.endRot,t);
-       //console.log("convex rotation - order 2");
+       console.warn("convex rotation - order 2 vec="+JSON.stringify(vVec));
      } else {
        mv.order4rot = 3;
        vVec = this.conv3vec(mv.startRot,mv.middle1Rot,mv.middle2Rot,mv.endRot,t);
-       //console.log("convex rotation - order 3");
+       console.log("convex rotation - order 3 vec="+JSON.stringify(vVec));
      }
    }
    console.log("convex_rotation(t,ord"+mv.order4rot+") = "+JSON.stringify(vVec));
@@ -614,14 +663,28 @@ AFRAME.registerComponent(vMoverID , {
 
  convex_scale: function (t) {
    var mv = this.mover;
-   var vVec = mv.startScale;
-
-   if (!mv.middle1Scale) {
+   var vVec = {
+     "x": 1.0,
+     "y": 1.0,
+     "z": 1.0
+   };
+   if (this.coordExist(mv.startScale) == false) {
+     //console.warn("convex_scale(t) - startScale not defined");
+     return null;
+   } else {
+     vVec = mv.cloneJSON(mv.startScale);
+   }
+   if (this.coordExist(mv.endScale) == false) {
+     mv.order4scale = 0;
+     //console.warn("convex_scale(t) - endScale not defined");
+     return vVec;
+   }
+   if (this.coordExist(mv.middle1Scale) == false) {
      mv.order4rot = 1;
      vVec = this.conv1vec(mv.startScale,mv.endScale,t);
      //console.log("convex scale - order 1");
    } else {
-     if (!mv.middle2Scale) {
+     if (this.coordExist(mv.middle2Scale) == false) {
        mv.order4rot = 2;
        vVec = this.conv2vec(mv.startScale,mv.middle1Scale,mv.endScale,t);
        //console.log("convex scale - order 2");
@@ -637,7 +700,7 @@ AFRAME.registerComponent(vMoverID , {
 
  setPosition4Scene: function(pPosition) {
    if (this.el.object3D) {
-     if (pPosition) {
+     if (this.coordExist(pPosition) == true) {
        this.el.object3D.position.x = pPosition.x;
        this.el.object3D.position.y = pPosition.y;
        this.el.object3D.position.z = pPosition.z;
@@ -651,7 +714,7 @@ AFRAME.registerComponent(vMoverID , {
  setRotation4Scene: function(pRotation) {
    var mv = this.mover;
    if (this.el.object3D) {
-     if (pRotation) {
+     if (this.coordExist(pRotation) == true) {
        this.el.object3D.rotation.x = pRotation.x;
        this.el.object3D.rotation.y = pRotation.y;
        this.el.object3D.rotation.z = pRotation.z;
@@ -663,7 +726,7 @@ AFRAME.registerComponent(vMoverID , {
  setScale4Scene: function(pScale) {
    var mv = this.mover;
    if (this.el.object3D) {
-     if (pScale && pScale.x) {
+     if (this.coordExist(pScale) == true) {
        this.el.object3D.scale.set(pScale.x,pScale.y,pScale.z);
      }
    } else {
@@ -675,20 +738,17 @@ AFRAME.registerComponent(vMoverID , {
  },
 
  conv1vec: function (pStart,pEnd,t) {
+   var mv = this.mover;
    var vVec = {};
-   if (pStart) {
-     vVec = pStart
+   if (this.coordExist(pStart) == true) {
+     vVec = mv.cloneJSON(pStart);
    } else {
      return null;
    }
-   if (pEnd) {
-     for (var key in pStart) {
-       if (pEnd[key]) {
-         vVec[key] = this.conv1(pStart[key],pEnd[key],t)
-       } else {
-         console.error("pEnd."+key+ " undefined!");
-         vVec[key] = pStart[key];
-       }
+   if (this.coordExist(pEnd) == true) {
+     for (var i = 0; i < this.keys.length; i++) {
+       var key =  this.keys[i];
+       vVec[key] = this.conv1(pStart[key],pEnd[key],t);
      }
    } else {
      return null;
@@ -698,13 +758,30 @@ AFRAME.registerComponent(vMoverID , {
  } ,
 
  conv2: function (pStart,pMiddle1, pEnd,t) {
+
    return Math.pow(1-t,2) * pStart + 2 * (1-t)* t * pMiddle1 + Math.pow(t,2)*pEnd
  },
 
  conv2vec: function (pStart,pMiddle1,pEnd,t) {
    //console.log("conv2vec() - pStart="+JSON.stringify(pStart)+ " middle2Pos="+JSON.stringify(middle2Pos)+" pEnd="+JSON.stringify(pEnd));
+   var mv = this.mover;
    var vVec = {};
-   for (var key in pStart) {
+   if (this.coordExist(pStart) == false) {
+     console.error("conv2vec(pStart,pMiddle1,pEnd,"+t+") pStart undefined" );
+     return null;
+   } else {
+     vVec = mv.cloneJSON(pStart);
+   }
+   if (this.coordExist(pMiddle1) == false) {
+     console.error("conv2vec(pStart,pMiddle1,pEnd,"+t+") pMiddle1 undefined" );
+     return null;
+   }
+   if (this.coordExist(pEnd) == false) {
+     console.error("conv2vec(pStart,pMiddle1,pEnd,"+t+") pEnd undefined" );
+     return null;
+   }
+   for (var i = 0; i < this.keys.length; i++) {
+     var key = this.keys[i]
      vVec[key] = this.conv2(pStart[key],pMiddle1[key],pEnd[key],t)
    }
    //console.log("conv2vec(pStart, pMiddle1, pEnd)="+JSON.stringify(vVec));
@@ -717,9 +794,30 @@ AFRAME.registerComponent(vMoverID , {
 
  conv3vec: function (pStart,pMiddle1,pMiddle2,pEnd,t) {
    //console.log("conv3vec() - pStart="+JSON.stringify(pStart)+ " pMiddle1="+JSON.stringify(pMiddle1)+ " pMiddle2="+JSON.stringify(pMiddle2)+" pEnd="+JSON.stringify(pEnd));
+   var mv = this.mover;
    var vVec = {};
    // iteration over "x", "y", "z"
-   for (var key in pStart) {
+   if (this.coordExist(pStart) == false) {
+     console.error("conv3vec(pStart,pMiddle1,pMiddle2,pEnd,"+t+") pStart undefined" );
+     return null;
+   } else {
+     vVec = mv.cloneJSON(pStart);
+   }
+
+   if (this.coordExist(pMiddle1) == false) {
+     console.error("conv3vec(pStart,pMiddle1,pMiddle2,pEnd,"+t+") pMiddle1 undefined");
+     return null;
+   }
+   if (this.coordExist(pMiddle2) == false) {
+     console.error("conv3vec(pStart,pMiddle1,pEnd,"+t+") pMiddle2 undefined");
+     return null;
+   }
+   if (this.coordExist(pEnd) == false) {
+     console.error("conv3vec(pStart,pMiddle1,pMiddle2,pEnd,"+t+") pEnd undefined");
+     return null;
+   }
+   for (var i = 0; i < this.keys.length; i++) {
+     var key = this.keys[i]
      vVec[key] = this.conv3(pStart[key],pMiddle1[key],pMiddle2[key],pEnd[key],t)
    }
    //console.log("conv3vec(pStart, pMiddle1,pMiddle2, pEnd)="+JSON.stringify(vVec));
