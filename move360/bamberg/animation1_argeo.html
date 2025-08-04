@@ -16,24 +16,12 @@
         -->
         <script src="../../js/aframe-object-mover.js"></script>
         <script>
-              // Include the ObjectMover class
-              // Time stamps alternative hide/show
-      		    // floatingMover.setVisibleTimes([ 0.1 , 0.3 , 0.5 , 0.7 , 0.9]);
-              // 0.1 = Hide after 10% of animation time
-              // 0.3 = Show after 30% of animation time
-              // 0.5 = Hide after 50% of animation time
-              // ...
-              // All positions are 3D coordinates (x,y,z)
-              // x: -left/+right
-              // y: -down/+up
-              // z: -rear/+front
-              // (0,0,0) is the marker position
-             var scale4dist = 0.65;
+                // Include the ObjectMover class
         // Create an instance of ObjectMover for the box
         const floatingMover = new AframeMover('floating','ar');
-        floatingMover.setScale4Dist(scale4dist);
+        const vDuration = 45000;
         // Time stamps alternative hide/show
-        floatingMover.setVisibleTimes([ 0.001 , 0.15 ]);
+        floatingMover.setVisibleTimes([ 0.001 , 0.42 ]);
         // 0.1 = Hide after 10% of animation time
         // 0.3 = Show after 30% of animation time
         // 0.5 = Hide after 50% of animation time
@@ -43,43 +31,42 @@
         // y: -down/+up
         // z: -rear/+front
         // (0,0,0) is the marker position
-        floatingMover.setStartPositionVert(-18,-3,-28);
-        floatingMover.setMiddle1PositionVert(-10,-3,-19);
-        floatingMover.setMiddle2PositionVert(+10,-3,-10);
-        floatingMover.setEndPositionVert(+18,-3,13);
+        floatingMover.setStartPosition(-18,-3,-28);
+        floatingMover.setMiddle1Position(23,-3,-19);
+        floatingMover.setMiddle2Position(+33,-3,-12);
+        floatingMover.setEndPosition(+50,-3,13);
         floatingMover.setLoop(true);
         // Set start and end rotations - no rotation
-        floatingMover.setStartRotationVert(0 , 0 , 0);
-        floatingMover.setEndRotationVert(0 , 0 , 0);
+        floatingMover.setStartRotation(0 , 0 , 0);
+        floatingMover.setEndRotation(0 , 0 , 0);
 
         // Set duration
-        floatingMover.setDuration(30000); // i.e. 30000/1000 seconds
+        floatingMover.setDuration(vDuration); // i.e. 30000/1000 seconds
 
         // Start the movement
         floatingMover.startMovement();
 
-            
-	const boxMover = new AframeMover('movingbox','ar');
-    boxMover.setScale4Dist(scale4dist);
+        const boxMover = new AframeMover('movingbox','ar');
 
-		// Set start and end positions (x,y,z)
-		// x: -left/+right
-		// y: -down/+up
-		// z: -rear/+front
+      		// Set start and end positions (x,y,z)
+      		// x: -left/+right
+      		// y: -down/+up
+      		// z: -rear/+front
+          boxMover.setStartPosition(-18, -3, -18);
+          boxMover.setMiddlePosition(23, -3, -5);
+          boxMover.setEndPosition(+50, -3, 13);
+          boxMover.setLoop(true);
+          // Set start and end rotations - no rotation
+          boxMover.setStartRotation(0, 0, 0);
+          boxMover.setEndRotation(0, 2, 0);
+          // Set duration
+          boxMover.setDuration(vDuration); // 30 seconds
 
-		boxMover.setStartPositionVert(-18, -2, -18);
-	  boxMover.setMiddlePositionVert(0, -2, -5);
-	  boxMover.setEndPositionVert(+18, -2, -13);
-	  boxMover.setLoop(true);
-		// Set start and end rotations - no rotation
-		boxMover.setStartRotationVert(0, 0, 0);
-		boxMover.setEndRotationVert(0, 2, 0);
+          // Start the movement
+          boxMover.startMovement();
 
-		// Set duration
-		boxMover.setDuration(30000); // 30 seconds
 
-		// Start the movement
-		boxMover.startMovement();
+
         </script>
       </head>
 
@@ -91,9 +78,8 @@
             arjs="sourceType: webcam; debugUIEnabled: false;"
         >
             <a-assets>
-                <a-asset-item id="my3dmodel" src="../../model3d/ortwin_raft.glb"></a-asset-item>
+                <a-asset-item id="my3dmodel" src="../../model3d/ortwin_raft_no_sail.glb"></a-asset-item>
                 <a-asset-item id="treasure3d" src="../../model3d/treasure-chest-cutted_2.glb"></a-asset-item>
-  
             </a-assets>
             <!-- GEOLOCATION 1 - Bamberg Animation 2 Biblithekh
               -- Entity as reference point in scene
@@ -102,10 +88,22 @@
                     look-at="[gps-camera]"
                     scale="10.0 1.0 1.0"
                     gps-entity-place="latitude: 49.892348161197646; longitude: 10.886882002338872;">
-                <a-entity floating position="-18 -3 -18" >
-            	</a-entity>
-            	<a-entity floating position="-18 -3 -18" >
-                </a-entity>
+     		<!-- Add the 3D model to the scene -->
+                <a-entity floating position="-18 -3 -18">
+			<a-entity gltf-model="#my3dmodel"
+				scale="0.01 0.01 0.01"
+      				rotation="0 0 0"
+				animation-mixer>
+			</a-entity>
+    		</a-entity>
+     		<!-- Add the 3D model to the scene -->
+   		<a-entity movingbox position="-18, -3, -18">
+			<a-entity gltf-model="#treasure3d"
+				scale="0.05 0.05 0.05"
+      				rotation="0 0 0"
+				animation-mixer>
+			</a-entity>
+    		</a-entity>
             </a-entity>
 
             <a-camera gps-camera rotation-reader></a-camera>
