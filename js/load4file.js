@@ -59,6 +59,13 @@ function parseLine4File(pLine,pJSON) {
           console.log("FOUND: '"+karr[0]+"'");
           if (key.indexOf("4K") >0) {
             var nkey = key.replace(/4K/g,"");
+            if (pLine.indexOf("deg") > 0) {
+              pJSON[nkey+"4DEG"] = "deg";
+            } else {
+              pJSON[nkey+"4DEG"] = "rad";
+            }
+            // remove ,"deg" or ,"rad" at the end
+            pJSON[key] = pLine.replace(/[a-z"'\,]+$/,"");
             var vLine = pLine.replace(/[^0-9\+\-\.]+/g," ");
             pJSON[nkey] = vLine;
           };

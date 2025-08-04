@@ -2,8 +2,8 @@
  * AFRAME Object Mover
  *
  * created by Bert Niehaus 2025 - niebert GitHub
- * Version:  1.0.88
- * Date:     2025/08/03 23:01:02
+ * Version:  1.0.93
+ * Date:     2025/08/04 8:14:03
  * publish under the GNU Public License GPL v3.0
  * https://www.gnu.org/licenses/gpl-3.0.en.html
  *
@@ -276,7 +276,12 @@ class AframeMover {
       }
     }
 
-    setStartRotation(x, y, z) {
+    setStartRotation(x, y, z,deg) {
+        if (deg && deg=="deg" ) {
+          x = this.degree2radians(x);
+          y = this.degree2radians(y);
+          z = this.degree2radians(z);
+        }
         this.startRot = {
           "x": x,
           "y": y,
@@ -285,18 +290,27 @@ class AframeMover {
         //this.setRotation4Scene(x,y,z);
     }
 
-    setMiddleRotation(x, y, z) {
-
-      this.order4rot = 2;
-      this.middle1Rot = {
+    setMiddleRotation(x, y, z,deg) {
+        if (deg && deg=="deg" ) {
+          x = this.degree2radians(x);
+          y = this.degree2radians(y);
+          z = this.degree2radians(z);
+        }
+        this.order4rot = 2;
+        this.middle1Rot = {
           "x": x,
           "y": y,
           "z": z
-      };//{ x, y, z };
+        };//{ x, y, z };
     }
 
 
-    setMiddle1Rotation(x, y, z) {
+    setMiddle1Rotation(x, y, z,deg) {
+      if (deg && deg=="deg" ) {
+          x = this.degree2radians(x);
+          y = this.degree2radians(y);
+          z = this.degree2radians(z);
+      }
       this.order4rot = 3;
       this.middle1Rot = {
           "x": x,
@@ -305,7 +319,12 @@ class AframeMover {
       };//{ x, y, z };
     }
 
-    setMiddle2Rotation(x, y, z) {
+    setMiddle2Rotation(x, y, z,deg) {
+      if (deg && deg=="deg" ) {
+          x = this.degree2radians(x);
+          y = this.degree2radians(y);
+          z = this.degree2radians(z);
+      }
       this.order4rot = 3;
       this.middle2Rot = {
           "x": x,
@@ -314,45 +333,64 @@ class AframeMover {
       };//{ x, y, z };
     }
 
-    setEndRotation(x, y, z) {
-        this.endRot = {
+    setEndRotation(x, y, z,deg) {
+      if (deg && deg=="deg" ) {
+          x = this.degree2radians(x);
+          y = this.degree2radians(y);
+          z = this.degree2radians(z);
+      }
+      this.endRot = {
           "x": x,
           "y": y,
           "z": z
-        };//{ x, y, z };
+      };//{ x, y, z };
     }
 
 
 
-    setEndRotation(x, y, z) {
-        this.endRot = {
+    setEndRotation(x, y, z,deg) {
+      if (deg && deg=="deg" ) {
+          x = this.degree2radians(x);
+          y = this.degree2radians(y);
+          z = this.degree2radians(z);
+      }
+      this.endRot = {
           "x": x,
           "y": y,
           "z": z
-        };//{ x, y, z };
+      };//{ x, y, z };
     }
 
 
-    setStartRotationVert(x, y, z) {
-      this.setStartRotation(x, z, -y)
+    setStartRotationVert(x, y, z, deg) {
+      deg = deg || "rad";
+      this.setStartRotation(x, z, -y, deg);
     }
-    setMiddleRotationVert(x, y, z) {
-      this.setMiddleRotation(x, z, -y)
+    setMiddleRotationVert(x, y, z, deg) {
+      deg = deg || "rad";
+      this.setMiddleRotation(x, z, -y, deg)
     }
-    setMiddle1RotationVert(x, y, z) {
-      this.setMiddle1Rotation(x, z, -y)
+    setMiddle1RotationVert(x, y, z, deg) {
+      deg = deg || "rad";
+      this.setMiddle1Rotation(x, z, -y, deg)
     }
-    setMiddle2RotationVert(x, y, z) {
-      this.setMiddle2Rotation(x, z, -y)
+    setMiddle2RotationVert(x, y, z, deg) {
+      deg = deg || "rad";
+      this.setMiddle2Rotation(x, z, -y, deg)
     }
-    setEndRotationVert(x, y, z) {
-      this.setEndRotation(x, z, -y)
+    setEndRotationVert(x, y, z, deg) {
+      deg = deg || "rad";
+      this.setEndRotation(x, z, -y, deg)
     }
 
     //--------------------------
     //------- SCALE ------------
     //--------------------------
     setScale4Scene(x,y,z) {
+      if (arguments.length < 3) {
+        y = x;
+        z = x;
+      }
       //this.entity.setAttribute('rotation', { x: x, y: y, z: z });
       if (this.mode4vr == "aframe4domid") {
         if (this.entity) {
@@ -363,6 +401,10 @@ class AframeMover {
     }
 
     setStartScale(x, y, z) {
+        if (arguments.length < 3) {
+          y = x;
+          z = x;
+        }
         this.startScale = {
           "x": x,
           "y": y,
@@ -372,7 +414,10 @@ class AframeMover {
     }
 
     setMiddleScale(x, y, z) {
-
+      if (arguments.length < 3) {
+        y = x;
+        z = x;
+      }
       this.order4scale = 2;
       this.middle1Scale = {
           "x": x,
@@ -383,6 +428,10 @@ class AframeMover {
 
 
     setMiddle1Scale(x, y, z) {
+      if (arguments.length < 3) {
+        y = x;
+        z = x;
+      }
       this.order4scale = 3;
       this.middle1Scale = {
           "x": x,
@@ -392,6 +441,10 @@ class AframeMover {
     }
 
     setMiddle2Scale(x, y, z) {
+      if (arguments.length < 3) {
+        y = x;
+        z = x;
+      }
       this.order4scale = 3;
       this.middle2Scale = {
           "x": x,
@@ -401,37 +454,50 @@ class AframeMover {
     }
 
     setEndScale(x, y, z) {
-        this.endScale = {
+      if (arguments.length < 3) {
+        y = x;
+        z = x;
+      }
+      this.endScale = {
           "x": x,
           "y": y,
           "z": z
-        };//{ x, y, z };
+      };//{ x, y, z };
     }
-
-
-
-    setEndScale(x, y, z) {
-        this.endScale = {
-          "x": x,
-          "y": y,
-          "z": z
-        };//{ x, y, z };
-    }
-
 
     setStartScaleVert(x, y, z) {
+      if (arguments.length < 3) {
+        y = x;
+        z = x;
+      }
       this.setStartScale(x, z, y)
     }
     setMiddleScaleVert(x, y, z) {
+      if (arguments.length < 3) {
+        y = x;
+        z = x;
+      }
       this.setMiddleScale(x, z, y)
     }
     setMiddle1ScaleVert(x, y, z) {
+      if (arguments.length < 3) {
+        y = x;
+        z = x;
+      }
       this.setMiddle1Scale(x, z, y)
     }
     setMiddle2ScaleVert(x, y, z) {
+      if (arguments.length < 3) {
+        y = x;
+        z = x;
+      }
       this.setMiddle2Scale(x, z, y)
     }
     setEndScaleVert(x, y, z) {
+      if (arguments.length < 3) {
+        y = x;
+        z = x;
+      }
       this.setEndScale(x, z, y)
     }
 
@@ -645,16 +711,16 @@ AFRAME.registerComponent(vMoverID , {
    if (this.coordExist(mv.middle1Rot) == false) {
      mv.order4rot = 1;
      vVec = this.conv1vec(mv.startRot,mv.endRot,t);
-     console.warn("convex rotation - order 1 vec="+JSON.stringify(vVec));
+     //console.log("convex rotation - order 1 vec="+JSON.stringify(vVec));
    } else {
      if (this.coordExist(mv.middle2Rot) == false) {
        mv.order4rot = 2;
        vVec = this.conv2vec(mv.startRot,mv.middle1Rot,mv.endRot,t);
-       console.warn("convex rotation - order 2 vec="+JSON.stringify(vVec));
+       //console.warn("convex rotation - order 2 vec="+JSON.stringify(vVec));
      } else {
        mv.order4rot = 3;
        vVec = this.conv3vec(mv.startRot,mv.middle1Rot,mv.middle2Rot,mv.endRot,t);
-       console.log("convex rotation - order 3 vec="+JSON.stringify(vVec));
+       //console.log("convex rotation - order 3 vec="+JSON.stringify(vVec));
      }
    }
    console.log("convex_rotation(t,ord"+mv.order4rot+") = "+JSON.stringify(vVec));
@@ -750,6 +816,10 @@ AFRAME.registerComponent(vMoverID , {
        var key =  this.keys[i];
        vVec[key] = this.conv1(pStart[key],pEnd[key],t);
      }
+     if (pStart.hasOwnProperty("s")) {
+       var key = "s"
+       vVec[key] = this.conv1(pStart[key],pEnd[key],t);
+     }
    } else {
      return null;
    }
@@ -782,6 +852,10 @@ AFRAME.registerComponent(vMoverID , {
    }
    for (var i = 0; i < this.keys.length; i++) {
      var key = this.keys[i]
+     vVec[key] = this.conv2(pStart[key],pMiddle1[key],pEnd[key],t)
+   }
+   if (pStart.hasOwnProperty("s")) {
+     var key = "s"
      vVec[key] = this.conv2(pStart[key],pMiddle1[key],pEnd[key],t)
    }
    //console.log("conv2vec(pStart, pMiddle1, pEnd)="+JSON.stringify(vVec));
@@ -818,6 +892,10 @@ AFRAME.registerComponent(vMoverID , {
    }
    for (var i = 0; i < this.keys.length; i++) {
      var key = this.keys[i]
+     vVec[key] = this.conv3(pStart[key],pMiddle1[key],pMiddle2[key],pEnd[key],t)
+   }
+   if (pStart.hasOwnProperty("s")) {
+     var key = "s"
      vVec[key] = this.conv3(pStart[key],pMiddle1[key],pMiddle2[key],pEnd[key],t)
    }
    //console.log("conv3vec(pStart, pMiddle1,pMiddle2, pEnd)="+JSON.stringify(vVec));
