@@ -58,6 +58,28 @@
 
               // Start the movement
               floatingMover.startMovement();
+            const boxMover = new AframeMover('movingbox','ar');
+    //boxMover.setVisibleTimes([ 0.001 , 0.1 ]);
+
+		// Set start and end positions (x,y,z)
+		// x: -left/+right
+		// y: -down/+up
+		// z: -rear/+front
+    //boxMover.setStartPosition(12, -5.3, -25);
+    //boxMover.setMiddle1Position(10, -4, -15);
+    //boxMover.setMiddle2Position(6, -4, -15);
+    //boxMover.setEndPosition(2, -3, -10);
+    //boxMover.setLoop(true);
+    boxMover.setStartPosition(12, -5.3, -25);
+    boxMover.setMiddle1Position(10, -4, -5);
+    boxMover.setMiddle2Position(6, -4, -5);
+    boxMover.setEndPosition(2, -3, -10);
+    // Set start and end rotations - no rotation
+    boxMover.setStartRotation(0, 0, 0);
+    boxMover.setEndRotation(0, 2, 0);
+    // Set duration
+    boxMover.setDuration(vDuration); // 30 seconds
+
         </script>
       </head>
 
@@ -83,17 +105,17 @@
                     placed in scene at (0 , 0 , 0)
                     with relative coordinate system for geolocation.
                     -->
-                    <a-entity moving position="0 -13 0" rotation="0 0 0">
+                    <a-entity movingbox position="0 -13 0" rotation="0 0 0">
                     	<!--
                       -->
-                      <a-entity gltf-model="#my3dmodel"
+                      <a-entity gltf-model="#treasure"
                         scale="0.04 0.04 0.04"
                         position="0 0 0"
                         rotation="0 180 0"
                         animation-mixer></a-entity>
                     </a-entity>
                     <a-entity floating position="0 -13 0" rotation="0 0 0">
-                       <a-entity gltf-model="../../model3d/ortwin_raft_no_sail.glb"
+                       <a-entity gltf-model="#raft"
                 	       position="0.3 0 1.2"
                 	       scale="0.6 0.6 0.6"
                          rotation="-10 180 0"
