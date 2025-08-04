@@ -12,7 +12,7 @@
         // Include the ObjectMover class
         // Create an instance of ObjectMover for the box
         const floatingMover = new AframeMover('floating','ar');
-        
+        var vDuration = 45000; // millisecs = 45 sec
         // Time stamps alternative hide/show
         floatingMover.setVisibleTimes([ 0.001 , 0.42 ]);
         // 0.1 = Hide after 10% of animation time
@@ -34,7 +34,7 @@
         floatingMover.setEndRotation(0 , 0 , 0);
 
         // Set duration
-        floatingMover.setDuration(30000); // i.e. 30000/1000 seconds
+        floatingMover.setDuration(vDuration); // 45 sec i.e. 45000/1000 seconds
 
         // Start the movement
         floatingMover.startMovement();
@@ -55,7 +55,7 @@
 		boxMover.setEndRotation(0, 2, 0);
 
 		// Set duration
-		boxMover.setDuration(30000); // 30 seconds
+		boxMover.setDuration(vDuration); // 45 seconds
 
 		// Start the movement
 		boxMover.startMovement();	
