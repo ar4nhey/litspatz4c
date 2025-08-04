@@ -1,1 +1,97 @@
-Bamberg animation 3 ARGEO
+
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>AR.js - Bamberg - Animation 3 - blaues Haus - Geolocation </title>
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+        <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+        <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+        <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+        <!--
+        <script src="/js/aframe-1.2.0.js"></script>
+        <script src="/js/aframe-ar.js"> </script>
+        <script src="/js/aframe-1.7.0-extras.js"></script>
+        -->
+        <script src="/js/ar-object-mover.js"></script>
+        <script>
+              // Include the ObjectMover class
+              // Create an instance of ObjectMover for the box
+              // const scale4dist = 1.0;
+              const runningMover = new ARMover('running','ar');
+
+              // Time stamps alternative hide/show
+      		    // runningMover.setVisibleTimes([ 0.1 , 0.3 , 0.5 , 0.7 , 0.9]);
+              // 0.1 = Hide after 10% of animation time
+              // 0.3 = Show after 30% of animation time
+              // 0.5 = Hide after 50% of animation time
+              // ...
+              // All positions are 3D coordinates (x,y,z)
+              // x: -left/+right
+              // y: -down/+up
+              // z: -rear/+front
+              // (0,0,0) is the marker position
+              runningMover.setStartPosition(13 , 0 , -13);
+              runningMover.setMiddle1Position(3,0,-2);
+              runningMover.setMiddle2Position(-3,0,-2);
+              runningMover.setEndPosition(-12,0,-3);
+              runningMover.setLoop(true);
+              // Set start and end rotations for x-axis, y-axis, z-axis
+              // Set the angles with radians e.g. 3.141593 = 180 degress
+              // If you want to set the angle in degree append the argument "deg"
+              runningMover.setStartRotation(0,90,0,"___STARTROT4DEG___");
+              //runningMover.setMiddle1Rotation(0 , 3.131593 , 0,"___STARTROT4DEG___");
+              //runningMover.setMiddle2Rotation(0 , -1.5 , 0,"___STARTROT4DEG___");
+              runningMover.setEndRotation(0,110,0,"___ENDROT4DEG___");
+
+              // Set the scales with 1.0 is not scale
+              //runningMover.setStartScale(1.0);
+              //runningMover.setMiddle1Scale(0.5);
+              //runningMover.setMiddle2Scale(0.25);
+              //runningMover.setEndScale(0.01);
+
+              // Set duration
+              runningMover.setDuration(12000); // i.e. 12000/1000 seconds
+
+              // Start the movement
+              runningMover.startMovement();
+        </script>
+      </head>
+
+    <body style="margin: 0; overflow: hidden;">
+        <a-scene
+            renderer="logarithmicDepthBuffer: true;"
+            embedded
+            loading-screen="enabled: false;"
+            arjs="sourceType: webcam; debugUIEnabled: false;"
+        >
+            <a-assets>
+                <a-asset-item
+                    id="animated-asset"
+                    src="/model3d/red_elf_running_animation_bl3.glb"
+                ></a-asset-item>
+            </a-assets>
+            <!-- GEOLOCATION 1 - Bamberg - Animation 3 - blaues Haus
+              -- Entity as reference point in scene
+            -->
+             <a-entity
+                    look-at="[gps-camera]"
+                    scale="10.0 1.0 1.0"
+                    gps-entity-place="latitude:   49.89175469792113; longitude: 10.886525450048367  ;">
+
+                    <!-- OBJECT 1 -----
+                    placed in scene at (13 , 0 , -13)
+                    with relative coordinate system for geolocation.
+                    -->
+					          <a-entity running position="13 0 -13" >
+                        animation-mixer="loop: repeat"
+                        scale="1.0 1.0 1.0"
+                        gltf-model="#animated-asset"
+                    ></a-entity>
+            </a-entity>
+
+            <a-camera gps-camera rotation-reader></a-camera>
+        </a-scene>
+    </body>
+</html>
