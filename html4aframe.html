@@ -316,7 +316,7 @@ function saveJSON4HDD(pFilename) {
 
   <center>
     <hr>
-      <h1>JSON2AR File Creator</h1>
+      <h1>JSON2AR File Creator - <span id4marker="version">1.0.93</span></h1>
       <h2 id="HEADER4TITLE">Create Arame, AR and VR in HTML </h1>
     <hr>
   <center>
@@ -463,6 +463,10 @@ function saveJSON4HDD(pFilename) {
       <td>
         <input type="text" id="STARTROT" value="0 0 0" onchange="checkPosition(this)">
         <input type="text" id="STARTROT4K" value="0 , 0 , 0" style="display:none">
+        <select id="STARTROT4DEG">
+          <option value=",\"rad\"" selected>radians</option>
+          <option value=",\"deg\"">degree</option>
+        </select>
         <span name="rotcomment"></span>
       </td>
     </tr>
@@ -471,6 +475,10 @@ function saveJSON4HDD(pFilename) {
       <td>
         <input type="text" id="ENDROT" value="0 0 0" onchange="checkPosition(this)">
         <input type="text" id="ENDROT4K" value="0 , 0 , 0" style="display:none">
+        <select id="ENDROT4DEG">
+          <option value=",\"rad\"" selected>radians</option>
+          <option value=",\"deg\"">degree</option>
+        </select>
         <span name="rotcomment"></span>
       </td>
     </tr>
