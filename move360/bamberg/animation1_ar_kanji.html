@@ -16,7 +16,7 @@
         const floatingMover = new AframeMover('floating','ar');
         floatingMover.setScale4Dist(scale4dist);
         // Time stamps alternative hide/show
-        floatingMover.setVisibleTimes([ 0.001 , 0.15 ]);
+        //floatingMover.setVisibleTimes([ 0.001 , 0.15 ]);
         // 0.1 = Hide after 10% of animation time
         // 0.3 = Show after 30% of animation time
         // 0.5 = Hide after 50% of animation time
@@ -26,15 +26,18 @@
         // y: -down/+up
         // z: -rear/+front
         // (0,0,0) is the marker position
-        floatingMover.setStartPositionVert(-18,-3,-28);
-        floatingMover.setMiddle1PositionVert(-10,-3,-19);
-        floatingMover.setMiddle2PositionVert(+10,-3,-10);
-        floatingMover.setEndPositionVert(+18,-3,13);
+        floatingMover.setStartPositionVert(-4,-2,-4);
+        floatingMover.setMiddle1PositionVert(-1,-2,-4);
+        floatingMover.setMiddle2PositionVert(+4,-2,-4);
+        floatingMover.setEndPositionVert(+6,-2,-4);
         floatingMover.setLoop(true);
         // Set start and end rotations - no rotation
         floatingMover.setStartRotationVert(0 , 0 , 0);
         floatingMover.setEndRotationVert(0 , 0 , 0);
-
+	floatingMover.setStartScaleVert(0.3);
+	floatingMover.setMiddleScaleVert(0.7);
+	floatingMover.setEndPositionVert(0.3);
+	  	
         // Set duration
         floatingMover.setDuration(30000); // i.e. 30000/1000 seconds
 
@@ -42,7 +45,7 @@
         floatingMover.startMovement();
 
 	const boxMover = new AframeMover('movingbox','ar');
-    boxMover.setScale4Dist(scale4dist);
+    	//boxMover.setScale4Dist(scale4dist);
 
 		// Set start and end positions (x,y,z)
 		// x: -left/+right
@@ -50,13 +53,18 @@
 		// z: -rear/+front
 
 		boxMover.setStartPositionVert(-18, -2, -18);
-	  boxMover.setMiddlePositionVert(0, -2, -5);
-	  boxMover.setEndPositionVert(+18, -2, -13);
-	  boxMover.setLoop(true);
+	  	boxMover.setMiddlePositionVert(0, -2, -5);
+	  	boxMover.setEndPositionVert(+18, -2, -13);
+	  	boxMover.setLoop(true);
 		// Set start and end rotations - no rotation
 		boxMover.setStartRotationVert(0, 0, 0);
 		boxMover.setEndRotationVert(0, 2, 0);
-
+		
+	  	boxMover.setStartScaleVert(0.3);
+	  	boxMover.setMiddleScaleVert(0.7);
+	  	boxMover.setEndPositionVert(0.3);
+	  	boxMover.setLoop(true);
+		
 		// Set duration
 		boxMover.setDuration(30000); // 30 seconds
 
