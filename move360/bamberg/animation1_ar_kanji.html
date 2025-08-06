@@ -26,8 +26,8 @@
     // y: -down/+up
     // z: -rear/+front
     // (0,0,0) is the marker position
-    raftMover.setStartPositionVert(-16,1,-15);
-    raftMover.setMiddlePositionVert(-14,1,-5);
+    raftMover.setStartPositionVert(-10,1,-10);
+    raftMover.setMiddlePositionVert(0,1,-5);
     raftMover.setEndPositionVert( 10 , 1 ,-10);
     //raftMover.setMiddle1PositionVert(-1,-4,-4);
     //raftMover.setMiddle2PositionVert(+4,-4,-4);
@@ -56,18 +56,18 @@
 		// y: -down/+up
 		// z: -rear/+front
 
-    boxMover.setStartPositionVert(-8, -1, -8);
+    boxMover.setStartPositionVert(-8, -1, -5);
     boxMover.setMiddlePositionVert(0, -1, -5);
-    boxMover.setEndPositionVert(+14, 1.5, -5);
+    boxMover.setEndPositionVert(+12, 1, -5);
     boxMover.setLoop(true);
     //boxMover.setLoop(false);
     // Set start and end rotations - no rotation
     boxMover.setStartRotationVert(-120, 0, 0,"deg");
     boxMover.setEndRotationVert(-120, 0, 120,"deg");
 
-    boxMover.setStartScaleVert(0.6);
-    boxMover.setMiddleScaleVert(0.9);
-    boxMover.setEndScaleVert(0.6);
+    //boxMover.setStartScaleVert(0.6);
+    //boxMover.setMiddleScaleVert(0.9);
+    //boxMover.setEndScaleVert(0.6);
 
     //boxMover.setLoop(true);
     boxMover.setLoop(false);
