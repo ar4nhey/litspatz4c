@@ -87,7 +87,7 @@ vDataJSON.html4argeo = `
                     placed in scene at (___STARTPOS4K___)
                     with relative coordinate system for geolocation.
                     -->
-					          <a-entity ___MOVEID___ position="___STARTPOS___" >
+		    <a-entity ___MOVEID___ position="___STARTPOS___" 
                         animation-mixer="loop: repeat"
                         scale="___SCALE___ ___SCALE___ ___SCALE___"
                         gltf-model="#animated-asset"
