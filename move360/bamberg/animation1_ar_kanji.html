@@ -26,21 +26,21 @@
     // y: -down/+up
     // z: -rear/+front
     // (0,0,0) is the marker position
-    raftMover.setStartPositionVert(-26,2,-5);
-    raftMover.setMiddlePositionVert(-14,2,-5);
-    raftMover.setEndPositionVert( 10 , 2 ,-5);
+    raftMover.setStartPositionVert(-16,1,-15);
+    raftMover.setMiddlePositionVert(-14,1,-5);
+    raftMover.setEndPositionVert( 10 , 1 ,-10);
     //raftMover.setMiddle1PositionVert(-1,-4,-4);
     //raftMover.setMiddle2PositionVert(+4,-4,-4);
     // Set start and end rotations - no rotation
-    raftMover.setStartRotationVert(90 , 180 , 0,"deg");
-    raftMover.setEndRotationVert(90 , 180 , 0,"deg");
+    raftMover.setStartRotationVert(120 , 180 , 0,"deg");
+    raftMover.setEndRotationVert(120 , 180 , 0,"deg");
 
     raftMover.setStartScaleVert(0.4);
     raftMover.setMiddleScaleVert(0.7);
     raftMover.setEndScaleVert(0.4);
 
     // Set duration
-    raftMover.setDuration(30000); // i.e. 30000/1000 seconds
+    raftMover.setDuration(20000); // i.e. 30000/1000 seconds
 
     raftMover.setLoop(true);
     //raftMover.setLoop(false);
@@ -56,14 +56,14 @@
 		// y: -down/+up
 		// z: -rear/+front
 
-    boxMover.setStartPositionVert(-4, -2, -8);
-    boxMover.setMiddlePositionVert(0, -2, -5);
+    boxMover.setStartPositionVert(-8, -1, -8);
+    boxMover.setMiddlePositionVert(0, -1, -5);
     boxMover.setEndPositionVert(+14, 1.5, -5);
     boxMover.setLoop(true);
     //boxMover.setLoop(false);
     // Set start and end rotations - no rotation
-    boxMover.setStartRotationVert(-90, 0, 0,"deg");
-    boxMover.setEndRotationVert(-90, 0, 120,"deg");
+    boxMover.setStartRotationVert(-120, 0, 0,"deg");
+    boxMover.setEndRotationVert(-120, 0, 120,"deg");
 
     boxMover.setStartScaleVert(0.6);
     boxMover.setMiddleScaleVert(0.9);
@@ -72,7 +72,7 @@
     //boxMover.setLoop(true);
     boxMover.setLoop(false);
     // Set duration
-    boxMover.setDuration(30000); // 30 seconds
+    boxMover.setDuration(20000); // 30 seconds
 
     // Start the movement
     boxMover.startMovement();
