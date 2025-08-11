@@ -59,6 +59,33 @@
 
 		// Start the movement
 		boxMover.startMovement();	
+
+
+		AFRAME.registerComponent('audiohandler', {
+    init: function() {
+      let playing = false;
+      var el = this.el;
+      let audioEl = document.querySelector("a-sound");
+      audioEl.setAttribute("src", "https://studien.bildungsforschung.uni-bamberg.de/litspatz_materialien/ARStation4.mp3");
+      audioEl.addEventListener("loaded", (e) => {
+        console.log("AUDIO LOADED")
+        console.log(e)
+        var audio = audioEl.components.sound;
+        el.addEventListener('click', (ee) => {
+          console.log(ee)
+          if (!playing) {
+            audio.playSound();
+          } else {
+            audio.stopSound();
+
+          }
+          playing = !playing;
+        });
+
+      })
+    }
+  })
+
 	</script>
 
 </head>
@@ -89,7 +116,10 @@
 		animation-mixer>
 	</a-entity>	    
     </a-entity>	  
-	    <a-entity sound="src: #litspatz1audio"></a-entity>
+ 	<a-box position="0 0 -2" color="blue" audiohandler></a-box>
+  	<a-text position="0 0 -2" color="white" audiohandler></a-text>
+	<a-entity text="font: mozillavr; value: Audio" color="white" audiohandler></a-entity>
+	  <a-sound autoplay="false"></a-sound>
 
     <!-- Add some basic lighting -->
     <a-light type="ambient" color="#FFF" light=""></a-light>
