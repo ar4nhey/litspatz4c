@@ -1,147 +1,152 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bamberg Animation 1 - Aframe - Kranen</title>
-    <script src="../../js/aframe-1.7.0.js"></script>
-    <script src="../../js/aframe-extras.js"></script>
-    <script src="../../js/aframe-object-mover.js"></script>
-	<script>
-        // Include the ObjectMover class
-        // Create an instance of ObjectMover for the box
-        const floatingMover = new AframeMover('floating','ar');
-        var vDuration = 90000; // millisecs = 45 sec
-        // Time stamps alternative hide/show
-        floatingMover.setVisibleTimes([ 0.001 , 0.42 ]);
-        // 0.1 = Hide after 10% of animation time
-        // 0.3 = Show after 30% of animation time
-        // 0.5 = Hide after 50% of animation time
-        // ...
-        // All positions are 3D coordinates (x,y,z)
-        // x: -left/+right
-        // y: -down/+up
-        // z: -rear/+front
-        // (0,0,0) is the marker position
-        floatingMover.setStartPosition(-18,-3,-28);
-        floatingMover.setMiddle1Position(23,-3,-19);
-        floatingMover.setMiddle2Position(+33,-3,-10);
-        floatingMover.setEndPosition(+50,-3,13);
-        floatingMover.setLoop(true);
-        // Set start and end rotations - no rotation
-        floatingMover.setStartRotation(0 , 0 , 0);
-        floatingMover.setEndRotation(0 , 0 , 0);
-
-        // Set duration
-        floatingMover.setDuration(vDuration); // 45 sec i.e. 45000/1000 seconds
-
-        // Start the movement
-        floatingMover.startMovement();
-
-	const boxMover = new AframeMover('movingbox','ar');
-
-		// Set start and end positions (x,y,z)
-		// x: -left/+right
-		// y: -down/+up
-		// z: -rear/+front
-		
-		boxMover.setStartPosition(-18, -3, -18);
-	        boxMover.setMiddlePosition(23, -3, -5);
-	  	boxMover.setEndPosition(+50, -3, 13);
-	  	boxMover.setLoop(true);
-		// Set start and end rotations - no rotation
-		boxMover.setStartRotation(0, 0, 0);
-		boxMover.setEndRotation(0, 2, 0);
-
-		// Set duration
-		boxMover.setDuration(vDuration); // 45 seconds
-
-		// Start the movement
-		boxMover.startMovement();	
-
-
-		AFRAME.registerComponent('audiohandler', {
-    init: function() {
-      let playing = false;
-      var el = this.el;
-      //let audioEl = document.querySelector("a-sound");
-      let audioEl = document.getElementById("litspatz1comment");
-      //audioEl.setAttribute("src", "https://studien.bildungsforschung.uni-bamberg.de/litspatz_materialien/ARStation4.mp3");
-      audioEl.addEventListener("loaded", (e) => {
-        console.log("AUDIO LOADED")
-        console.log(e)
-        var audio = audioEl.components.sound;
-        el.addEventListener('click', (evt) => {
-          console.log(evt)
-          if (!playing) {
-            audio.playSound();
-			console.log("Play Audio Comment");
-			alert("Play Audio")
-          } else {
-            audio.stopSound();
-			console.log("Stop Audio Comment");
-			alert("Stop Audio")
-          }
-          playing = !playing;
-        });
-
-      })
-    }
-  })
-
-	</script>
-
+  <title>Animation 1 - Bamberg </title>
+  <link rel="stylesheet" href="../../css/start4page.css">
+  <script language="Javascript">
+	  var vTitle = "LitSpatz - Bamberg 1 - Kranen";
+	  var vBasename = "animation1";
+    var vAudioFile = 'bamberg1audio.mp3';
+	  //var vDir = "../";
+	  var vDir = "";
+	  var vMarker = "kanji";
+  </script>
+  <script src="../../js/start4page.js"></script>
 </head>
 <body>
-  <a-scene inspector="" keyboard-shortcuts="" screenshot="" vr-mode-ui="" device-orientation-permission-ui="" visible="">
-    <!-- Load the 3D model -->
-    <a-assets>
-      <a-asset-item id="my3dmodel" src="../../model3d/ortwin_raft_no_sail.glb"></a-asset-item>
-      <a-asset-item id="treasure3d" src="../../model3d/treasure-chest-cutted_2.glb"></a-asset-item>
-      <img id="sky" src="../../img360/Bamberg2_Kran.JPG">
-      <audio id="litspatz1audio" src="../../audio/bamberg1audio.mp3" preload="auto"></audio>
-      <img id="logo4litspatz2remote" src="https://studien.bildungsforschung.uni-bamberg.de/litspatz_materialien/LitSpatzLogo.jpg">
-      <img id="logo4litspatz" src="../../img/LitSpatzLogo.jpg">
-    </a-assets>
+<h1 id="title4page">Title</h1>
+<h3><a href="https://www.uni-bamberg.de/bildungsforschung/litspatz/" target="_blank">LitzSpatz - Dr. Nora Heyne </a></h3>
+<div class="row">
+  <div class="column">
+    <h2>Scene zum reinsehen ... </h2>
+    <p>
+    	<a href="#"  onclick="show360Degree(vBasename,vDir,vMarker);return false;">
+			<img src="../../img/icons-svg/fa-picture-black.svg" width="100%">
+		</a>
+	</p>
+  </div>
+  <div class="column">
+    <h2>Scene zum reinhören ... </h2>
+    <p>
+    	<!--
+      <a href="#"  onclick="showAudio(vAudio,vDir,vMarker);return false;">
+      -->
+      <a href="https://studien.bildungsforschung.uni-bamberg.de/litspatz_materialien/ARStation4.mp3"  target="_blank">
+      <img src="../../img/icons-svg/audio-black.svg" width="100%">
+		</a>
+	</p>
+  </div>
+  <div class="column">
+    <h2>LitSpatz </h2>
+    <p>
+    	<!-- <img src="../../img/LitSpatzLogo.jpg" width="100%"> -->
+    <a href="https://www.uni-bamberg.de/bildungsforschung/litspatz/" target="_blank">
+      <img src="https://studien.bildungsforschung.uni-bamberg.de/litspatz_materialien/LitSpatzLogo.jpg" width="100%">
+		</a>
+	</p>
+  </div>
+    <div class="column" style="display:none">
+    <h2>AR mit Marker</h2>
+		<p>
+	    <a href="#"  onclick="showARMarker(vBasename,vDir,vMarker)">
+			<img id="marker1" src="../../img/marker/hiro.png" width="100%">
+			<img id="marker2" src="../../img/marker/kanji.png" width="100%" style="display:none">
+		</a>
+		</p>
+  </div>
 
-    <!-- Add the 3D model to the scene -->
-    <a-entity floating position="-18 -3 -18">
-	<a-entity gltf-model="#my3dmodel"
-		scale="0.01 0.01 0.01"
-      		rotation="0 0 0"
-		animation-mixer>
-	</a-entity>	    
-    </a-entity>
-     <!-- Add the 3D model to the scene -->
-   <a-entity movingbox position="-18, -3, -18">
-	<a-entity gltf-model="#treasure3d"
-		scale="0.05 0.05 0.05"
-      		rotation="0 0 0"
-		animation-mixer>
-	</a-entity>	    
-    </a-entity>	 
-	  <!--
- 	<a-box position="0 0 -2" color="blue" audiohandler></a-box>
-  	<a-text position="0 0 -2" color="white" audiohandler></a-text>	  
-	  <a-curvedimage src="#logo4litspatz" height="3.0" radius="5.7" theta-length="72"
-                 rotation="0 100 0" scale="0.8 0.8 0.8"></a-curvedimage>
-  <a-image position="0 0 -2" src="https://studien.bildungsforschung.uni-bamberg.de/litspatz_materialien/LitSpatzLogo.jpg" width="4" heigth="2.5"></a-image>
-	<a-box position="2 0 -2" color="blue" audiohandler></a-box>
-<a-sound id="litspatz1comment" autoplay="false"></a-sound>
-	<a-entity id="litspatz1comment" sound="src:https://studien.bildungsforschung.uni-bamberg.de/litspatz_materialien/ARStation4.mp3"></a-entity>
-	  
-	  -->
-	<a-entity position="0 0 -2" scale="13 13 13" text="font: mozillavr; value: Audio" color="white" audiohandler></a-entity>
-  	<a-box position="0 -2  0" color="blue" audiohandler></a-box>
-  	<a-entity id="litspatz1comment" sound="src:../../audio/bamberg1audio.mp3"></a-entity>
-	
-    <!-- Add some basic lighting -->
-    <a-light type="ambient" color="#FFF" light=""></a-light>
-    <a-light type="point" color="#fff" position="0 2 2" light=""></a-light>
-	  <a-sky src="#sky" rotation="0 -130  0"></a-sky>
-    <!-- Add a camera -->
-    <a-camera position="0 2 2" camera="" rotation="0 0 0" look-controls="" wasd-controls="" data-aframe-inspector-original-camera=""></a-camera>
-  <div class="a-loader-title" style="display: none;">Bamberg Animation 2 Kran</div></a-scene>
+  <div class="column" style="display:none">
+    <h2>AR mit GPS</h2>
+    <p>
+    	<a href="#"  onclick="showARGPS(vBasename,vDir);return false;">
+			<img src="../../img/icons-svg/fa-globe-black.svg" width="100%">
+		</a>
+	</p>
+  </div>
+</div>
+<div class="row">
+  <div class="column" style="background-color:#bcd6cd;">
+	<button class="help-button" id="help1" onclick="show360DegreeHelper()">360-Gradbild</button>
+	<br/>
+	<b>Erklärung:</b> In dieser Webseite werden die 3D-Objekte in einem 360-Grad-Bild darstellt.
+ </div>
+ <div class="column" style="background-color:#bcd6cd;">
+        <!--
+        <audio crossorigin="anonymous" controls>
+            <source src="https://studien.bildungsforschung.uni-bamberg.de/litspatz_materialien/ARStation4.mp3" type="audio/mp3" />
+            <source src="audio/bamberg1audio.mp3" type="audio/mp3" />
+    </audio>
+
+  -->
+      <button class="help-button" id="help3" onclick="showAudioHelper()">Audio</button>
+      <br/>
+ Mit dem Audiokommentar können Sie sich einen <a href="https://studien.bildungsforschung.uni-bamberg.de/litspatz_materialien/ARStation4.mp3" target="_blank">Ausschnitt der Geschichte anhören</a>, zu der die VR-Animation <i>"<span id="title4animation"></span>"</i> erstellt wurde. </div>
+ <div class="column" style="background-color:#bcd6cd;">
+   <b>Erklärung:</b> (<a href="https://www.openstreetmap.org/way/134622662#map=19/49.892229/10.887440" target="_blank">OpenStreetMap</a>)
+   Die VR-Animation ist für den unter dem OpenStreetMap-Link angegebenen Ort vorgesehen.
+</div>
+  <div class="column" style="background-color:#bcd6cd;display:none">
+	<button class="help-button" id="help2" onclick="showARMarkerHelper(vMarker)">AR-Marker</button>
+	<br/>
+    <b>Erklärung:</b> Mit AR können Sie auf Markern im Ihrem Kamerabild 3D-Objekt sichtbar machen (Augmented Reality)
+ </div>
+  <div class="column" style="background-color:#bcd6cd;display:none">
+    <button class="help-button" id="help3" onclick="showARGPSHelper()">AR-GPS</button>
+    <br/>
+	<b>Erklärung:</b> (<a href="https://www.openstreetmap.org/way/134622662#map=19/49.892229/10.887440" target="_blank">OpenStreetMap</a>)
+  Mit AR können Sie die Position der Litzspatz in der Realität über GPS-Koordinaten visualisieren und eine georeferenzierte Darstellung erstellen
+ </div>
+</div>
+<hr>
+<center>
+	<a href="https://github.com/ar4nhey/litspatz4c/" target="_bank">GitHub-Repository</a>
+</center>
+<hr>
+
+<script>
+	// Get the H2 header element
+const header = document.getElementById('title4page');
+const title4animation = document.getElementById("title4animation");
+
+// Get the image elements
+const marker1 = document.getElementById('marker1');
+const marker2 = document.getElementById('marker2');
+
+// Function to toggle visibility of images
+function checkMarkerImage () {
+  vMarker = vMarker || "kanji";
+  //alert("vMarker='"+vMarker+"'");
+  if (vMarker == "kanji") {
+	  toggleMarkers();
+  }
+}
+
+function toggleMarkers() {
+
+  // Toggle visibility of marker1
+  marker1.style.display = marker1.style.display === 'none' ? 'block' : 'none';
+
+  // Toggle visibility of marker2
+  marker2.style.display = marker2.style.display === 'none' ? 'block' : 'none';
+}
+
+// Function to replace H2 header text
+function replaceHeaderText() {
+  // Replace H2 header text with new text
+  header.textContent = vTitle;
+  if (title4animation) {
+    title4animation.textContent = vTitle;
+  }
+}
+
+// Set timeout to call functions after 2 seconds
+setTimeout(() => {
+  replaceHeaderText();
+  checkMarkerImage();
+}, 500);
+
+</script>
 </body>
 </html>
