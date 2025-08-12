@@ -12,7 +12,7 @@
         // Include the ObjectMover class
         // Create an instance of ObjectMover for the box
         const floatingMover = new AframeMover('floating','ar');
-        var vDuration = 45000; // millisecs = 45 sec
+        var vDuration = 90000; // millisecs = 45 sec
         // Time stamps alternative hide/show
         floatingMover.setVisibleTimes([ 0.001 , 0.42 ]);
         // 0.1 = Hide after 10% of animation time
@@ -59,6 +59,37 @@
 
 		// Start the movement
 		boxMover.startMovement();	
+
+
+		AFRAME.registerComponent('audiohandler', {
+    init: function() {
+      let playing = false;
+      var el = this.el;
+      //let audioEl = document.querySelector("a-sound");
+      let audioEl = document.getElementById("litspatz1comment");
+      //audioEl.setAttribute("src", "https://studien.bildungsforschung.uni-bamberg.de/litspatz_materialien/ARStation4.mp3");
+      audioEl.addEventListener("loaded", (e) => {
+        console.log("AUDIO LOADED")
+        console.log(e)
+        var audio = audioEl.components.sound;
+        el.addEventListener('click', (evt) => {
+          console.log(evt)
+          if (!playing) {
+            audio.playSound();
+			console.log("Play Audio Comment");
+			alert("Play Audio")
+          } else {
+            audio.stopSound();
+			console.log("Stop Audio Comment");
+			alert("Stop Audio")
+          }
+          playing = !playing;
+        });
+
+      })
+    }
+  })
+
 	</script>
 
 </head>
@@ -69,6 +100,9 @@
       <a-asset-item id="my3dmodel" src="../../model3d/ortwin_raft_no_sail.glb"></a-asset-item>
       <a-asset-item id="treasure3d" src="../../model3d/treasure-chest-cutted_2.glb"></a-asset-item>
       <img id="sky" src="../../img360/Bamberg2_Kran.JPG">
+      <audio id="litspatz1audio" src="../../audio/bamberg1audio.mp3" preload="auto"></audio>
+      <img id="logo4litspatz2remote" src="https://studien.bildungsforschung.uni-bamberg.de/litspatz_materialien/LitSpatzLogo.jpg">
+      <img id="logo4litspatz" src="../../img/LitSpatzLogo.jpg">
     </a-assets>
 
     <!-- Add the 3D model to the scene -->
@@ -86,8 +120,22 @@
       		rotation="0 0 0"
 		animation-mixer>
 	</a-entity>	    
-    </a-entity>	  
+    </a-entity>	 
+	  <!--
+ 	<a-box position="0 0 -2" color="blue" audiohandler></a-box>
+  	<a-text position="0 0 -2" color="white" audiohandler></a-text>	  
+	  <a-curvedimage src="#logo4litspatz" height="3.0" radius="5.7" theta-length="72"
+                 rotation="0 100 0" scale="0.8 0.8 0.8"></a-curvedimage>
+  <a-image position="0 0 -2" src="https://studien.bildungsforschung.uni-bamberg.de/litspatz_materialien/LitSpatzLogo.jpg" width="4" heigth="2.5"></a-image>
+	<a-box position="2 0 -2" color="blue" audiohandler></a-box>
+<a-sound id="litspatz1comment" autoplay="false"></a-sound>
+	<a-entity id="litspatz1comment" sound="src:https://studien.bildungsforschung.uni-bamberg.de/litspatz_materialien/ARStation4.mp3"></a-entity>
 	  
+	  -->
+	<a-entity position="0 0 -2" scale="13 13 13" text="font: mozillavr; value: Audio" color="white" audiohandler></a-entity>
+  	<a-box position="0 -2  0" color="blue" audiohandler></a-box>
+  	<a-entity id="litspatz1comment" sound="src:../../audio/bamberg1audio.mp3"></a-entity>
+	
     <!-- Add some basic lighting -->
     <a-light type="ambient" color="#FFF" light=""></a-light>
     <a-light type="point" color="#fff" position="0 2 2" light=""></a-light>
@@ -97,4 +145,3 @@
   <div class="a-loader-title" style="display: none;">Bamberg Animation 2 Kran</div></a-scene>
 </body>
 </html>
-
