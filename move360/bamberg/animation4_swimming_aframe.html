@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bamberg Animation 2 - Bibliothek</title>
+    <script src="../../js/aframe-1.7.0.js"></script>
+    <script src="../../js/aframe-extras.js"></script>
+    <script src="../../js/aframe-object-mover.js"></script>
+	<script>
+        // Include the ObjectMover class
+        // Create an instance of ObjectMover for the box
+        const runningMover = new AframeMover('running','aframe');
+
+        // Time stamps alternative hide/show
+        // runningMover.setVisibleTimes([ 0.1 , 0.3 , 0.5 , 0.7 , 0.9]);
+        // 0.1 = Hide after 10% of animation time
+        // 0.3 = Show after 30% of animation time
+        // 0.5 = Hide after 50% of animation time
+        // ...
+        // All positions are 3D coordinates (x,y,z)
+        // x: -left/+right
+        // y: -down/+up
+        // z: -rear/+front
+        // (0,0,0) is the marker position
+        runningMover.setStartPosition(0 , 0 , -2);
+        runningMover.setMiddle1Position(3,-1.25,-10);
+        runningMover.setMiddle2Position(-3,-2.75,-20);
+        runningMover.setEndPosition(-7,-4,-25);
+        runningMover.setLoop(true);
+        // Set start and end rotations - no rotation
+        runningMover.setStartRotation(0,0,0);
+        runningMover.setEndRotation(0,2.0,0);
+
+        // Set duration
+        runningMover.setDuration(24000); // i.e. 30000/1000 seconds
+
+        // Start the movement
+        runningMover.startMovement();
+	</script>
+
+</head>
+<body>
+  <a-scene inspector="" keyboard-shortcuts="" screenshot="" vr-mode-ui="" device-orientation-permission-ui="" visible="">
+    <!-- Load the 3D model -->
+    <a-assets>
+      <a-asset-item id="my3dmodel" src="../../model3d/treasure-chest-cutted_2.glb"></a-asset-item>
+      <img id="sky" src="../../img360/Bamberg1_Bibliothek.JPG">
+    </a-assets>
+
+    <!-- Add the 3D model to the scene -->
+    <a-entity running position="0 -13 0" rotation="0 0 0">
+    	<!--
+      -->
+      <a-entity gltf-model="#my3dmodel"
+        scale="0.04 0.04 0.04"
+        position="0 0 0"
+        rotation="0 180 0"
+        animation-mixer></a-entity>
+       <a-entity gltf-model="../../model3d/head_elf.glb"
+	       position="0.3 0 1.2"
+	       scale="0.6 0.6 0.6"
+         rotation="-10 180 0"
+         animation-mixer>
+	      </a-entity>
+        <!-- Comment for CONE: Hat Cone -->
+        <!--
+        <a-entity position="0 0 3" rotation="0 0 0" scale="0.5 0.5 0.5">
+	        <a-cone id="78912379812" position="0.00 1.00 -0.50" material="color: #a32c30;opacity:0.7" rotation="0 0 0"  radius-bottom="0.40" height="1.00" ></a-cone>
+          <a-cylinder id="1747831504151" position="0.00 0.50 0.00" material="color: #a32c30;opacity:0.7" rotation="0 0 0"  radius="0.60" height="0.10" ></a-cylinder>
+          <a-sphere id="1748960421097" position="0.00 0.10 0.00" material="color: #5e5c64;opacity:0.7" rotation="0 0 0"  radius="0.40" ></a-sphere>
+        </a-entity>
+       -->
+
+    </a-entity>
+
+    <!-- Add some basic lighting -->
+    <a-light type="ambient" color="#FFF" light=""></a-light>
+    <a-light type="point" color="#fff" position="0 2 2" light=""></a-light>
+	<a-sky src="#sky" rotation="0 -90 0" ></a-sky>
+    <!-- Add a camera e.g. position="0 2 2" rotation="0 0 0" -->
+    <a-camera position="0 3 3" camera="" rotation="0 0 0" look-controls="" wasd-controls="" data-aframe-inspector-original-camera=""></a-camera>
+  <div class="a-loader-title" style="display: none;">Bamberg Animation 1</div></a-scene>
+</body>
+</html>
