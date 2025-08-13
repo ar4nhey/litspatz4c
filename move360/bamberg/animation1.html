@@ -8,7 +8,8 @@
   <script language="Javascript">
 	  var vTitle = "LitSpatz - Bamberg 1 - Kranen";
 	  var vBasename = "animation1";
-    var vAudioFile = 'bamberg1audio.mp3';
+      var vAudioFile = 'bamberg1audio.mp3';
+	  var vAframePreview = '../../img360/Bamberg1_Kran_preview.png';
 	  //var vDir = "../";
 	  var vDir = "";
 	  var vMarker = "kanji";
@@ -35,7 +36,10 @@
       <a href="#"  onclick="showAudio(vAudio,vDir,vMarker);return false;">
       -->
       <a href="https://studien.bildungsforschung.uni-bamberg.de/litspatz_materialien/ARStation4.mp3"  target="_blank">
-      <img src="../../img/icons-svg/audio-black.svg" width="100%">
+      <img id="icon4aframe" src="../../img/icons-svg/audio-black.svg" width="100%">
+		  <!--
+	  <img src="../../img360/Bamberg1_Kran_preview.png" width="100%">
+		-->
 		</a>
 	</p>
   </div>
@@ -125,6 +129,7 @@
 	// Get the H2 header element
 const header = document.getElementById('title4page');
 const title4animation = document.getElementById("title4animation");
+const icon4aframe = document.getElementById("title4animation");
 
 // Get the image elements
 const marker1 = document.getElementById('marker1');
@@ -154,7 +159,12 @@ function replaceHeaderText() {
   header.textContent = vTitle;
   if (title4animation) {
     title4animation.textContent = vTitle;
-  }
+  };
+  if (vAframePreview) {
+	  if (icon4aframe) {
+		  icon4aframe.src = vAframePreview;
+	  }
+  }	  
 }
 
 // Set timeout to call functions after 2 seconds
