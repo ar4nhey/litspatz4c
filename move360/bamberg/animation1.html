@@ -47,7 +47,8 @@
 		</a>
 	</p>
   </div>
-    <div class="column" style="display:none">
+	<!--
+    <div class="column" style="Xdisplay:none">
     <h2>AR mit Marker</h2>
 		<p>
 	    <a href="#"  onclick="showARMarker(vBasename,vDir,vMarker)">
@@ -57,7 +58,7 @@
 		</p>
   </div>
 
-  <div class="column" style="display:none">
+  <div class="column" style="Xdisplay:none">
     <h2>AR mit GPS</h2>
     <p>
     	<a href="#"  onclick="showARGPS(vBasename,vDir);return false;">
@@ -65,6 +66,8 @@
 		</a>
 	</p>
   </div>
+-->
+	
 </div>
 <div class="row">
   <div class="column" style="background-color:#bcd6cd;">
@@ -82,22 +85,31 @@
   -->
       <button class="help-button" id="help3" onclick="showAudioHelper()">Audio</button>
       <br/>
- Mit dem Audiokommentar können Sie sich einen <a href="https://studien.bildungsforschung.uni-bamberg.de/litspatz_materialien/ARStation4.mp3" target="_blank">Ausschnitt der Geschichte anhören</a>, zu der die VR-Animation <i>"<span id="title4animation"></span>"</i> erstellt wurde. </div>
+ 	Mit dem Audiokommentar können Sie sich einen 
+ 	<a href="https://studien.bildungsforschung.uni-bamberg.de/litspatz_materialien/ARStation4.mp3" target="_blank">Ausschnitt der Geschichte anhören</a>, 
+	zu der die VR-Animation <i>"<span id="title4animation"></span>"</i> erstellt wurde. 
+ </div>
  <div class="column" style="background-color:#bcd6cd;">
-   <b>Erklärung:</b> (<a href="https://www.openstreetmap.org/way/134622662#map=19/49.892229/10.887440" target="_blank">OpenStreetMap</a>)
+   <button class="help-button" id="help1" onclick="window.document.location='index.html'">Alle Stationen</button>
+	<br/>
+	<b>Erklärung:</b> (<a href="https://www.openstreetmap.org/way/134622662#map=19/49.892229/10.887440" target="_blank">OpenStreetMap</a>)
    Die VR-Animation ist für den unter dem OpenStreetMap-Link angegebenen Ort vorgesehen.
 </div>
-  <div class="column" style="background-color:#bcd6cd;display:none">
+
+<!--	
+  <div class="column" style="background-color:#bcd6cd;">
 	<button class="help-button" id="help2" onclick="showARMarkerHelper(vMarker)">AR-Marker</button>
 	<br/>
     <b>Erklärung:</b> Mit AR können Sie auf Markern im Ihrem Kamerabild 3D-Objekt sichtbar machen (Augmented Reality)
  </div>
-  <div class="column" style="background-color:#bcd6cd;display:none">
+  <div class="column" style="background-color:#bcd6cd;">
     <button class="help-button" id="help3" onclick="showARGPSHelper()">AR-GPS</button>
     <br/>
 	<b>Erklärung:</b> (<a href="https://www.openstreetmap.org/way/134622662#map=19/49.892229/10.887440" target="_blank">OpenStreetMap</a>)
   Mit AR können Sie die Position der Litzspatz in der Realität über GPS-Koordinaten visualisieren und eine georeferenzierte Darstellung erstellen
  </div>
+-->
+	
 </div>
 <hr>
 <center>
