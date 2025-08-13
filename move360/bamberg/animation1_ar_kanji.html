@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AR.js - Bamberg Animation 1 - Kranen - kanji </title>
+  <script src="../../js/aframe-1.2.0.js"></script>
+  <script src="../../js/aframe-ar.js"> </script>
+  <script src="../../js/aframe-1.7.0-extras.js"></script>
+  <script src="../../js/aframe-object-mover.js"></script>
+  <script>
+    var scale4dist = 0.95;
+    // Include the ObjectMover class
+    // Create an instance of ObjectMover for the box
+
+    const boxMover = new AframeMover('movingbox','ar');
+    	//boxMover.setScale4Dist(scale4dist);
+
+		// Set start and end positions (x,y,z)
+		// x: -left/+right
+		// y: -down/+up
+		// z: -rear/+front
+
+    boxMover.setStartPositionVert(-4, -2, -8);
+    boxMover.setMiddlePositionVert(0, -2, -5);
+    boxMover.setEndPositionVert(+14, 1.5, -5);
+    boxMover.setLoop(true);
+    //boxMover.setLoop(false);
+    // Set start and end rotations - no rotation
+    boxMover.setStartRotationVert(-90, 0, 0,"deg");
+    boxMover.setEndRotationVert(-90, 0, 120,"deg");
+
+    boxMover.setStartScaleVert(0.6);
+    boxMover.setMiddleScaleVert(0.9);
+    boxMover.setEndScaleVert(0.6);
+
+    //boxMover.setLoop(true);
+    boxMover.setLoop(false);
+    // Set duration
+    boxMover.setDuration(30000); // 30 seconds
+
+    // Start the movement
+    boxMover.startMovement();
+  </script>
+
+</head>
+<body style="margin : 0px; overflow: hidden;">
+  <a-scene embedded arjs>
+    <a-assets>
+      <a-asset-item id="raft3d" src="../../model3d/ortwin_raft_no_sail.glb"></a-asset-item>
+      <a-asset-item id="treasure3d" src="../../model3d/treasure-chest-cutted_2.glb"></a-asset-item>
+      <!-- <img id="sky" src="../../img360/Bamberg2_Kran.JPG"> -->
+    </a-assets>
+
+    <a-marker preset="kanji">
+
+    <!-- Add the 3D model to the scene -->
+    <a-entity movingbox position="-18, -3, -18">
+      <a-light type="point" color="#fff" position="0 3 0" light=""></a-light>
+      <a-entity gltf-model="#treasure3d"
+      scale="0.05 0.05 0.05"
+      rotation="0 0 0"
+      animation-mixer>
+    </a-entity>
+  </a-entity>
+  <a-box id="markerlocation" position="0 -0.2 0" color="#c0c0c0" scale="1 0.02 1" material="opacity:0.7"></a-box>
+  <!--
+  <a-sphere id="xAxisSphere" position="1 0 0" color="black" scale="0.02 0.02 0.02"></a-sphere>
+  <a-sphere id="xAxisSphere" position="1 0 0" color="red" scale="0.02 0.02 0.02"></a-sphere>
+  <a-sphere id="yAxisSphere" position="0 1 0" color="green" scale="0.02 0.02 0.02"></a-sphere>
+  <a-sphere id="zAxisSpere" position="0 0 1" color="blue" scale="0.02 0.02 0.02"></a-sphere>
+  -->
+  <!-- Add some basic lighting -->
+  <a-light type="ambient" color="#FFF" light=""></a-light>
+  <a-light type="point" color="#fff" position="0 2 2" light=""></a-light>
+</a-marker>
+<a-light type="ambient" color="#FFF" light=""></a-light>
+<!--
+<a-light type="point" color="#fff" position="0 3 0" light=""></a-light>
+<a-light type="point" color="#fff" position="3 3 0" light=""></a-light>
+<a-light type="point" color="#fff" position="-3 3 0" light=""></a-light>
+<a-light type="point" color="#fff" position="3 3 -3" light=""></a-light>
+<a-light type="point" color="#fff" position="-3 3 -3" light=""></a-light>
+<a-light type="point" color="#fff" position="1.5 3 0" light=""></a-light>
+-->
+<!-- Define the camera -->
+<a-entity camera></a-entity>
+</a-scene>
+</body>
+</html>
