@@ -24,17 +24,17 @@
         // y: -down/+up
         // z: -rear/+front
         // (0,0,0) is the marker position
-        runningMover.setStartPosition(-180.0 , -57.0 , -222);
-        runningMover.setMiddle1Position(-120,-57.75,-168.5);
-        runningMover.setMiddle2Position(-100,-55.5,-151.3);
-        runningMover.setEndPosition(-55,-57.5,-38.0);
+        runningMover.setEndPosition(-180.0 , -57.0 , -222);
+        runningMover.setMiddle1Position(-100,-55.5,-151.3);
+        runningMover.setMiddle2Position(-120,-57.75,-168.5);
+        runningMover.setStartPosition(-55,-57.5,-38.0);
         runningMover.setLoop(true);
         // Set start and end rotations - no rotation
-        runningMover.setStartRotation(0,0,0);
-        runningMover.setMiddle1Rotation(0,-1.2,0);
-        runningMover.setMiddle1Rotation(0,-1.35,0);
-        runningMover.setEndRotation(0,-1.5,0);
-
+        runningMover.setStartRotation(0,-1.5,0);
+	    runningMover.setMiddle1Rotation(0,-1.35,0);
+        runningMover.setMiddle2Rotation(0,-1.2,0);
+        runningMover.setEndRotation(0,0,0);
+        
         // Set duration
         runningMover.setDuration(24000); // i.e. 30000/1000 seconds
 
