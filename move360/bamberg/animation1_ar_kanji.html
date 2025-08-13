@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AR.js - hiro - argon_raft.glb</title>
+  <title>AR.js - kanji - argon_raft.glb</title>
   <script src="../../js/aframe.min.js"></script>
   <script src="../../js/aframe-ar.js"> </script>
   <script src="../../js/aframe-extras.js"></script>
@@ -24,13 +24,14 @@
     </a-assets>
 
   <a-marker preset="kanji">
+    <a-entity position="0 0 0" rotation="-90 0 0">
       <a-entity
       position="0 0 0"
-      rotation="-1.571 0 0"
       scale="0.01 0.01 0.01"
       animation-mixer="loop: repeat"
       gltf-model="#my3dmodel"
       ></a-entity>
+    </a-entity>
   </a-marker>
   <a-light type="ambient" color="#FFF" light=""></a-light>
   <a-light type="point" color="#fff" position="0 3 0" light=""></a-light>
