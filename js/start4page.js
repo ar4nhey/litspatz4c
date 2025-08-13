@@ -14,6 +14,13 @@ function show360Degree(pBasename,vDir) {
 	showPage(vURL);
 }
 
+function showAudio(pBasename,vDir) {
+	var vURL = vDir + vBasename + "audio.mp3";
+	//alert("show360Degree(pBasename,vDir) URL: "+vURL);
+	console.log("showAudio(pBasename,vDir) URL: "+vURL);
+	showPage(vURL);
+}
+
 function showARMarker(pBasename,vDir,pMarker) {
   pMarker = pMarker || "HIRO";
   pMarker = pMarker.toLowerCase();
@@ -27,8 +34,12 @@ function showARGPS(pBasename,vDir) {
 	showPage(vDir + vBasename + "_argeo.html");
 }
 
+function showAudioHelper() {
+  alert('Eine Audiodatei für Litzspatz, die Sie als Teil der Geschichte zum 360-Gradbild anhören können. Dies ist eine Audioergänzung zu der 3D-Darstellung eines virtuellen Umgebungsmodells für Litzspatz.');
+}
+
 function show360DegreeHelper() {
-  alert('Eine VR-Illustration für Litzspatz, die Sie als 360-Gradbild ansehen können. Dies is eine mögliche Anwendung der 3D-Darstellung eines virtuellen Umgebungsmodells für Litzspatz.');
+  alert('Eine VR-Illustration für Litzspatz, die Sie als 360-Gradbild ansehen können. Dies ist eine mögliche Anwendung der 3D-Darstellung eines virtuellen Umgebungsmodells für Litzspatz.');
 }
 
 function showARMarkerHelper() {
