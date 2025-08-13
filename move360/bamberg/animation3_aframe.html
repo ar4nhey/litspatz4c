@@ -24,14 +24,14 @@
         // y: -down/+up
         // z: -rear/+front
         // (0,0,0) is the marker position
-        runningMover.setStartPosition(13 , 0 , -13);
-        runningMover.setMiddle1Position(3,0,-2);
-        runningMover.setMiddle2Position(-3,0,-2);
-        runningMover.setEndPosition(-13,0,4);
+        runningMover.setStartPosition(-13,0,4);
+        runningMover.setMiddle1Position(-3,0,-2);
+        runningMover.setMiddle2Position(3,0,-2);
+        runningMover.setEndPosition(13 , 0 , -13);
         runningMover.setLoop(true);
         // Set start and end rotations - no rotation
-        runningMover.setStartRotation(0,90,0,"deg");
-        runningMover.setEndRotation(0,110,0,"deg");
+        runningMover.setStartRotation(0,290,0,"deg");
+        runningMover.setEndRotation(0,270,0,"deg");
 
         // Set duration
         runningMover.setDuration(12000); // i.e. 30000/1000 seconds
@@ -66,6 +66,6 @@
 	<a-sky src="#sky" rotation="0 -90 0" ></a-sky>
     <!-- Add a camera e.g. position="0 2 2" rotation="0 0 0" -->
     <a-camera position="0 3 3" camera="" rotation="-0.456 16.272 0" look-controls="" wasd-controls="" data-aframe-inspector-original-camera=""></a-camera>
-  <div class="a-loader-title" style="display: none;">Bamberg Animation 1</div></a-scene>
+  <div class="a-loader-title" style="display: none;">Bamberg Animation 1 - Ordwin hat eine Idee und läuft zum Floß </div></a-scene>
 </body>
 </html>
