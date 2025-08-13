@@ -19,14 +19,42 @@
 <h3><a href="https://www.uni-bamberg.de/bildungsforschung/litspatz/" target="_blank">LitzSpatz - Dr. Nora Heyne </a></h3>
 <div class="row">
   <div class="column">
-    <h2>360-Gradbild</h2>
+    <h2>Szene zum Reinsehen ... </h2>
     <p>
     	<a href="#"  onclick="show360Degree(vBasename,vDir,vMarker);return false;">
-			<img src="../../img/icons-svg/refresh-black.svg" width="100%">
+			<img src="../../img/icons-svg/sphere-rotate-black.svg" width="100%">
+			<!-- Source of Icon: https://commons.wikimedia.org/wiki/File:Globe_icon_Noun_132351_cc.svg  Creative Commons Attribution 3.0 -->
 		</a>
 	</p>
   </div>
   <div class="column">
+    <h2>Szene zum Reinhören ... </h2>
+    <p>
+    	<!--
+      <a href="#"  onclick="showAudio(vAudio,vDir,vMarker);return false;">
+      -->
+      <a href="https://studien.bildungsforschung.uni-bamberg.de/litspatz_materialien/ARStation4.mp3"  target="_blank">
+      <img id="icon4aframe" src="../../img/icons-svg/audio-black.svg" width="100%">
+		  <!--
+	  <img src="../../img360/Bamberg1_Kran_preview.png" width="100%">
+		-->
+		</a>
+	</p>
+  </div>
+  <div class="column">
+    <h2>LitSpatz </h2>
+    <p>
+    	<!-- <img src="../../img/LitSpatzLogo.jpg" width="100%"> -->
+    	<a href="https://www.uni-bamberg.de/bildungsforschung/litspatz/" target="_blank">
+      		<img src="https://studien.bildungsforschung.uni-bamberg.de/litspatz_materialien/LitSpatzLogo.jpg" width="100%">
+		</a>
+		<a href="index.html" target="_blank">
+      		<img src="../../img/icons-svg/home-black.svg" width="50%">
+		</a>
+	</p>
+  </div>
+	<!--
+    <div class="column" style="Xdisplay:none">
     <h2>AR mit Marker</h2>
 		<p>
 	    <a href="#"  onclick="showARMarker(vBasename,vDir,vMarker)">
@@ -35,7 +63,8 @@
 		</a>
 		</p>
   </div>
-  <div class="column">
+
+  <div class="column" style="Xdisplay:none">
     <h2>AR mit GPS</h2>
     <p>
     	<a href="#"  onclick="showARGPS(vBasename,vDir);return false;">
@@ -43,33 +72,62 @@
 		</a>
 	</p>
   </div>
+-->
+	
 </div>
 <div class="row">
   <div class="column" style="background-color:#bcd6cd;">
-	<button class="help-button" id="help1" onclick="show360DegreeHelper()">360-Gradbild</button> 
+	<button class="help-button" id="help1" onclick="show360DegreeHelper()">360-Gradbild</button>
 	<br/>
-	Illustration einer Litzspatz und Erklärung, dass es sich um eine 360-Grad-Bild darstellt
+	<b>Erklärung:</b> In dieser Webseite werden die 3D-Objekte in einem 360-Grad-Bild darstellt.
  </div>
-  <div class="column" style="background-color:#bcd6cd;">
-	<button class="help-button" id="help2" onclick="showARMarkerHelper(vMarker)">AR-Marker</button> 
+ <div class="column" style="background-color:#bcd6cd;">
+        <!--
+        <audio crossorigin="anonymous" controls>
+            <source src="https://studien.bildungsforschung.uni-bamberg.de/litspatz_materialien/ARStation4.mp3" type="audio/mp3" />
+            <source src="audio/bamberg1audio.mp3" type="audio/mp3" />
+    </audio>
+
+  -->
+      <button class="help-button" id="help3" onclick="showAudioHelper()">Audio</button>
+      <br/>
+ 	Mit dem Audiokommentar können Sie sich einen 
+ 	<a href="https://studien.bildungsforschung.uni-bamberg.de/litspatz_materialien/ARStation4.mp3" target="_blank">Ausschnitt der Geschichte anhören</a>, 
+	zu der die VR-Animation <i>"<span id="title4animation"></span>"</i> erstellt wurde. 
+ </div>
+ <div class="column" style="background-color:#bcd6cd;">
+   <button class="help-button" id="help1" onclick="window.document.location='index.html'">Alle Stationen</button>
 	<br/>
-    Erklärung: Mit AR können Sie Markern auf Ihrem Bild folgen und eine realistische Darstellung von Litzspatz erstellen		
- </div>
-  <div class="column" style="background-color:#bcd6cd;">
-    <button class="help-button" id="help3" onclick="showARGPSHelper()">AR-GPS</button> 
-	<br/>
-	Erklärung: Mit AR können Sie die Position der Litzspatz in der Realität über GPS-Koordinaten visualisieren und eine georeferenzierte Darstellung erstellen
- </div>
+	<b>Erklärung:</b> (<a href="https://www.openstreetmap.org/way/134622662#map=19/49.892229/10.887440" target="_blank">OpenStreetMap</a>)
+   Die VR-Animation ist für den unter dem OpenStreetMap-Link angegebenen Ort vorgesehen.
 </div>
-<hr>	
+
+<!--	
+  <div class="column" style="background-color:#bcd6cd;">
+	<button class="help-button" id="help2" onclick="showARMarkerHelper(vMarker)">AR-Marker</button>
+	<br/>
+    <b>Erklärung:</b> Mit AR können Sie auf Markern im Ihrem Kamerabild 3D-Objekt sichtbar machen (Augmented Reality)
+ </div>
+  <div class="column" style="background-color:#bcd6cd;">
+    <button class="help-button" id="help3" onclick="showARGPSHelper()">AR-GPS</button>
+    <br/>
+	<b>Erklärung:</b> (<a href="https://www.openstreetmap.org/way/134622662#map=19/49.892229/10.887440" target="_blank">OpenStreetMap</a>)
+  Mit AR können Sie die Position der Litzspatz in der Realität über GPS-Koordinaten visualisieren und eine georeferenzierte Darstellung erstellen
+ </div>
+-->
+	
+</div>
+<hr>
 <center>
 	<a href="https://github.com/ar4nhey/litspatz4c/" target="_bank">GitHub-Repository</a>
 </center>
-<hr>	
+<hr>
 
 <script>
 	// Get the H2 header element
 const header = document.getElementById('title4page');
+const title4animation = document.getElementById("title4animation");
+const icon4aframe = document.getElementById("title4animation");
 
 // Get the image elements
 const marker1 = document.getElementById('marker1');
@@ -85,10 +143,10 @@ function checkMarkerImage () {
 }
 
 function toggleMarkers() {
- 	  
+
   // Toggle visibility of marker1
   marker1.style.display = marker1.style.display === 'none' ? 'block' : 'none';
-  
+
   // Toggle visibility of marker2
   marker2.style.display = marker2.style.display === 'none' ? 'block' : 'none';
 }
@@ -97,14 +155,22 @@ function toggleMarkers() {
 function replaceHeaderText() {
   // Replace H2 header text with new text
   header.textContent = vTitle;
+  if (title4animation) {
+    title4animation.textContent = vTitle;
+  };
+  if (window.vAframePreview) {
+	  if (icon4aframe) {
+		  //icon4aframe.src = vAframePreview;
+	  }
+  }
 }
 
 // Set timeout to call functions after 2 seconds
 setTimeout(() => {
   replaceHeaderText();
   checkMarkerImage();
-}, 200);
+}, 500);
 
-</script>	
+</script>
 </body>
 </html>
