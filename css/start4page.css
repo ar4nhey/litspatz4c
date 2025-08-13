@@ -16,6 +16,13 @@ body {
   padding: 10px;
 }
 
+.column50 {
+  background-color: #bcd6cd;
+  float: left;
+  width: 50%;
+  padding: 10px;
+}
+
 /* Clear floats after the columns */
 .row:after {
   background-color: #bcd6cd;
