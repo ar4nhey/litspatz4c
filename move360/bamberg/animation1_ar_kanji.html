@@ -59,8 +59,13 @@
 
     <!-- Add the 3D model to the scene -->
     <a-entity movingbox position="-18, -3, -18">
-      <a-light type="point" color="#fff" position="0 3 0" light=""></a-light>
-      <a-entity gltf-model="#treasure3d"
+    	<a-light type="point" color="#fff" position="0 3 0" light=""></a-light>
+		<a-light type="point" color="#fff" position="3 3 0" light=""></a-light>
+		<a-light type="point" color="#fff" position="-3 3 0" light=""></a-light>
+		<a-light type="point" color="#fff" position="3 3 -3" light=""></a-light>
+		<a-light type="point" color="#fff" position="-3 3 -3" light=""></a-light>
+		<a-light type="point" color="#fff" position="1.5 3 0" light=""></a-light>
+	<a-entity gltf-model="#treasure3d"
       scale="0.05 0.05 0.05"
       rotation="0 0 0"
       animation-mixer>
