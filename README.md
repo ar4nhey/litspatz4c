@@ -1,10 +1,13 @@
 ## LitSpatz4C
 This repository contains examples files for the project `LitSpatz4C`.
 
-<h3>&nbsp; &nbsp;  <a href="https://ar4nhey.github.io/litspatz4c" target="_blank">LitSpatz4C - Demo - Testing </h3>
-
+<hr>
 <h3>&nbsp; &nbsp;  <a href="https://ar4nhey.github.io/litspatz4c/move360/bamberg/index.html" target="_blank">LitSpatz - Bamberg </h3>
 
+<h3>&nbsp; &nbsp;  <a href="https://ar4nhey.github.io/litspatz4c/move360/chemnitz/index.html" target="_blank">LitSpatz - Chemnitz </h3>
+
+<h4>&nbsp; &nbsp;  <a href="https://ar4nhey.github.io/litspatz4c" target="_blank">LitSpatz4C - Demo - Testing </h4>
+<hr>
 The project uses [aframe-object-mover.js](js/aframe-object-mover.js), [Aframe](https://aframe.io) and [AR.js](https://ar-js-org.github.io/AR.js-Docs/).
 For positioning single object [JSON3d4Aframe](https://niebert.github.io/JSON3D4Aframe) is used to export AR and VR examples.
   
