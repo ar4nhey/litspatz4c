@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AR.js - move - Elf running - kanji </title>
+  <script src="../../js/aframe.min.js"></script>
+  <script src="../../js/aframe-ar.js"> </script>
+  <script src="../../js/aframe-extras.js"></script>
+  <script src="../../js/ar-object-mover.js"></script>
+  <script>
+        // Include the ObjectMover class
+        // Create an instance of ObjectMover for the box
+	      var scale4dist = 0.65;
+        //const floatingMover = new AframeMover('floating','ar');
+        //floatingMover.setScale4Dist(scale4dist);
+
+        const elfMover = new ARMover('running','ar');
+        //elfMover.setVisibleTimes([0.5,0.7]);
+	      elfMover.setScale4Dist(scale4dist);
+        // Set start and end positions (x,y,z)
+        // x: -left/+right
+        // y: -down/+up
+        // z: -rear/+front
+
+        elfMover.setStartPosition(0, 0, 0);
+        elfMover.setMiddle1Position(2, 5, -45);
+        elfMover.setMiddle2Position(2, 10, -90);
+        elfMover.setEndPosition(1, 15, -130);
+
+        // Loop - Repeat animation
+        elfMover.setLoop(true);
+
+        // Set start and end rotations - no rotation
+        elfMover.setStartRotation(0, 3.0, 0);
+        elfMover.setMiddle1Rotation(0, 3.14 , 0);
+        elfMover.setMiddle2Rotation(0, 3.24, 0);
+        elfMover.setEndRotation(0, 3.5, 0);
+
+        // Set duration
+        elfMover.setDuration(12000); // 12 seconds
+
+        // Start the movement
+        elfMover.startMovement();
+
+  </script>
+
+</head>
+<body style="margin : 0px; overflow: hidden;">
+  <a-scene embedded arjs>
+  <a-marker preset="kanji">
+      <a-entity running position="0 0 0">
+		<a-entity
+		position="0 0 0"
+		rotation="0 0 0"
+		scale="0.10 0.10 0.10"
+		animation-mixer="loop: repeat"
+		gltf-model="../../model3d/litspatz_elf_running_animation_bl3.glb"
+		></a-entity>
+      </a-entity>
+      	<a-box id="markerlocation" position="0 0 0" color="#blue" scale="1 0.02 1" material="opacity:0.5"></a-box>
+	<!-- COORDINATE SYSTEM for UNIT 1 -->
+        <!-- X-Axis (Red) -->
+	<!--
+      	<a-entity id="xAxis" position="0 0 0" rotation="0 0 -90">
+		<a-cylinder position="0 0 0" radius="0.025" height="2.0" color="red"></a-cylinder>
+    		<a-cone position="0 1 0" radius-bottom="0.1" radius-top="0" height="0.3" color="red"></a-cone>
+	</a-entity>
+     	<a-entity id="yAxis" position="0 0 0" rotation="0 0 0">
+		<a-cylinder position="0 0 0" radius="0.025" height="2.0" color="green"></a-cylinder>
+		<a-cone position="0 1 0" radius-bottom="0.1" radius-top="0" height="0.3" color="green"></a-cone>
+       	</a-entity>
+	<a-entity id="zAxis" position="0 0 0" rotation="90 0 0">
+		<a-cylinder position="0 0 0" radius="0.025" height="2.0" color="blue"></a-cylinder>
+		<a-cone position="0 1 0" radius-bottom="0.1" radius-top="0" height="0.3" color="blue"></a-cone>
+      	</a-entity>
+         -->
+	
+   <a-light type="ambient" color="#FFF" light=""></a-light>
+   <a-light type="point" color="#fff" position="0 3 0" light=""></a-light>
+   <a-light type="point" color="#fff" position="3 3 0" light=""></a-light>
+   <a-light type="point" color="#fff" position="-3 3 0" light=""></a-light>
+   <a-light type="point" color="#fff" position="3 3 -3" light=""></a-light>
+   <a-light type="point" color="#fff" position="-3 3 -3" light=""></a-light>
+   <a-light type="point" color="#fff" position="1.5 3 0" light=""></a-light>
+
+  </a-marker>
+
+  <a-entity camera></a-entity>
+  </a-scene>
+</body>
+</html>
